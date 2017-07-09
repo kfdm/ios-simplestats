@@ -58,7 +58,7 @@ class ViewController: UITableViewController {
             if let data = try? Data(contentsOf: url) {
                 let json = JSON(data: data)
                 for result in json["results"].arrayValue {
-                    let obj = Widget(
+                    let obj = Countdown(
                         label: result["label"].stringValue,
                         description: result["description"].stringValue,
                         value: result["created"].stringValue,
@@ -76,7 +76,7 @@ class ViewController: UITableViewController {
             if let data = try? Data(contentsOf: url) {
                 let json = JSON(data: data)
                 for result in json["results"].arrayValue {
-                    let obj = Widget(
+                    let obj = Chart(
                         label: result["label"].stringValue,
                         description: result["description"].stringValue,
                         value: result["value"].stringValue,

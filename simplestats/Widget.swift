@@ -20,10 +20,7 @@ class Widget {
     
     init(label: String, description: String, value: String, created: String, more: String) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss'Z'"
-        print(label)
-        print(description)
-        print(created)
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         
         self.label = label
         self.description = description
@@ -33,13 +30,35 @@ class Widget {
     }
     
     func format() -> String {
+        return self.description
+    }
+}
+
+class Chart: Widget {
+    override func format() -> String {
+        return self.value
+    }
+}
+
+class Countdown: Widget {
+    override func format() -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day, .hour, .minute, .second]
+        formatter.unitsStyle = .positional
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss'Z'"
-        
+
         if self.created != nil {
-            let elapsed = Date().timeIntervalSince(self.created!)
-            print(elapsed)
-            return dateFormatter.string(from: self.created!)
+            var elapsed = Date().timeIntervalSince(self.created!)
+            if elapsed > 0 {
+                let formattedString = formatter.string(from: TimeInterval(elapsed))!
+                return formattedString + " since " + dateFormatter.string(from: self.created!)
+            } else {
+                elapsed = elapsed * -1
+                let formattedString = formatter.string(from: TimeInterval(elapsed))!
+                return formattedString + " until " + dateFormatter.string(from: self.created!)
+            }
         } else {
             return self.description
         }
