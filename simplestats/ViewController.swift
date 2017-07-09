@@ -24,31 +24,21 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if widgets[indexPath.row].more != "" {
-            let moreURL = URL(string: widgets[indexPath.row].more)!
-            UIApplication.shared.open(moreURL, options: [:], completionHandler: nil)
+        if widgets[indexPath.row].more != nil {
+            UIApplication.shared.open(widgets[indexPath.row].more!, options: [:], completionHandler: nil)
         } else {
             let vc = DetailViewController()
             vc.detailItem = widgets[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }
     }
- 
-    var counter = 30
-    
-    
+
     func updateCounter() {
-        //you code, this is an example
-        if counter > 0 {
-            print("\(counter) seconds to the end of the world")
-            counter -= 1
-        }
+        self.tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         var _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
         
@@ -58,14 +48,7 @@ class ViewController: UITableViewController {
             if let data = try? Data(contentsOf: url) {
                 let json = JSON(data: data)
                 for result in json["results"].arrayValue {
-                    let obj = Countdown(
-                        label: result["label"].stringValue,
-                        description: result["description"].stringValue,
-                        value: result["created"].stringValue,
-                        created: result["created"].stringValue,
-                        more: result["more"].stringValue
-                    )
-                    widgets.append(obj)
+                    widgets.append(Countdown(result))
                 }
             }
         }
@@ -76,15 +59,9 @@ class ViewController: UITableViewController {
             if let data = try? Data(contentsOf: url) {
                 let json = JSON(data: data)
                 for result in json["results"].arrayValue {
-                    let obj = Chart(
-                        label: result["label"].stringValue,
-                        description: result["description"].stringValue,
-                        value: result["value"].stringValue,
-                        created: result["created"].stringValue,
-                        more: result["move"].stringValue
-                    )
-                    widgets.append(obj)
-                }            }
+                    widgets.append(Chart(result))
+                }
+            }
         }
         
         tableView.reloadData()

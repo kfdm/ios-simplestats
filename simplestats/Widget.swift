@@ -9,39 +9,55 @@
 
 import UIKit
 
-
-
-class Widget {
-    var label: String
-    var description: String
-    var value: String
-    var more: String
-    var created: Date?
+protocol Widget {
+    var label: String { get set }
+    var more: URL? { get set }
+    var created: Date { get set }
+    var description: String { get set }
     
-    init(label: String, description: String, value: String, created: String, more: String) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        
-        self.label = label
-        self.description = description
-        self.value = value
-        self.created = dateFormatter.date(from: created)
-        self.more = more
-    }
-    
-    func format() -> String {
-        return self.description
-    }
+    func format() -> String
 }
 
 class Chart: Widget {
-    override func format() -> String {
-        return self.value
+    var label: String
+    var more: URL?
+    var created: Date
+    var value: Double
+    var description = ""
+    
+
+    init(_ json : JSON) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+
+        self.label = json["label"].stringValue
+        self.value = json["value"].doubleValue
+        self.more = URL(string: json["more"].stringValue)
+        self.created = dateFormatter.date(from: json["created"].stringValue)!
+    }
+
+    func format() -> String {
+        return "\(self.value)"
     }
 }
 
 class Countdown: Widget {
-    override func format() -> String {
+    var label: String
+    var more: URL?
+    var created: Date
+    var description: String
+    
+    init(_ json : JSON) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        
+        self.label = json["label"].stringValue
+        self.description = json["description"].stringValue
+        self.more = URL(string: json["more"].stringValue)
+        self.created = dateFormatter.date(from: json["created"].stringValue)!
+    }
+
+    func format() -> String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.day, .hour, .minute, .second]
         formatter.unitsStyle = .positional
@@ -49,18 +65,14 @@ class Countdown: Widget {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss'Z'"
 
-        if self.created != nil {
-            var elapsed = Date().timeIntervalSince(self.created!)
+            var elapsed = Date().timeIntervalSince(self.created)
             if elapsed > 0 {
                 let formattedString = formatter.string(from: TimeInterval(elapsed))!
-                return formattedString + " since " + dateFormatter.string(from: self.created!)
+                return formattedString + " since " + dateFormatter.string(from: self.created)
             } else {
                 elapsed = elapsed * -1
                 let formattedString = formatter.string(from: TimeInterval(elapsed))!
-                return formattedString + " until " + dateFormatter.string(from: self.created!)
+                return formattedString + " until " + dateFormatter.string(from: self.created)
             }
-        } else {
-            return self.description
-        }
     }
 }
