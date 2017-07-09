@@ -102,6 +102,7 @@
 				TargetAttributes = {
 					87C058071F10AF7B0085B157 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = QX3B8ZS54S;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -270,6 +271,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QX3B8ZS54S;
 				INFOPLIST_FILE = simplestats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kungfudiscomonkey.simplestats;
@@ -282,6 +284,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QX3B8ZS54S;
 				INFOPLIST_FILE = simplestats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kungfudiscomonkey.simplestats;
