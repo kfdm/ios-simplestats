@@ -19,7 +19,7 @@ class ViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let countdown = countdowns[indexPath.row]
         cell.textLabel?.text = countdown["label"]
-        cell.detailTextLabel?.text = countdown["created"]
+        cell.detailTextLabel?.text = countdown["value"]
         return cell
     }
     
@@ -32,33 +32,39 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let urlString = "https://tsundere.co/api/countdown"
+        let countdownApi = "https://tsundere.co/api/countdown"
         
-        if let url = URL(string: urlString) {
+        if let url = URL(string: countdownApi) {
             if let data = try? Data(contentsOf: url) {
                 let json = JSON(data: data)
-                parse(json: json)
+                for result in json["results"].arrayValue {
+                    let obj = [
+                        "label": result["label"].stringValue,
+                        "description": result["description"].stringValue,
+                        "value": result["created"].stringValue,
+                        ]
+                    countdowns.append(obj)
+                }
             }
         }
-    }
-    
-    func parse(json: JSON) {
-        for result in json["results"].arrayValue {
-            let label = result["label"].stringValue
-            let description = result["description"].stringValue
-            let created = result["created"].stringValue
-            let obj = ["label": label, "description": description, "created": created]
-            countdowns.append(obj)
+        
+        let chartApi = "https://tsundere.co/api/chart"
+        
+        if let url = URL(string: chartApi) {
+            if let data = try? Data(contentsOf: url) {
+                let json = JSON(data: data)
+                for result in json["results"].arrayValue {
+                    let obj = [
+                        "label": result["label"].stringValue,
+                        "description": result["description"].stringValue,
+                        "value": result["value"].stringValue,
+                        ]
+                    countdowns.append(obj)
+                }            }
         }
         
         tableView.reloadData()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
