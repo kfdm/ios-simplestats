@@ -24,9 +24,14 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = DetailViewController()
-        vc.detailItem = countdowns[indexPath.row]
-        navigationController?.pushViewController(vc, animated: true)
+        if countdowns[indexPath.row]["more"] != "" {
+            let moreURL = URL(string: countdowns[indexPath.row]["more"]!)!
+            UIApplication.shared.open(moreURL, options: [:], completionHandler: nil)
+        } else {
+            let vc = DetailViewController()
+            vc.detailItem = countdowns[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     override func viewDidLoad() {
@@ -42,6 +47,7 @@ class ViewController: UITableViewController {
                         "label": result["label"].stringValue,
                         "description": result["description"].stringValue,
                         "value": result["created"].stringValue,
+                        "more": result["more"].stringValue,
                         ]
                     countdowns.append(obj)
                 }
@@ -58,6 +64,7 @@ class ViewController: UITableViewController {
                         "label": result["label"].stringValue,
                         "description": result["description"].stringValue,
                         "value": result["value"].stringValue,
+                        "more": result["more"].stringValue,
                         ]
                     countdowns.append(obj)
                 }            }
