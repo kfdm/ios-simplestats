@@ -20,16 +20,18 @@ class ViewController: UITableViewController {
         let widget = widgets[indexPath.row]
         cell.textLabel?.text = widget.label
         cell.detailTextLabel?.text = widget.format()
+        if widget.more == nil {
+            cell.accessoryType = UITableViewCellAccessoryType.none
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryType.detailButton
+        }
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if widgets[indexPath.row].more != nil {
             UIApplication.shared.open(widgets[indexPath.row].more!, options: [:], completionHandler: nil)
-        } else {
-            let vc = DetailViewController()
-            vc.detailItem = widgets[indexPath.row]
-            navigationController?.pushViewController(vc, animated: true)
         }
     }
 
