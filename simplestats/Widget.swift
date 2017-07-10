@@ -29,6 +29,7 @@ class Chart: Widget {
     init(_ json : JSON) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateFormatter.timeZone = TimeZone(abbreviation: "utc")
 
         self.label = json["label"].stringValue
         self.value = json["value"].doubleValue
@@ -50,6 +51,7 @@ class Countdown: Widget {
     init(_ json : JSON) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateFormatter.timeZone = TimeZone(abbreviation: "utc")
         
         self.label = json["label"].stringValue
         self.description = json["description"].stringValue
@@ -64,6 +66,7 @@ class Countdown: Widget {
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss'Z'"
+        dateFormatter.timeZone = TimeZone.current
 
             var elapsed = Date().timeIntervalSince(self.created)
             if elapsed > 0 {
