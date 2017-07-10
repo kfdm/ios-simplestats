@@ -6,7 +6,6 @@
 //  Copyright © 2017年 Paul Traylor. All rights reserved.
 //
 
-
 import UIKit
 
 protocol Widget {
@@ -14,7 +13,7 @@ protocol Widget {
     var more: URL? { get set }
     var created: Date { get set }
     var description: String { get set }
-    
+
     func format() -> String
 }
 
@@ -24,9 +23,8 @@ class Chart: Widget {
     var created: Date
     var value: Double
     var description = ""
-    
 
-    init(_ json : JSON) {
+    init(_ json: JSON) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         dateFormatter.timeZone = TimeZone(abbreviation: "utc")
@@ -47,12 +45,12 @@ class Countdown: Widget {
     var more: URL?
     var created: Date
     var description: String
-    
-    init(_ json : JSON) {
+
+    init(_ json: JSON) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         dateFormatter.timeZone = TimeZone(abbreviation: "utc")
-        
+
         self.label = json["label"].stringValue
         self.description = json["description"].stringValue
         self.more = URL(string: json["more"].stringValue)
@@ -68,14 +66,14 @@ class Countdown: Widget {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss'Z'"
         dateFormatter.timeZone = TimeZone.current
 
-            var elapsed = Date().timeIntervalSince(self.created)
-            if elapsed > 0 {
-                let formattedString = formatter.string(from: TimeInterval(elapsed))!
-                return formattedString + " since " + dateFormatter.string(from: self.created)
-            } else {
-                elapsed = elapsed * -1
-                let formattedString = formatter.string(from: TimeInterval(elapsed))!
-                return formattedString + " until " + dateFormatter.string(from: self.created)
-            }
+        var elapsed = Date().timeIntervalSince(self.created)
+        if elapsed > 0 {
+            let formattedString = formatter.string(from: TimeInterval(elapsed))!
+            return formattedString + " since " + dateFormatter.string(from: self.created)
+        } else {
+            elapsed = elapsed * -1
+            let formattedString = formatter.string(from: TimeInterval(elapsed))!
+            return formattedString + " until " + dateFormatter.string(from: self.created)
+        }
     }
 }
