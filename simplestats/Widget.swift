@@ -77,3 +77,29 @@ class Countdown: Widget {
         }
     }
 }
+
+func fetchWidgets() -> [Widget] {
+    var widgets = [Widget]()
+    let countdownApi = "https://tsundere.co/api/countdown"
+    
+    if let url = URL(string: countdownApi) {
+        if let data = try? Data(contentsOf: url) {
+            let json = JSON(data: data)
+            for result in json["results"].arrayValue {
+                widgets.append(Countdown(result))
+            }
+        }
+    }
+    
+    let chartApi = "https://tsundere.co/api/chart"
+    
+    if let url = URL(string: chartApi) {
+        if let data = try? Data(contentsOf: url) {
+            let json = JSON(data: data)
+            for result in json["results"].arrayValue {
+                widgets.append(Chart(result))
+            }
+        }
+    }
+    return widgets
+}

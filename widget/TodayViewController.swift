@@ -1,20 +1,21 @@
 //
-//  ViewController.swift
-//  simplestats
+//  TodayViewController.swift
+//  widget
 //
-//  Created by Paul Traylor on 2017/07/08.
+//  Created by ST20638 on 2017/07/11.
 //  Copyright © 2017年 Paul Traylor. All rights reserved.
 //
 
 import UIKit
+import NotificationCenter
 
-class ViewController: UITableViewController {
+class TodayViewController: UITableViewController, NCWidgetProviding {
     var widgets = [Widget]()
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return widgets.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let widget = widgets[indexPath.row]
@@ -25,27 +26,39 @@ class ViewController: UITableViewController {
         } else {
             cell.accessoryType = UITableViewCellAccessoryType.detailButton
         }
-
+        
         return cell
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if widgets[indexPath.row].more != nil {
-            UIApplication.shared.open(widgets[indexPath.row].more!, options: [:], completionHandler: nil)
+        if let url = widgets[indexPath.row].more {
+            extensionContext?.open(url, completionHandler: nil)
         }
     }
-
+    
     func updateCounter() {
         self.tableView.reloadData()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         var _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
 
         widgets = fetchWidgets()
+
         tableView.reloadData()
     }
 
+    
+    func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
+        // Perform any setup necessary in order to update the view.
+        
+        // If an error is encountered, use NCUpdateResult.Failed
+        // If there's no update required, use NCUpdateResult.NoData
+        // If there's an update, use NCUpdateResult.NewData
+        
+        completionHandler(NCUpdateResult.newData)
+    }
+    
 }
