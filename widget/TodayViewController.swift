@@ -44,12 +44,11 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         super.viewDidLoad()
         
         var _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-
+        
         widgets = fetchWidgets()
-
+        
         tableView.reloadData()
     }
-
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         // Perform any setup necessary in order to update the view.
