@@ -42,7 +42,13 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        var _ = Timer.scheduledTimer(
+            timeInterval: 1.0,
+            target: self,
+            selector: #selector(updateCounter),
+            userInfo: nil,
+            repeats: true
+        )
 
         widgets = fetchWidgets()
         tableView.reloadData()
