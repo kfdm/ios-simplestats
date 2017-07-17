@@ -179,6 +179,7 @@
 				C1EB4C461F14D895002C3573 /* Embed Frameworks */,
 				B8D689DF5F173A4B78826FAB /* [CP] Embed Pods Frameworks */,
 				79C773F4BAFB86C00790281E /* [CP] Copy Pods Resources */,
+				87626A6C1F1C5F6A00528993 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -301,6 +302,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-simplestats/Pods-simplestats-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		87626A6C1F1C5F6A00528993 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
 		934639450F6A05B00FC7B571 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
