@@ -1,2 +1,4 @@
+disabled_rules:
+- force_cast
 excluded:
 - Pods

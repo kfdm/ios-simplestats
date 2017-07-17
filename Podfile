@@ -2,6 +2,7 @@
 # platform :ios, '9.0'
 target 'simplestats' do
   use_frameworks!
+  pod 'MGSwipeTableCell'
   pod 'SwiftLint'
   pod 'SwiftyJSON'
 end
