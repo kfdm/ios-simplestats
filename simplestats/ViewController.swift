@@ -58,10 +58,18 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
 
         cell.rightSwipeSettings.transition = .border
 
-        if widget.more == nil {
-            cell.accessoryType = UITableViewCellAccessoryType.none
+        if pinnedItems.contains(widget.id) {
+            if widget.more == nil {
+                cell.accessoryType = .disclosureIndicator
+            } else {
+                cell.accessoryType = .detailDisclosureButton
+            }
         } else {
-            cell.accessoryType = UITableViewCellAccessoryType.detailButton
+            if widget.more == nil {
+                cell.accessoryType = .none
+            } else {
+                cell.accessoryType = .detailButton
+            }
         }
 
         return cell
