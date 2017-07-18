@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 
 protocol Widget {
+    var id: String { get set }
     var label: String { get set }
     var more: URL? { get set }
     var created: Date { get set }
@@ -19,6 +20,7 @@ protocol Widget {
 }
 
 class Chart: Widget {
+    var id: String
     var label: String
     var more: URL?
     var created: Date
@@ -30,6 +32,7 @@ class Chart: Widget {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
 
+        self.id = json["id"].stringValue
         self.label = json["label"].stringValue
         self.value = json["value"].doubleValue
         self.more = URL(string: json["more"].stringValue)
@@ -42,6 +45,7 @@ class Chart: Widget {
 }
 
 class Countdown: Widget {
+    var id: String
     var label: String
     var more: URL?
     var created: Date
@@ -52,6 +56,7 @@ class Countdown: Widget {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
 
+        self.id = json["id"].stringValue
         self.label = json["label"].stringValue
         self.description = json["description"].stringValue
         self.more = URL(string: json["more"].stringValue)

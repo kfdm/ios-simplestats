@@ -8,11 +8,12 @@
 
 import UIKit
 import MGSwipeTableCell
-//class MailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, UIActionSheetDelegate {
+
 class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionSheetDelegate {
 
     var widgets = [Widget]()
     var refresh = true
+    let defaults = UserDefaults(suiteName: "group.net.kungfudiscomonkey.simplestats")!
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return widgets.count
@@ -21,15 +22,29 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MGSwipeTableCell
         let widget = widgets[indexPath.row]
+        var pinnedItems = defaults.array(forKey: "pinned")  as? [String] ?? [String]()
+
         cell.delegate = self
         cell.textLabel!.text = widget.label
         cell.detailTextLabel!.text = widget.format()
 
-        cell.rightButtons = [MGSwipeButton(title: "Pin", backgroundColor: .red) {
-            (_: MGSwipeTableCell!) -> Bool in
-            print("Convenience callback for swipe buttons!")
-            return true
-            }]
+        cell.rightButtons = [MGSwipeButton]()
+
+        if pinnedItems.contains(widget.id) {
+            cell.rightButtons.append(MGSwipeButton(title: "Unpin", backgroundColor: .red) {
+                (_: MGSwipeTableCell!) -> Bool in
+                pinnedItems = pinnedItems.filter { $0 != self.widgets[indexPath.row].id }
+                self.defaults.set(pinnedItems, forKey: "pinned")
+                return true
+            })
+        } else {
+            cell.rightButtons.append(MGSwipeButton(title: "Pin", backgroundColor: .blue) {
+                (_: MGSwipeTableCell!) -> Bool in
+                pinnedItems.append(self.widgets[indexPath.row].id)
+                self.defaults.set(pinnedItems, forKey: "pinned")
+                return true
+            })
+        }
 
         if widget.more != nil {
             cell.rightButtons.append(MGSwipeButton(title: "More", backgroundColor: .lightGray) {
