@@ -33,14 +33,14 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
         if pinnedItems.contains(widget.id) {
             cell.rightButtons.append(MGSwipeButton(title: "Unpin", backgroundColor: .red) {
                 (_: MGSwipeTableCell!) -> Bool in
-                pinnedItems = pinnedItems.filter { $0 != self.widgets[indexPath.row].id }
+                pinnedItems = pinnedItems.filter { $0 != widget.id }
                 self.defaults.set(pinnedItems, forKey: "pinned")
                 return true
             })
         } else {
             cell.rightButtons.append(MGSwipeButton(title: "Pin", backgroundColor: .blue) {
                 (_: MGSwipeTableCell!) -> Bool in
-                pinnedItems.append(self.widgets[indexPath.row].id)
+                pinnedItems.append(widget.id)
                 self.defaults.set(pinnedItems, forKey: "pinned")
                 return true
             })
@@ -49,8 +49,8 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
         if widget.more != nil {
             cell.rightButtons.append(MGSwipeButton(title: "More", backgroundColor: .lightGray) {
                 (_: MGSwipeTableCell!) -> Bool in
-                if self.widgets[indexPath.row].more != nil {
-                    UIApplication.shared.open(self.widgets[indexPath.row].more!, options: [:], completionHandler: nil)
+                if widget.more != nil {
+                    UIApplication.shared.open(widget.more!, options: [:], completionHandler: nil)
                 }
                 return true
             })

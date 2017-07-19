@@ -1,4 +1,6 @@
 disabled_rules:
+- closure_parameter_position
 - force_cast
+- identifier_name
 excluded:
 - Pods
