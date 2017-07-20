@@ -110,3 +110,21 @@ func fetchWidgets() -> [Widget] {
     }
     return widgets
 }
+
+func fetchToken(username : String, password : String) -> String? {
+    let tokenApi = "https://tsundere.co/api/token"
+    var request = URLRequest(url: URL(string: tokenApi)!)
+    var session = URLSession()
+    request.httpMethod = "POST"
+    request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
+    request.httpBody =  "username=\(username)&password=\(password)".data(using: .utf8)
+
+    var task = session.dataTask(with: request, completionHandler: {data, response, error -> Void in
+        print(data)
+        print(response)
+        print(error)
+    })
+
+    task.resume()
+    return "foo"
+}
