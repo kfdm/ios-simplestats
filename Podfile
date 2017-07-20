@@ -5,6 +5,7 @@ target 'simplestats' do
   pod 'MGSwipeTableCell'
   pod 'SwiftLint'
   pod 'SwiftyJSON'
+  pod '1PasswordExtension'
 end
 
 target 'widget' do
