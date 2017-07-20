@@ -10,11 +10,16 @@ import UIKit
 import MGSwipeTableCell
 
 class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionSheetDelegate {
+    @IBOutlet weak var loginButton: UIButton!
 
     var widgets = [Widget]()
     var refresh = true
+    var apikey: String?
     let defaults = UserDefaults(suiteName: "group.net.kungfudiscomonkey.simplestats")!
 
+    @IBAction func showLogin(_ sender: UIButton) {
+        performSegue(withIdentifier: "showLogin", sender: self)
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return widgets.count
     }
@@ -91,6 +96,7 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        apikey = defaults.string(forKey: "apikey")
 
         var _ = Timer.scheduledTimer(
             timeInterval: 1.0,
@@ -99,6 +105,8 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
             userInfo: nil,
             repeats: true
         )
+
+        self.loginButton.isHidden = apikey != nil
 
         widgets = fetchWidgets()
         tableView.reloadData()

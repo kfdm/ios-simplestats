@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		879FCEE11F20E8C30042ABC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FCEE01F20E8C30042ABC8 /* LoginViewController.swift */; };
+		879FCEE41F20EC9B0042ABC8 /* OnePasswordExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 879FCEE31F20EC9B0042ABC8 /* OnePasswordExtension.framework */; };
 		87C0580C1F10AF7B0085B157 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C0580B1F10AF7B0085B157 /* AppDelegate.swift */; };
 		87C0580E1F10AF7B0085B157 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C0580D1F10AF7B0085B157 /* ViewController.swift */; };
 		87C058111F10AF7B0085B157 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87C0580F1F10AF7B0085B157 /* Main.storyboard */; };
@@ -62,6 +64,8 @@
 		5DD33E08AFD9B0CCDD62B128 /* Pods_widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_widget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8787F6451F1E307400A4BF03 /* simplestats.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = simplestats.entitlements; sourceTree = "<group>"; };
 		8787F6461F1E314300A4BF03 /* widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = widget.entitlements; sourceTree = "<group>"; };
+		879FCEE01F20E8C30042ABC8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		879FCEE31F20EC9B0042ABC8 /* OnePasswordExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OnePasswordExtension.framework; path = "../../Library/Developer/Xcode/DerivedData/simplestats-cydmeqoqodkkntgttzokwicbiprr/Build/Products/Debug-iphonesimulator/1PasswordExtension/OnePasswordExtension.framework"; sourceTree = "<group>"; };
 		87C058081F10AF7B0085B157 /* simplestats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = simplestats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C0580B1F10AF7B0085B157 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87C0580D1F10AF7B0085B157 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				879FCEE41F20EC9B0042ABC8 /* OnePasswordExtension.framework in Frameworks */,
 				A37E3539E5292800CE92CF73 /* Pods_simplestats.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +134,7 @@
 				87C0580B1F10AF7B0085B157 /* AppDelegate.swift */,
 				87C0580D1F10AF7B0085B157 /* ViewController.swift */,
 				87C0580F1F10AF7B0085B157 /* Main.storyboard */,
+				879FCEE01F20E8C30042ABC8 /* LoginViewController.swift */,
 				87C058121F10AF7B0085B157 /* Assets.xcassets */,
 				87C058141F10AF7B0085B157 /* LaunchScreen.storyboard */,
 				87C058171F10AF7B0085B157 /* Info.plist */,
@@ -139,6 +145,7 @@
 		C1DF31E91F14D3B300A2C2C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				879FCEE31F20EC9B0042ABC8 /* OnePasswordExtension.framework */,
 				C1DF31EA1F14D3B300A2C2C5 /* NotificationCenter.framework */,
 				8B5F151CC27DECFEA9936B84 /* Pods_simplestats.framework */,
 				5DD33E08AFD9B0CCDD62B128 /* Pods_widget.framework */,
@@ -220,6 +227,9 @@
 		87C058001F10AF7B0085B157 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Paul Traylor";
@@ -382,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				879FCEE11F20E8C30042ABC8 /* LoginViewController.swift in Sources */,
 				87C0580E1F10AF7B0085B157 /* ViewController.swift in Sources */,
 				87E34F0A1F11F3070025BCEB /* Widget.swift in Sources */,
 				87C0580C1F10AF7B0085B157 /* AppDelegate.swift in Sources */,

@@ -48,11 +48,82 @@
                             <outlet property="delegate" destination="aQD-CG-Qt2" id="mx3-I9-TXl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="lrl-ME-tBW"/>
+                    <navigationItem key="navigationItem" id="lrl-ME-tBW">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jgd-Gl-xxF">
+                            <rect key="frame" x="8" y="0.0" width="359" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Login"/>
+                            <connections>
+                                <action selector="showLogin:" destination="aQD-CG-Qt2" eventType="touchUpInside" id="Ben-pq-hCk"/>
+                            </connections>
+                        </button>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="loginButton" destination="jgd-Gl-xxF" id="dak-AH-hSP"/>
+                        <segue destination="4fZ-DZ-CAk" kind="show" identifier="showLogin" id="VjK-Zh-5x1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SSy-8v-aQJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1291.5" y="124.5"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="DKV-7f-qkR">
+            <objects>
+                <viewController id="4fZ-DZ-CAk" customClass="LoginViewController" customModule="simplestats" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Edv-6o-tTV"/>
+                        <viewControllerLayoutGuide type="bottom" id="cSd-eA-PXF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GhQ-87-HTU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ewP-ZA-R2L">
+                                <rect key="frame" x="34" y="195" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ogE-JL-p98">
+                                <rect key="frame" x="34" y="252" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1Y-ur-o17">
+                                <rect key="frame" x="190" y="230" width="81" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="onepassword-button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RQW-gu-szd">
+                                <rect key="frame" x="34" y="318" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Login">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="login" destination="RQW-gu-szd" id="enB-Nn-wtn"/>
+                        <outlet property="onePassword" destination="l1Y-ur-o17" id="uUn-af-TbB"/>
+                        <outlet property="password" destination="ogE-JL-p98" id="Lud-BO-axA"/>
+                        <outlet property="username" destination="ewP-ZA-R2L" id="Ygl-gE-eyZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y0I-fs-qbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2204" y="124"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vMn-x3-SGK">
@@ -92,4 +163,7 @@
             <point key="canvasLocation" x="117.5" y="124.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="onepassword-button" width="27" height="27"/>
+    </resources>
 </document>
