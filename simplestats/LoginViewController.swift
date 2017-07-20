@@ -7,17 +7,17 @@
 //
 
 import UIKit
+import OnePasswordExtension
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var login: UIButton!
-    @IBOutlet weak var onePassword: UIButton!
+    @IBOutlet weak var onepasswordButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.onepasswordButton.isHidden = (false == OnePasswordExtension.shared().isAppExtensionAvailable())
     }
 
     override func didReceiveMemoryWarning() {

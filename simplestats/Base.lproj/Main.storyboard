@@ -116,7 +116,7 @@
                     </view>
                     <connections>
                         <outlet property="login" destination="RQW-gu-szd" id="enB-Nn-wtn"/>
-                        <outlet property="onePassword" destination="l1Y-ur-o17" id="uUn-af-TbB"/>
+                        <outlet property="onepasswordButton" destination="l1Y-ur-o17" id="jE8-Dc-NVb"/>
                         <outlet property="password" destination="ogE-JL-p98" id="Lud-BO-axA"/>
                         <outlet property="username" destination="ewP-ZA-R2L" id="Ygl-gE-eyZ"/>
                     </connections>

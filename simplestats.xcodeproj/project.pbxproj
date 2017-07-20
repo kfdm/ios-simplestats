@@ -8,16 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		879FCEE11F20E8C30042ABC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FCEE01F20E8C30042ABC8 /* LoginViewController.swift */; };
-		879FCEE41F20EC9B0042ABC8 /* OnePasswordExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 879FCEE31F20EC9B0042ABC8 /* OnePasswordExtension.framework */; };
 		87C0580C1F10AF7B0085B157 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C0580B1F10AF7B0085B157 /* AppDelegate.swift */; };
 		87C0580E1F10AF7B0085B157 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C0580D1F10AF7B0085B157 /* ViewController.swift */; };
 		87C058111F10AF7B0085B157 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87C0580F1F10AF7B0085B157 /* Main.storyboard */; };
 		87C058131F10AF7B0085B157 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C058121F10AF7B0085B157 /* Assets.xcassets */; };
 		87C058161F10AF7B0085B157 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87C058141F10AF7B0085B157 /* LaunchScreen.storyboard */; };
+		87C7084D1F20F7C500E44906 /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C7084C1F20F7C500E44906 /* 1Password.xcassets */; };
 		87E34F0A1F11F3070025BCEB /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E34F091F11F3070025BCEB /* Widget.swift */; };
 		90A9DC4969AA284F48EC1919 /* Pods_widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD33E08AFD9B0CCDD62B128 /* Pods_widget.framework */; };
 		A37E3539E5292800CE92CF73 /* Pods_simplestats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5F151CC27DECFEA9936B84 /* Pods_simplestats.framework */; };
-		C1DF31EB1F14D3B300A2C2C5 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1DF31EA1F14D3B300A2C2C5 /* NotificationCenter.framework */; };
 		C1DF31EE1F14D3B300A2C2C5 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF31ED1F14D3B300A2C2C5 /* TodayViewController.swift */; };
 		C1DF31F11F14D3B300A2C2C5 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1DF31EF1F14D3B300A2C2C5 /* MainInterface.storyboard */; };
 		C1DF31F51F14D3B300A2C2C5 /* widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C1DF31E81F14D3B300A2C2C5 /* widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -73,6 +72,7 @@
 		87C058121F10AF7B0085B157 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87C058151F10AF7B0085B157 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87C058171F10AF7B0085B157 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87C7084C1F20F7C500E44906 /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = 1Password.xcassets; path = Pods/1PasswordExtension/1Password.xcassets; sourceTree = "<group>"; };
 		87E34F091F11F3070025BCEB /* Widget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Widget.swift; sourceTree = "<group>"; };
 		8B5F151CC27DECFEA9936B84 /* Pods_simplestats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_simplestats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACD635D7364B3D74BA51C6F3 /* Pods-simplestats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simplestats.release.xcconfig"; path = "Pods/Target Support Files/Pods-simplestats/Pods-simplestats.release.xcconfig"; sourceTree = "<group>"; };
@@ -89,7 +89,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				879FCEE41F20EC9B0042ABC8 /* OnePasswordExtension.framework in Frameworks */,
 				A37E3539E5292800CE92CF73 /* Pods_simplestats.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,7 +97,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1DF31EB1F14D3B300A2C2C5 /* NotificationCenter.framework in Frameworks */,
 				90A9DC4969AA284F48EC1919 /* Pods_widget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,6 +107,7 @@
 		87C057FF1F10AF7B0085B157 = {
 			isa = PBXGroup;
 			children = (
+				87C7084C1F20F7C500E44906 /* 1Password.xcassets */,
 				87C0580A1F10AF7B0085B157 /* simplestats */,
 				C1DF31EC1F14D3B300A2C2C5 /* widget */,
 				C1DF31E91F14D3B300A2C2C5 /* Frameworks */,
@@ -280,6 +279,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87C7084D1F20F7C500E44906 /* 1Password.xcassets in Resources */,
 				87C058161F10AF7B0085B157 /* LaunchScreen.storyboard in Resources */,
 				87C058131F10AF7B0085B157 /* Assets.xcassets in Resources */,
 				87C058111F10AF7B0085B157 /* Main.storyboard in Resources */,
