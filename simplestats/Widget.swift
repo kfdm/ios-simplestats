@@ -96,6 +96,7 @@ func fetchWidgets() -> [Widget] {
             }
         }
     }
+    widgets.sort { $0.created < $1.created }
 
     let chartApi = "https://tsundere.co/api/chart"
 
