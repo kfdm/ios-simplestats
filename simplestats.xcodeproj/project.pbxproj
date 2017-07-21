@@ -17,10 +17,12 @@
 		87E34F0A1F11F3070025BCEB /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E34F091F11F3070025BCEB /* Widget.swift */; };
 		90A9DC4969AA284F48EC1919 /* Pods_widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD33E08AFD9B0CCDD62B128 /* Pods_widget.framework */; };
 		A37E3539E5292800CE92CF73 /* Pods_simplestats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5F151CC27DECFEA9936B84 /* Pods_simplestats.framework */; };
+		C18AF8F71F2194A500A6E065 /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E34F091F11F3070025BCEB /* Widget.swift */; };
+		C18AF8F91F21953800A6E065 /* ApplicationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18AF8F81F21953800A6E065 /* ApplicationSettings.swift */; };
+		C18AF8FA1F21958600A6E065 /* ApplicationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18AF8F81F21953800A6E065 /* ApplicationSettings.swift */; };
 		C1DF31EE1F14D3B300A2C2C5 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF31ED1F14D3B300A2C2C5 /* TodayViewController.swift */; };
 		C1DF31F11F14D3B300A2C2C5 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1DF31EF1F14D3B300A2C2C5 /* MainInterface.storyboard */; };
 		C1DF31F51F14D3B300A2C2C5 /* widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C1DF31E81F14D3B300A2C2C5 /* widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		C1EB4C471F14D8F4002C3573 /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E34F091F11F3070025BCEB /* Widget.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		ACD635D7364B3D74BA51C6F3 /* Pods-simplestats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simplestats.release.xcconfig"; path = "Pods/Target Support Files/Pods-simplestats/Pods-simplestats.release.xcconfig"; sourceTree = "<group>"; };
 		C169C5EB1F21805400239EC0 /* Pods_widget.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_widget.framework; path = "../../Library/Developer/Xcode/DerivedData/simplestats-bxeijlhxhdmziocoljvnmmojqhry/Build/Products/Debug-iphonesimulator/Pods_widget.framework"; sourceTree = "<group>"; };
 		C169C5ED1F21805D00239EC0 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/simplestats-bxeijlhxhdmziocoljvnmmojqhry/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		C18AF8F81F21953800A6E065 /* ApplicationSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettings.swift; sourceTree = "<group>"; };
+		C18AF8FB1F2195DB00A6E065 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C1DF31E81F14D3B300A2C2C5 /* widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1DF31EA1F14D3B300A2C2C5 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		C1DF31ED1F14D3B300A2C2C5 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 				87C058121F10AF7B0085B157 /* Assets.xcassets */,
 				87C058141F10AF7B0085B157 /* LaunchScreen.storyboard */,
 				87C058171F10AF7B0085B157 /* Info.plist */,
+				C18AF8F81F21953800A6E065 /* ApplicationSettings.swift */,
 			);
 			path = simplestats;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 		C1DF31E91F14D3B300A2C2C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C18AF8FB1F2195DB00A6E065 /* Foundation.framework */,
 				C169C5ED1F21805D00239EC0 /* Alamofire.framework */,
 				C169C5EB1F21805400239EC0 /* Pods_widget.framework */,
 				879FCEE31F20EC9B0042ABC8 /* OnePasswordExtension.framework */,
@@ -400,6 +406,7 @@
 				87C0580E1F10AF7B0085B157 /* ViewController.swift in Sources */,
 				87E34F0A1F11F3070025BCEB /* Widget.swift in Sources */,
 				87C0580C1F10AF7B0085B157 /* AppDelegate.swift in Sources */,
+				C18AF8F91F21953800A6E065 /* ApplicationSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,7 +415,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1DF31EE1F14D3B300A2C2C5 /* TodayViewController.swift in Sources */,
-				C1EB4C471F14D8F4002C3573 /* Widget.swift in Sources */,
+				C18AF8F71F2194A500A6E065 /* Widget.swift in Sources */,
+				C18AF8FA1F21958600A6E065 /* ApplicationSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

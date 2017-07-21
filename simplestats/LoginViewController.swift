@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var login: UIButton!
     @IBOutlet weak var onepasswordButton: UIButton!
-    
+
     let defaults = UserDefaults(suiteName: "group.net.kungfudiscomonkey.simplestats")!
 
     override func viewDidLoad() {
@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func findLoginFrom1Password(_ sender: UIButton) {
-        OnePasswordExtension.shared().findLogin(forURLString: "https://tsundere.co", for: self, sender: sender, completion: { (loginDictionary, error) -> Void in
+        OnePasswordExtension.shared().findLogin(forURLString: ApplicationSettings.baseURL, for: self, sender: sender, completion: { (loginDictionary, error) -> Void in
             if loginDictionary == nil {
                 print("Error invoking 1Password App Extension for find login: \(error!)")
                 return
@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
         fetchToken(username: self.username.text!, password: self.password.text!) {
             (token) -> Void in
             self.defaults.set(token, forKey: "apikey")
-            print("Setting token? \(token)")
+            NSLog("Setting token? \(token!)")
             self.navigationController?.popViewController(animated: true)
         }
     }

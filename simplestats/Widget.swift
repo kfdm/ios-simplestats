@@ -87,9 +87,8 @@ class Countdown: Widget {
 
 func fetchWidgets() -> [Widget] {
     var widgets = [Widget]()
-    let countdownApi = "https://tsundere.co/api/countdown"
 
-    if let url = URL(string: countdownApi) {
+    if let url = URL(string: ApplicationSettings.countdownAPI) {
         if let data = try? Data(contentsOf: url) {
             let json = JSON(data: data)
             for result in json["results"].arrayValue {
@@ -99,9 +98,7 @@ func fetchWidgets() -> [Widget] {
     }
     widgets.sort { $0.created < $1.created }
 
-    let chartApi = "https://tsundere.co/api/chart"
-
-    if let url = URL(string: chartApi) {
+    if let url = URL(string: ApplicationSettings.chartApi) {
         if let data = try? Data(contentsOf: url) {
             let json = JSON(data: data)
             for result in json["results"].arrayValue {
@@ -112,11 +109,10 @@ func fetchWidgets() -> [Widget] {
     return widgets
 }
 
-func fetchToken(username: String, password: String, completionHandler: @escaping (String?) -> ()) {
-    let tokenApi = "https://tsundere.co/api/token/"
+func fetchToken(username: String, password: String, completionHandler: @escaping (String?) -> Void) {
     let parameters: Parameters = ["username": username, "password": password]
 
-    Alamofire.request(tokenApi, method: .post, parameters: parameters)
+    Alamofire.request(ApplicationSettings.tokenApi, method: .post, parameters: parameters)
         .validate(statusCode: 200..<300)
         .validate(contentType: ["application/json"])
         .responseData { response in
@@ -125,6 +121,7 @@ func fetchToken(username: String, password: String, completionHandler: @escaping
                 let json = JSON(data: response.data!)
                 completionHandler(json["token"].stringValue)
             case .failure(let error):
+                print(error)
                 completionHandler(nil)
             }
     }

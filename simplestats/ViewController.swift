@@ -15,7 +15,6 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
     var widgets = [Widget]()
     var refresh = true
     var apikey: String?
-    let defaults = UserDefaults(suiteName: "group.net.kungfudiscomonkey.simplestats")!
 
     @IBAction func showLogin(_ sender: UIButton) {
         performSegue(withIdentifier: "showLogin", sender: self)
@@ -27,7 +26,7 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MGSwipeTableCell
         let widget = widgets[indexPath.row]
-        var pinnedItems = defaults.array(forKey: "pinned")  as? [String] ?? [String]()
+        var pinnedItems = ApplicationSettings.pinnedItems
 
         cell.delegate = self
         cell.textLabel!.text = widget.label
@@ -39,14 +38,14 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
             cell.rightButtons.append(MGSwipeButton(title: "Unpin", backgroundColor: .red) {
                 (_: MGSwipeTableCell!) -> Bool in
                 pinnedItems = pinnedItems.filter { $0 != widget.id }
-                self.defaults.set(pinnedItems, forKey: "pinned")
+                ApplicationSettings.pinnedItems = pinnedItems
                 return true
             })
         } else {
             cell.rightButtons.append(MGSwipeButton(title: "Pin", backgroundColor: .blue) {
                 (_: MGSwipeTableCell!) -> Bool in
                 pinnedItems.append(widget.id)
-                self.defaults.set(pinnedItems, forKey: "pinned")
+                ApplicationSettings.pinnedItems = pinnedItems
                 return true
             })
         }
@@ -96,7 +95,7 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        apikey = defaults.string(forKey: "apikey")
+        apikey = ApplicationSettings.apiKey
 
         var _ = Timer.scheduledTimer(
             timeInterval: 1.0,
