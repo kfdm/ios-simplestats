@@ -65,7 +65,6 @@
 		20EA8B1DCADD3B9DA620238E /* Pods-widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-widget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-widget/Pods-widget.debug.xcconfig"; sourceTree = "<group>"; };
 		5DD33E08AFD9B0CCDD62B128 /* Pods_widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_widget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8787F6451F1E307400A4BF03 /* simplestats.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = simplestats.entitlements; sourceTree = "<group>"; };
-		8787F6461F1E314300A4BF03 /* widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = widget.entitlements; sourceTree = "<group>"; };
 		879FCEE01F20E8C30042ABC8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		879FCEE31F20EC9B0042ABC8 /* OnePasswordExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OnePasswordExtension.framework; path = "../../Library/Developer/Xcode/DerivedData/simplestats-cydmeqoqodkkntgttzokwicbiprr/Build/Products/Debug-iphonesimulator/1PasswordExtension/OnePasswordExtension.framework"; sourceTree = "<group>"; };
 		87C058081F10AF7B0085B157 /* simplestats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = simplestats.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,9 +87,6 @@
 		C19CE2D61F219D0A003959BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		C19CE2D81F219D0A003959BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1DF31EA1F14D3B300A2C2C5 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		C1DF31ED1F14D3B300A2C2C5 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		C1DF31F01F14D3B300A2C2C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		C1DF31F21F14D3B300A2C2C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3038DE85FFD4B830BE0C7D9 /* Pods-simplestats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simplestats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-simplestats/Pods-simplestats.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,7 +116,6 @@
 			children = (
 				87C7084C1F20F7C500E44906 /* 1Password.xcassets */,
 				87C0580A1F10AF7B0085B157 /* simplestats */,
-				C1DF31EC1F14D3B300A2C2C5 /* widget */,
 				C19CE2D21F219D0A003959BD /* widget */,
 				C1DF31E91F14D3B300A2C2C5 /* Frameworks */,
 				87C058091F10AF7B0085B157 /* Products */,
@@ -176,17 +171,6 @@
 				5DD33E08AFD9B0CCDD62B128 /* Pods_widget.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C1DF31EC1F14D3B300A2C2C5 /* widget */ = {
-			isa = PBXGroup;
-			children = (
-				8787F6461F1E314300A4BF03 /* widget.entitlements */,
-				C1DF31ED1F14D3B300A2C2C5 /* TodayViewController.swift */,
-				C1DF31EF1F14D3B300A2C2C5 /* MainInterface.storyboard */,
-				C1DF31F21F14D3B300A2C2C5 /* Info.plist */,
-			);
-			path = widget;
 			sourceTree = "<group>";
 		};
 		E1E47436CC35CC5DBFC41A06 /* Pods */ = {
@@ -467,14 +451,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				C19CE2D61F219D0A003959BD /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-		C1DF31EF1F14D3B300A2C2C5 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C1DF31F01F14D3B300A2C2C5 /* Base */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
