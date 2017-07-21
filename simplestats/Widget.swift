@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import Alamofire
 
 protocol Widget {
     var id: String { get set }
@@ -111,20 +112,20 @@ func fetchWidgets() -> [Widget] {
     return widgets
 }
 
-func fetchToken(username : String, password : String) -> String? {
-    let tokenApi = "https://tsundere.co/api/token"
-    var request = URLRequest(url: URL(string: tokenApi)!)
-    var session = URLSession()
-    request.httpMethod = "POST"
-    request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
-    request.httpBody =  "username=\(username)&password=\(password)".data(using: .utf8)
+func fetchToken(username: String, password: String, completionHandler: @escaping (String?) -> ()) {
+    let tokenApi = "https://tsundere.co/api/token/"
+    let parameters: Parameters = ["username": username, "password": password]
 
-    var task = session.dataTask(with: request, completionHandler: {data, response, error -> Void in
-        print(data)
-        print(response)
-        print(error)
-    })
-
-    task.resume()
-    return "foo"
+    Alamofire.request(tokenApi, method: .post, parameters: parameters)
+        .validate(statusCode: 200..<300)
+        .validate(contentType: ["application/json"])
+        .responseData { response in
+            switch response.result {
+            case .success:
+                let json = JSON(data: response.data!)
+                completionHandler(json["token"].stringValue)
+            case .failure(let error):
+                completionHandler(nil)
+            }
+    }
 }

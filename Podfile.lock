@@ -1,21 +1,24 @@
 PODS:
   - 1PasswordExtension (1.8.4)
+  - Alamofire (4.5.0)
   - MGSwipeTableCell (1.5.6)
   - SwiftLint (0.20.1)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - 1PasswordExtension
+  - Alamofire (~> 4.4)
   - MGSwipeTableCell
   - SwiftLint
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   1PasswordExtension: e775a29310c65851e5a6cec1afc349ab4e334e47
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
   SwiftLint: f60095dc173a3f3ec505bb34f5229c3dfd779a54
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: be9d3a94f00910c2385b8154f4d5204385d3c9bf
+PODFILE CHECKSUM: f8c6ab4b1af74941e4024fe7e4110663e6cc2a13
 
 COCOAPODS: 1.2.1

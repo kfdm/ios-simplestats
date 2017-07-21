@@ -76,6 +76,8 @@
 		87E34F091F11F3070025BCEB /* Widget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Widget.swift; sourceTree = "<group>"; };
 		8B5F151CC27DECFEA9936B84 /* Pods_simplestats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_simplestats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACD635D7364B3D74BA51C6F3 /* Pods-simplestats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simplestats.release.xcconfig"; path = "Pods/Target Support Files/Pods-simplestats/Pods-simplestats.release.xcconfig"; sourceTree = "<group>"; };
+		C169C5EB1F21805400239EC0 /* Pods_widget.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_widget.framework; path = "../../Library/Developer/Xcode/DerivedData/simplestats-bxeijlhxhdmziocoljvnmmojqhry/Build/Products/Debug-iphonesimulator/Pods_widget.framework"; sourceTree = "<group>"; };
+		C169C5ED1F21805D00239EC0 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/simplestats-bxeijlhxhdmziocoljvnmmojqhry/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		C1DF31E81F14D3B300A2C2C5 /* widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1DF31EA1F14D3B300A2C2C5 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		C1DF31ED1F14D3B300A2C2C5 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +146,8 @@
 		C1DF31E91F14D3B300A2C2C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C169C5ED1F21805D00239EC0 /* Alamofire.framework */,
+				C169C5EB1F21805400239EC0 /* Pods_widget.framework */,
 				879FCEE31F20EC9B0042ABC8 /* OnePasswordExtension.framework */,
 				C1DF31EA1F14D3B300A2C2C5 /* NotificationCenter.framework */,
 				8B5F151CC27DECFEA9936B84 /* Pods_simplestats.framework */,
@@ -186,8 +190,8 @@
 				87C058051F10AF7B0085B157 /* Frameworks */,
 				87C058061F10AF7B0085B157 /* Resources */,
 				C1DF31F91F14D3B300A2C2C5 /* Embed App Extensions */,
-				C1EB4C461F14D895002C3573 /* Embed Frameworks */,
 				B8D689DF5F173A4B78826FAB /* [CP] Embed Pods Frameworks */,
+				C1EB4C461F14D895002C3573 /* Embed Frameworks */,
 				79C773F4BAFB86C00790281E /* [CP] Copy Pods Resources */,
 				87626A6C1F1C5F6A00528993 /* ShellScript */,
 			);
@@ -545,7 +549,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F3038DE85FFD4B830BE0C7D9 /* Pods-simplestats.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = simplestats/simplestats.entitlements;
 				DEVELOPMENT_TEAM = QX3B8ZS54S;
@@ -561,7 +564,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ACD635D7364B3D74BA51C6F3 /* Pods-simplestats.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = simplestats/simplestats.entitlements;
 				DEVELOPMENT_TEAM = QX3B8ZS54S;

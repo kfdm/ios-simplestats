@@ -14,6 +14,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var login: UIButton!
     @IBOutlet weak var onepasswordButton: UIButton!
+    
+    let defaults = UserDefaults(suiteName: "group.net.kungfudiscomonkey.simplestats")!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +39,12 @@ class LoginViewController: UIViewController {
         })
     }
     @IBAction func login(_ sender: UIButton) {
-        var token = fetchToken(username: self.username.text!, password: self.password.text!)
-        print(token)
+        fetchToken(username: self.username.text!, password: self.password.text!) {
+            (token) -> Void in
+            self.defaults.set(token, forKey: "apikey")
+            print("Setting token? \(token)")
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     /*
     // MARK: - Navigation
