@@ -18,6 +18,7 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
     var countdowns = [Widget]()
     var charts = [Widget]()
     var timer = Timer()
+    var pinnedItems = [String]()
 
     @IBAction func showLogin(_ sender: UIButton) {
         performSegue(withIdentifier: "showLogin", sender: self)
@@ -29,57 +30,64 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MGSwipeTableCell
         let widget = widgets[indexPath.row]
-        var pinnedItems = ApplicationSettings.pinnedItems
 
         cell.delegate = self
         cell.textLabel!.text = widget.label
         cell.detailTextLabel!.text = widget.format()
 
-        cell.rightButtons = [MGSwipeButton]()
-
         if pinnedItems.contains(widget.id) {
-            cell.rightButtons.append(MGSwipeButton(title: "Unpin", backgroundColor: .red) {
-                (_: MGSwipeTableCell!) -> Bool in
-                pinnedItems = pinnedItems.filter { $0 != widget.id }
-                ApplicationSettings.pinnedItems = pinnedItems
-                return true
-            })
+            cell.accessoryType = widget.more == nil ? .detailButton : .detailDisclosureButton
         } else {
-            cell.rightButtons.append(MGSwipeButton(title: "Pin", backgroundColor: .blue) {
-                (_: MGSwipeTableCell!) -> Bool in
-                pinnedItems.append(widget.id)
-                ApplicationSettings.pinnedItems = pinnedItems
-                return true
-            })
-        }
-
-        if widget.more != nil {
-            cell.rightButtons.append(MGSwipeButton(title: "More", backgroundColor: .lightGray) {
-                (_: MGSwipeTableCell!) -> Bool in
-                if widget.more != nil {
-                    UIApplication.shared.open(widget.more!, options: [:], completionHandler: nil)
-                }
-                return true
-            })
-        }
-
-        cell.rightSwipeSettings.transition = .border
-
-        if pinnedItems.contains(widget.id) {
-            if widget.more == nil {
-                cell.accessoryType = .disclosureIndicator
-            } else {
-                cell.accessoryType = .detailDisclosureButton
-            }
-        } else {
-            if widget.more == nil {
-                cell.accessoryType = .none
-            } else {
-                cell.accessoryType = .detailButton
-            }
+            cell.accessoryType = widget.more == nil ? .none : .disclosureIndicator
         }
 
         return cell
+    }
+
+    func swipeTableCell(_ cell: MGSwipeTableCell, swipeButtonsFor direction: MGSwipeDirection, swipeSettings: MGSwipeSettings, expansionSettings: MGSwipeExpansionSettings) -> [UIView]? {
+
+        swipeSettings.transition = MGSwipeTransition.border
+        expansionSettings.buttonIndex = 0
+        expansionSettings.fillOnTrigger = true
+
+        let widget = widgets[tableView.indexPath(for: cell)!.row]
+
+        if direction == MGSwipeDirection.leftToRight {
+            expansionSettings.threshold = 2
+            if pinnedItems.contains(widget.id) {
+                return [
+                    MGSwipeButton(title: "Unpin", backgroundColor: .red, callback: { (cell) -> Bool in
+                        self.pinnedItems = self.pinnedItems.filter { $0 != widget.id }
+                        ApplicationSettings.pinnedItems = self.pinnedItems
+                        return true
+                    })
+                ]
+            } else {
+                return [MGSwipeButton(title: "Pin", backgroundColor: .blue) {
+                    (_: MGSwipeTableCell!) -> Bool in
+                    self.pinnedItems.append(widget.id)
+                    ApplicationSettings.pinnedItems = self.pinnedItems
+                    return true
+                    }]
+            }
+
+        } else {
+            expansionSettings.threshold = 1.1
+            if widget.more != nil {
+                return [
+                    MGSwipeButton(title: "More", backgroundColor: .green, callback: { (cell) -> Bool in
+                        UIApplication.shared.open(widget.more!, options: [:], completionHandler: nil)
+                        return true
+                    })
+                ]
+            }
+        }
+        return [MGSwipeButton]()
+
+    }
+
+    func swipeTableCell(_ cell: MGSwipeTableCell, canSwipe direction: MGSwipeDirection) -> Bool {
+        return true;
     }
 
     func swipeTableCellWillBeginSwiping(_ cell: MGSwipeTableCell) {
@@ -104,6 +112,8 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        pinnedItems = ApplicationSettings.pinnedItems
 
         fetchCountdown(token: ApplicationSettings.apiKey ?? "") {
             (widgets) -> Void in
@@ -136,7 +146,7 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         preferredContentSize = tableView.contentSize
     }
 }
