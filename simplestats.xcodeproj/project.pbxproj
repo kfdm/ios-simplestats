@@ -581,7 +581,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F3038DE85FFD4B830BE0C7D9 /* Pods-simplestats.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = simplestats/simplestats.entitlements;
 				DEVELOPMENT_TEAM = QX3B8ZS54S;
@@ -597,7 +596,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ACD635D7364B3D74BA51C6F3 /* Pods-simplestats.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = simplestats/simplestats.entitlements;
 				DEVELOPMENT_TEAM = QX3B8ZS54S;
