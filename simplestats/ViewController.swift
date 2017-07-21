@@ -44,7 +44,8 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
         return cell
     }
 
-    func swipeTableCell(_ cell: MGSwipeTableCell, swipeButtonsFor direction: MGSwipeDirection, swipeSettings: MGSwipeSettings, expansionSettings: MGSwipeExpansionSettings) -> [UIView]? {
+    func swipeTableCell(_ cell: MGSwipeTableCell, swipeButtonsFor direction: MGSwipeDirection,
+                        swipeSettings: MGSwipeSettings, expansionSettings: MGSwipeExpansionSettings) -> [UIView]? {
 
         swipeSettings.transition = MGSwipeTransition.border
         expansionSettings.buttonIndex = 0
@@ -56,7 +57,7 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
             expansionSettings.threshold = 2
             if pinnedItems.contains(widget.id) {
                 return [
-                    MGSwipeButton(title: "Unpin", backgroundColor: .red, callback: { (cell) -> Bool in
+                    MGSwipeButton(title: "Unpin", backgroundColor: .red, callback: { (_) -> Bool in
                         self.pinnedItems = self.pinnedItems.filter { $0 != widget.id }
                         ApplicationSettings.pinnedItems = self.pinnedItems
                         return true
@@ -75,7 +76,7 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
             expansionSettings.threshold = 1.1
             if widget.more != nil {
                 return [
-                    MGSwipeButton(title: "More", backgroundColor: .green, callback: { (cell) -> Bool in
+                    MGSwipeButton(title: "More", backgroundColor: .green, callback: { (_) -> Bool in
                         UIApplication.shared.open(widget.more!, options: [:], completionHandler: nil)
                         return true
                     })
@@ -87,7 +88,7 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
     }
 
     func swipeTableCell(_ cell: MGSwipeTableCell, canSwipe direction: MGSwipeDirection) -> Bool {
-        return true;
+        return true
     }
 
     func swipeTableCellWillBeginSwiping(_ cell: MGSwipeTableCell) {
@@ -146,7 +147,6 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         preferredContentSize = tableView.contentSize
     }
 }
