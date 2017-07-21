@@ -17,6 +17,7 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
     var apikey: String?
     var countdowns = [Widget]()
     var charts = [Widget]()
+    var timer = Timer()
 
     @IBAction func showLogin(_ sender: UIButton) {
         performSegue(withIdentifier: "showLogin", sender: self)
@@ -95,34 +96,47 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
         }
     }
 
+    func refreshWidgets() {
+        self.widgets = self.countdowns
+            .sorted(by: {$0.created < $1.created})
+            + self.charts
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var _ = Timer.scheduledTimer(
+        fetchCountdown(token: ApplicationSettings.apiKey ?? "") {
+            (widgets) -> Void in
+            self.countdowns = widgets
+            self.refreshWidgets()
+        }
+
+        fetchChart(token: ApplicationSettings.apiKey ?? "") {
+            (widgets) -> Void in
+            self.charts = widgets
+            self.refreshWidgets()
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        timer = Timer.scheduledTimer(
             timeInterval: 1.0,
             target: self,
             selector: #selector(updateCounter),
             userInfo: nil,
             repeats: true
         )
-
-        self.loginButton.isHidden = apikey != nil
-
-        fetchCountdown(token: ApplicationSettings.apiKey ?? "") {
-            (widgets) -> Void in
-            self.countdowns = widgets
-            self.widgets = self.countdowns + self.charts
-            self.widgets.sort {$0.created < $1.created}
-            self.tableView.reloadData()
-        }
-
-        fetchChart(token: ApplicationSettings.apiKey ?? "") {
-            (widgets) -> Void in
-            self.charts = widgets
-            self.widgets = self.countdowns + self.charts
-            self.widgets.sort {$0.created < $1.created}
-            self.tableView.reloadData()
-        }
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer.invalidate()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        preferredContentSize = tableView.contentSize
+    }
 }
