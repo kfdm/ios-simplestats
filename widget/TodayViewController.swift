@@ -11,7 +11,6 @@ import NotificationCenter
 
 class TodayViewController: UITableViewController, NCWidgetProviding {
     var widgets = [Widget]()
-    let defaults = UserDefaults(suiteName: "group.net.kungfudiscomonkey.simplestats")!
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return widgets.count
@@ -52,7 +51,18 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             repeats: true
         )
 
-        let pinnedItems = self.defaults.array(forKey: "pinned")  as? [String] ?? [String]()
+        tableView.reloadData()
+    }
+
+    func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
+        completionHandler(NCUpdateResult.newData)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let pinnedItems = ApplicationSettings.pinnedItems
+        NSLog("Pinned items: \(pinnedItems)")
 
         widgets = fetchWidgets().filter {
             if pinnedItems.contains($0.id) {
@@ -61,12 +71,12 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
                 return false
             }
         }
-
-        tableView.reloadData()
     }
 
-    func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        completionHandler(NCUpdateResult.newData)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        preferredContentSize = tableView.contentSize
     }
 
 }

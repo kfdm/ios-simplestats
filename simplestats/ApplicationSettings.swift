@@ -11,6 +11,7 @@ import Foundation
 struct ApplicationSettingsKeys {
     static let apiKey = "apiKey"
     static let suiteName = "group.net.kungfudiscomonkey.simplestats"
+    static let pinnedKey = "pinned"
 }
 
 struct ApplicationSettings {
@@ -26,7 +27,7 @@ struct ApplicationSettings {
     }
 
     static var pinnedItems: [String] {
-        get { return defaults.array(forKey: "pinned")  as? [String] ?? [String]() }
-        set { defaults.set(newValue, forKey: "pinned") }
+        get { return defaults.array(forKey: ApplicationSettingsKeys.pinnedKey)  as? [String] ?? [String]() }
+        set { defaults.set(newValue, forKey: ApplicationSettingsKeys.pinnedKey) }
     }
 }
