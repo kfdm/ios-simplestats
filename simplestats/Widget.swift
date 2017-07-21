@@ -126,3 +126,47 @@ func fetchToken(username: String, password: String, completionHandler: @escaping
             }
     }
 }
+
+func fetchCountdown(token: String, completionHandler: @escaping ([Widget]) -> Void) {
+    let parameters: Parameters = [:]
+    let headers = ["Authorization": "Token \(token)"]
+    Alamofire.request(ApplicationSettings.countdownAPI, method: .get, parameters: parameters, headers:headers)
+        .validate(statusCode: 200..<300)
+        .validate(contentType: ["application/json"])
+        .responseData { response in
+            var widgets = [Widget]()
+            switch response.result {
+            case .success:
+                let json = JSON(data: response.data!)
+                for result in json["results"].arrayValue {
+                    widgets.append(Countdown(result))
+                }
+                completionHandler(widgets)
+            case .failure(let error):
+                print(error)
+                completionHandler(widgets)
+            }
+    }
+}
+
+func fetchChart(token: String, completionHandler: @escaping ([Widget]) -> Void) {
+    let parameters: Parameters = [:]
+    let headers = ["Authorization": "Token \(token)"]
+    Alamofire.request(ApplicationSettings.chartApi, method: .get, parameters: parameters, headers:headers)
+        .validate(statusCode: 200..<300)
+        .validate(contentType: ["application/json"])
+        .responseData { response in
+            var widgets = [Widget]()
+            switch response.result {
+            case .success:
+                let json = JSON(data: response.data!)
+                for result in json["results"].arrayValue {
+                    widgets.append(Chart(result))
+                }
+                completionHandler(widgets)
+            case .failure(let error):
+                print(error)
+                completionHandler(widgets)
+            }
+    }
+}

@@ -15,8 +15,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var login: UIButton!
     @IBOutlet weak var onepasswordButton: UIButton!
 
-    let defaults = UserDefaults(suiteName: "group.net.kungfudiscomonkey.simplestats")!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.onepasswordButton.isHidden = (false == OnePasswordExtension.shared().isAppExtensionAvailable())
@@ -41,8 +39,8 @@ class LoginViewController: UIViewController {
     @IBAction func login(_ sender: UIButton) {
         fetchToken(username: self.username.text!, password: self.password.text!) {
             (token) -> Void in
-            self.defaults.set(token, forKey: "apikey")
             NSLog("Setting token? \(token!)")
+            ApplicationSettings.apiKey = token
             self.navigationController?.popViewController(animated: true)
         }
     }

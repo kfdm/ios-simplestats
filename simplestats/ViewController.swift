@@ -15,6 +15,8 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
     var widgets = [Widget]()
     var refresh = true
     var apikey: String?
+    var countdowns = [Widget]()
+    var charts = [Widget]()
 
     @IBAction func showLogin(_ sender: UIButton) {
         performSegue(withIdentifier: "showLogin", sender: self)
@@ -95,7 +97,6 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        apikey = ApplicationSettings.apiKey
 
         var _ = Timer.scheduledTimer(
             timeInterval: 1.0,
@@ -107,8 +108,21 @@ class ViewController: UITableViewController, MGSwipeTableCellDelegate, UIActionS
 
         self.loginButton.isHidden = apikey != nil
 
-        widgets = fetchWidgets()
-        tableView.reloadData()
+        fetchCountdown(token: ApplicationSettings.apiKey ?? "") {
+            (widgets) -> Void in
+            self.countdowns = widgets
+            self.widgets = self.countdowns + self.charts
+            self.widgets.sort {$0.created < $1.created}
+            self.tableView.reloadData()
+        }
+
+        fetchChart(token: ApplicationSettings.apiKey ?? "") {
+            (widgets) -> Void in
+            self.charts = widgets
+            self.widgets = self.countdowns + self.charts
+            self.widgets.sort {$0.created < $1.created}
+            self.tableView.reloadData()
+        }
     }
 
 }
