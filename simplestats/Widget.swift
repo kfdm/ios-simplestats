@@ -18,6 +18,7 @@ protocol Widget {
     var description: String { get set }
 
     func format() -> String
+    func color() -> UIColor
 }
 
 class Chart: Widget {
@@ -43,6 +44,10 @@ class Chart: Widget {
     func format() -> String {
         return "\(self.value)"
     }
+
+    func color() -> UIColor {
+        return UIColor.cyan
+    }
 }
 
 class Countdown: Widget {
@@ -59,7 +64,7 @@ class Countdown: Widget {
 
         self.id = json["id"].stringValue
         self.label = json["label"].stringValue
-        self.description = json["description"].stringValue
+        self.description = json["created"].stringValue
         self.more = URL(string: json["more"].stringValue)
         self.created = dateFormatter.date(from: json["created"].stringValue)!
     }
@@ -76,11 +81,20 @@ class Countdown: Widget {
         var elapsed = Date().timeIntervalSince(self.created)
         if elapsed > 0 {
             let formattedString = formatter.string(from: TimeInterval(elapsed))!
-            return formattedString + " since " + dateFormatter.string(from: self.created)
+            return formattedString + " since " //+ dateFormatter.string(from: self.created)
         } else {
             elapsed *= -1
             let formattedString = formatter.string(from: TimeInterval(elapsed))!
-            return formattedString + " until " + dateFormatter.string(from: self.created)
+            return formattedString + " until " // + dateFormatter.string(from: self.created)
+        }
+    }
+
+    func color() -> UIColor {
+        var elapsed = Date().timeIntervalSince(self.created)
+        if elapsed > 0 {
+            return UIColor.red
+        } else {
+            return UIColor.green
         }
     }
 }

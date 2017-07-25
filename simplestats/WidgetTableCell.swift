@@ -9,14 +9,26 @@
 import UIKit
 import MGSwipeTableCell
 
-class WidgetTableCell: MGSwipeTableCell {
+class WidgetTableCell: UICollectionViewCell {
+    @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var labelDetail: UILabel!
+    @IBOutlet weak var labelExtra: UILabel!
+    @IBOutlet weak var pinnedButton: UIButton!
+    @IBOutlet weak var moreButton: UIButton!
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+
+    var widget :Widget?
+
+
+    func update(_ widget: Widget) {
+        self.widget = widget
+        self.labelTitle.text = widget.label
+        self.labelDetail.text = widget.format()
+        self.labelExtra.text = widget.description
+        self.backgroundColor = widget.color()
+
+        self.pinnedButton.isHidden = !ApplicationSettings.pinnedItems.contains(widget.id)
+        self.moreButton.isHidden = widget.more == nil
     }
-    */
 
 }
