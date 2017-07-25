@@ -58,15 +58,19 @@ class Countdown: Widget {
     var description: String
 
     init(_ json: JSON) {
+        let dateParser = DateFormatter()
+        dateParser.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateParser.timeZone = TimeZone(abbreviation: "UTC")
+
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone.current
 
         self.id = json["id"].stringValue
         self.label = json["label"].stringValue
-        self.description = json["created"].stringValue
         self.more = URL(string: json["more"].stringValue)
-        self.created = dateFormatter.date(from: json["created"].stringValue)!
+        self.created = dateParser.date(from: json["created"].stringValue)!
+        self.description = dateFormatter.string(from: self.created)
     }
 
     func format() -> String {
@@ -81,11 +85,11 @@ class Countdown: Widget {
         var elapsed = Date().timeIntervalSince(self.created)
         if elapsed > 0 {
             let formattedString = formatter.string(from: TimeInterval(elapsed))!
-            return formattedString + " since " //+ dateFormatter.string(from: self.created)
+            return formattedString + " since "
         } else {
             elapsed *= -1
             let formattedString = formatter.string(from: TimeInterval(elapsed))!
-            return formattedString + " until " // + dateFormatter.string(from: self.created)
+            return formattedString + " until "
         }
     }
 
