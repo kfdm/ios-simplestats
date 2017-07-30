@@ -74,6 +74,8 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         container = NSPersistentContainer(name: "Model")
 
         container.loadPersistentStores { storeDescription, error in
+            self.container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+
             if let error = error {
                 print("Unresolved error \(error)")
             }
