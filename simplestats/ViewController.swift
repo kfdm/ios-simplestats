@@ -124,7 +124,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     func tap(sender: UITapGestureRecognizer) {
         if let indexPath = self.collectionView?.indexPathForItem(at: sender.location(in: self.collectionView)) {
             let widget = fetchedResultsController.object(at: indexPath)
-            if let url = widget.link() {
+            if let url = widget.link {
                 print("opening url")
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             } else {

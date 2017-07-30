@@ -11,23 +11,38 @@ import CoreData
 import UIKit
 import SwiftyJSON
 
+class WidgetColor {
+    static let overdue = UIColor.red
+    static let countdown = UIColor.green
+    static let chart = UIColor.cyan
+}
+
 @objc(Entity)
 public class Entity: NSManagedObject {
-    func link () -> URL? {
-        return URL(string: more)
+    var link: URL? {
+        return URL(string:more)
     }
 
     var color: UIColor {
-        get {
-            if type == "Chart" {
-                return UIColor.cyan
-            }
-            let elapsed = Date().timeIntervalSince(self.created)
-            if elapsed > 0 {
-                return UIColor.red
-            }
+        if type == "Chart" {
+            return WidgetColor.chart
+        }
+        let elapsed = Date().timeIntervalSince(self.created)
+        if elapsed > 0 {
+            return WidgetColor.overdue
+        }
+        return WidgetColor.countdown
+    }
+
+    var fgColor: UIColor {
+        if type == "Chart" {
             return UIColor.green
         }
+        let elapsed = Date().timeIntervalSince(self.created)
+        if elapsed > 0 {
+            return UIColor.orange
+        }
+        return UIColor.blue
     }
 
     func format() -> String {
@@ -39,18 +54,13 @@ public class Entity: NSManagedObject {
         formatter.allowedUnits = [.day, .hour, .minute, .second]
         formatter.unitsStyle = .positional
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone.current
-
         var elapsed = Date().timeIntervalSince(self.created)
+
         if elapsed > 0 {
-            let formattedString = formatter.string(from: TimeInterval(elapsed))!
-            return formattedString + " since "
+            return formatter.string(from: TimeInterval(elapsed))!
         } else {
             elapsed *= -1
-            let formattedString = formatter.string(from: TimeInterval(elapsed))!
-            return formattedString + " until "
+            return formatter.string(from: TimeInterval(elapsed))!
         }
     }
 
@@ -61,16 +71,12 @@ public class Entity: NSManagedObject {
         dateParser.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         dateParser.timeZone = TimeZone(abbreviation: "UTC")
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone.current
-
         entity.id = countdown["id"].stringValue
         entity.type = "Countdown"
         entity.label = countdown["label"].stringValue
         entity.more = countdown["more"].stringValue
         entity.created = dateParser.date(from: countdown["created"].stringValue)!
-        entity.detail = dateFormatter.string(from: entity.created)
+        entity.detail = countdown["description"].stringValue
 
         return entity
     }
@@ -78,17 +84,17 @@ public class Entity: NSManagedObject {
     static func fromJson(chart: JSON, context: NSManagedObjectContext) -> Entity {
         let entity = Entity(context: context)
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        let dateParser = DateFormatter()
+        dateParser.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateParser.timeZone = TimeZone(abbreviation: "UTC")
 
         entity.id = chart["id"].stringValue
         entity.type = "Chart"
         entity.label = chart["label"].stringValue
         entity.detail = chart["value"].stringValue
         entity.more = chart["more"].stringValue
-        entity.created = dateFormatter.date(from: chart["created"].stringValue)!
-        
+        entity.created = dateParser.date(from: chart["created"].stringValue)!
+
         return entity
     }
 }

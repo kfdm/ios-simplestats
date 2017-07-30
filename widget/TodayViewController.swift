@@ -29,14 +29,14 @@ class TodayViewController: UITableViewController, NCWidgetProviding, NSFetchedRe
         let widget = fetchedResultsController.object(at: indexPath)
         cell.textLabel?.text = widget.label
         cell.detailTextLabel?.text = widget.format()
-        cell.detailTextLabel?.textColor = widget.color
+        cell.detailTextLabel?.textColor = widget.fgColor
         cell.accessoryType = widget.more == "" ? .none : .detailButton
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let widget = fetchedResultsController.object(at: indexPath)
-        if let url = widget.link() {
+        if let url = widget.link {
             extensionContext?.open(url, completionHandler: nil)
         }
     }

@@ -6,7 +6,6 @@
 //  Copyright © 2017年 Paul Traylor. All rights reserved.
 //
 
-import UIKit
 import SwiftyJSON
 import Alamofire
 
