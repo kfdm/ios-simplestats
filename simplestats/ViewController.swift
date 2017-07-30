@@ -8,15 +8,15 @@
 
 import UIKit
 import MGSwipeTableCell
+import CoreData
 
 class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    var widgets = [Widget]()
+    var widgets = [Entity]()
     var refresh = true
     var apikey: String?
-    var countdowns = [Widget]()
-    var charts = [Widget]()
     var timer = Timer()
     var pinnedItems = [String]()
+    var container: NSPersistentContainer!
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -31,6 +31,20 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! WidgetTableCell
         cell.update(widgets[indexPath.row])
         return cell
+    }
+
+    func loadSavedData() {
+        let request = Entity.createFetchRequest()
+        let sort = NSSortDescriptor(key: "created", ascending: false)
+        request.sortDescriptors = [sort]
+
+        do {
+            widgets = try container.viewContext.fetch(request)
+            print("Got \(widgets.count) commits")
+            collectionView?.reloadData()
+        } catch {
+            print("Fetch failed")
+        }
     }
 
     fileprivate let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
@@ -52,29 +66,61 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
     }
 
-    func refreshWidgets() {
-        self.widgets = self.countdowns
-            .sorted(by: {$0.created < $1.created})
-            + self.charts
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
         collectionView?.addGestureRecognizer(UILongPressGestureRecognizer(target:self, action: #selector(longpress)))
 
-        pinnedItems = ApplicationSettings.pinnedItems
+        container = NSPersistentContainer(name: "Model")
 
+        container.loadPersistentStores { storeDescription, error in
+            if let error = error {
+                print("Unresolved error \(error)")
+            }
+        }
+
+        pinnedItems = ApplicationSettings.pinnedItems
+        performSelector(inBackground: #selector(fetchWidgets), with: nil)
+        loadSavedData()
+    }
+
+    func fetchWidgets() {
         fetchCountdown(token: ApplicationSettings.apiKey ?? "") {
             (widgets) -> Void in
-            self.countdowns = widgets
-            self.refreshWidgets()
+            for widget in widgets {
+                let entity = Entity(context: self.container.viewContext)
+                entity.id = widget.id
+                entity.label = widget.label
+                entity.created = widget.created
+                entity.detail = widget.description
+                entity.type = "Countdown"
+            }
+            self.saveContext()
+            self.loadSavedData()
         }
 
         fetchChart(token: ApplicationSettings.apiKey ?? "") {
             (widgets) -> Void in
-            self.charts = widgets
-            self.refreshWidgets()
+            for widget in widgets {
+                let entity = Entity(context: self.container.viewContext)
+                entity.id = widget.id
+                entity.label = widget.label
+                entity.created = widget.created
+                entity.detail = widget.format()
+                entity.type = "Chart"
+            }
+            self.saveContext()
+            self.loadSavedData()
+        }
+    }
+
+    func saveContext() {
+        if container.viewContext.hasChanges {
+            do {
+                try container.viewContext.save()
+            } catch {
+                print("An error occurred while saving: \(error)")
+            }
         }
     }
 

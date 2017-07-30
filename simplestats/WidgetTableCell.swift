@@ -17,18 +17,18 @@ class WidgetTableCell: UICollectionViewCell {
     @IBOutlet weak var moreButton: UIButton!
 
 
-    var widget :Widget?
+    var entity :Entity?
 
 
-    func update(_ widget: Widget) {
-        self.widget = widget
-        self.labelTitle.text = widget.label
-        self.labelDetail.text = widget.format()
-        self.labelExtra.text = widget.description
-        self.backgroundColor = widget.color()
+    func update(_ entity: Entity) {
+        self.entity = entity
+        self.labelTitle.text = entity.label
+        self.labelDetail.text = entity.type == "Countdown" ? "\(entity.created)" : entity.detail
+        self.labelExtra.text = entity.detail
+        self.backgroundColor = entity.color()
 
-        self.pinnedButton.isHidden = !ApplicationSettings.pinnedItems.contains(widget.id)
-        self.moreButton.isHidden = widget.more == nil
+        self.pinnedButton.isHidden = !ApplicationSettings.pinnedItems.contains(entity.id)
+        self.moreButton.isHidden = entity.more == nil
     }
 
 }
