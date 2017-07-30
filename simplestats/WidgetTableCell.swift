@@ -20,9 +20,9 @@ class WidgetTableCell: UICollectionViewCell {
     func update(_ entity: Entity) {
         self.entity = entity
         self.labelTitle.text = entity.label
-        self.labelDetail.text = entity.type == "Countdown" ? "\(entity.created)" : entity.detail
+        self.labelDetail.text = entity.format()
         self.labelExtra.text = entity.detail
-        self.backgroundColor = entity.color()
+        self.backgroundColor = entity.color
 
         self.pinnedButton.isHidden = !entity.pinned
         self.moreButton.isHidden = entity.more == ""

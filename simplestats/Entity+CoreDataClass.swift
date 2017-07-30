@@ -13,17 +13,45 @@ import SwiftyJSON
 
 @objc(Entity)
 public class Entity: NSManagedObject {
-    func color() -> UIColor {
-        let elapsed = Date().timeIntervalSince(self.created)
-        if elapsed > 0 {
-            return UIColor.red
-        } else {
+    func link () -> URL? {
+        return URL(string: more)
+    }
+
+    var color: UIColor {
+        get {
+            if type == "Chart" {
+                return UIColor.cyan
+            }
+            let elapsed = Date().timeIntervalSince(self.created)
+            if elapsed > 0 {
+                return UIColor.red
+            }
             return UIColor.green
         }
     }
 
-    func link () -> URL? {
-        return URL(string: more)
+    func format() -> String {
+        if type == "Chart" {
+            return detail
+        }
+
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day, .hour, .minute, .second]
+        formatter.unitsStyle = .positional
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone.current
+
+        var elapsed = Date().timeIntervalSince(self.created)
+        if elapsed > 0 {
+            let formattedString = formatter.string(from: TimeInterval(elapsed))!
+            return formattedString + " since "
+        } else {
+            elapsed *= -1
+            let formattedString = formatter.string(from: TimeInterval(elapsed))!
+            return formattedString + " until "
+        }
     }
 
     static func fromJson(countdown: JSON, context: NSManagedObjectContext) -> Entity {
@@ -60,7 +88,7 @@ public class Entity: NSManagedObject {
         entity.detail = chart["value"].stringValue
         entity.more = chart["more"].stringValue
         entity.created = dateFormatter.date(from: chart["created"].stringValue)!
-
+        
         return entity
     }
 }
