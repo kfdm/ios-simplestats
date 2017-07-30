@@ -123,6 +123,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		872B7E7D1F2DA8F9006EF256 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8734E29A1F2D882B006D16A4 /* Model.xcdatamodeld */,
+				8734E29D1F2D8937006D16A4 /* Entity+CoreDataClass.swift */,
+				8734E29E1F2D8937006D16A4 /* Entity+CoreDataProperties.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		872B7E7E1F2DA90F006EF256 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87C0580D1F10AF7B0085B157 /* ViewController.swift */,
+				879FCEE01F20E8C30042ABC8 /* LoginViewController.swift */,
+				87140C911F223F7A0086A2F3 /* WidgetTableCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		87C057FF1F10AF7B0085B157 = {
 			isa = PBXGroup;
 			children = (
@@ -147,17 +167,13 @@
 		87C0580A1F10AF7B0085B157 /* simplestats */ = {
 			isa = PBXGroup;
 			children = (
-				8734E29D1F2D8937006D16A4 /* Entity+CoreDataClass.swift */,
-				8734E29E1F2D8937006D16A4 /* Entity+CoreDataProperties.swift */,
-				8734E29A1F2D882B006D16A4 /* Model.xcdatamodeld */,
+				872B7E7E1F2DA90F006EF256 /* Views */,
+				872B7E7D1F2DA8F9006EF256 /* Models */,
 				8787F6451F1E307400A4BF03 /* simplestats.entitlements */,
 				87E34F091F11F3070025BCEB /* Widget.swift */,
 				87C0580B1F10AF7B0085B157 /* AppDelegate.swift */,
-				87C0580D1F10AF7B0085B157 /* ViewController.swift */,
 				87C0580F1F10AF7B0085B157 /* Main.storyboard */,
-				879FCEE01F20E8C30042ABC8 /* LoginViewController.swift */,
 				C18AF8F81F21953800A6E065 /* ApplicationSettings.swift */,
-				87140C911F223F7A0086A2F3 /* WidgetTableCell.swift */,
 				87C058121F10AF7B0085B157 /* Assets.xcassets */,
 				87C058141F10AF7B0085B157 /* LaunchScreen.storyboard */,
 				87C058171F10AF7B0085B157 /* Info.plist */,

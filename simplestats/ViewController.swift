@@ -95,13 +95,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         fetchCountdown(token: ApplicationSettings.apiKey ?? "") {
             (widgets) -> Void in
             for widget in widgets {
-                let entity = Entity(context: self.container.viewContext)
-                entity.id = widget.id
-                entity.label = widget.label
-                entity.created = widget.created
-                entity.detail = widget.description
-                entity.more = widget.more
-                entity.type = "Countdown"
+                _ = Entity.fromJson(countdown: widget, context: self.container.viewContext)
             }
             self.saveContext()
             self.loadSavedData()
@@ -110,13 +104,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         fetchChart(token: ApplicationSettings.apiKey ?? "") {
             (widgets) -> Void in
             for widget in widgets {
-                let entity = Entity(context: self.container.viewContext)
-                entity.id = widget.id
-                entity.label = widget.label
-                entity.created = widget.created
-                entity.detail = widget.format()
-                entity.more = widget.more
-                entity.type = "Chart"
+                _ = Entity.fromJson(chart: widget, context: self.container.viewContext)
             }
             self.saveContext()
             self.loadSavedData()
