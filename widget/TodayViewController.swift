@@ -28,7 +28,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding, NSFetchedRe
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let widget = fetchedResultsController.object(at: indexPath)
         cell.textLabel?.text = widget.label
-        cell.detailTextLabel?.text = widget.format()
+        cell.detailTextLabel?.text = widget.format() + " " + widget.detail
         cell.detailTextLabel?.textColor = widget.fgColor
         cell.accessoryType = widget.more == "" ? .none : .detailButton
         return cell

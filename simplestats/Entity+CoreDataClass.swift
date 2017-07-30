@@ -47,7 +47,7 @@ public class Entity: NSManagedObject {
 
     func format() -> String {
         if type == "Chart" {
-            return detail
+            return "\(value)"
         }
 
         let formatter = DateComponentsFormatter()
@@ -91,8 +91,9 @@ public class Entity: NSManagedObject {
         entity.id = chart["id"].stringValue
         entity.type = "Chart"
         entity.label = chart["label"].stringValue
-        entity.detail = chart["value"].stringValue
+        entity.value = chart["value"].doubleValue
         entity.more = chart["more"].stringValue
+        entity.detail = chart["unit"].stringValue
         entity.created = dateParser.date(from: chart["created"].stringValue)!
 
         return entity

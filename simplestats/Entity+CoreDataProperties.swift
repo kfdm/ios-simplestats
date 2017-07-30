@@ -22,4 +22,5 @@ extension Entity {
     @NSManaged public var type: String
     @NSManaged public var pinned: Bool
     @NSManaged public var more: String
+    @NSManaged public var value: Double
 }
