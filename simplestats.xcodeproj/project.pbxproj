@@ -12,6 +12,9 @@
 		8734E29C1F2D882B006D16A4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8734E29A1F2D882B006D16A4 /* Model.xcdatamodeld */; };
 		8734E29F1F2D8937006D16A4 /* Entity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8734E29D1F2D8937006D16A4 /* Entity+CoreDataClass.swift */; };
 		8734E2A01F2D8937006D16A4 /* Entity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8734E29E1F2D8937006D16A4 /* Entity+CoreDataProperties.swift */; };
+		8734E2A11F2D9391006D16A4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8734E29A1F2D882B006D16A4 /* Model.xcdatamodeld */; };
+		8734E2A21F2D939F006D16A4 /* Entity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8734E29D1F2D8937006D16A4 /* Entity+CoreDataClass.swift */; };
+		8734E2A31F2D93A1006D16A4 /* Entity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8734E29E1F2D8937006D16A4 /* Entity+CoreDataProperties.swift */; };
 		879FCEE11F20E8C30042ABC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879FCEE01F20E8C30042ABC8 /* LoginViewController.swift */; };
 		87C0580C1F10AF7B0085B157 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C0580B1F10AF7B0085B157 /* AppDelegate.swift */; };
 		87C0580E1F10AF7B0085B157 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C0580D1F10AF7B0085B157 /* ViewController.swift */; };
@@ -78,7 +81,7 @@
 		879FCEE31F20EC9B0042ABC8 /* OnePasswordExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OnePasswordExtension.framework; path = "../../Library/Developer/Xcode/DerivedData/simplestats-cydmeqoqodkkntgttzokwicbiprr/Build/Products/Debug-iphonesimulator/1PasswordExtension/OnePasswordExtension.framework"; sourceTree = "<group>"; };
 		87C058081F10AF7B0085B157 /* simplestats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = simplestats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C0580B1F10AF7B0085B157 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		87C0580D1F10AF7B0085B157 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		87C0580D1F10AF7B0085B157 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		87C058101F10AF7B0085B157 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		87C058121F10AF7B0085B157 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87C058151F10AF7B0085B157 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -435,9 +438,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8734E2A31F2D93A1006D16A4 /* Entity+CoreDataProperties.swift in Sources */,
 				C19CE2D41F219D0A003959BD /* TodayViewController.swift in Sources */,
 				C19CE2DF1F219D46003959BD /* Widget.swift in Sources */,
 				C19CE2E01F219D4A003959BD /* ApplicationSettings.swift in Sources */,
+				8734E2A21F2D939F006D16A4 /* Entity+CoreDataClass.swift in Sources */,
+				8734E2A11F2D9391006D16A4 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

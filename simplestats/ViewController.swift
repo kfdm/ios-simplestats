@@ -10,37 +10,45 @@ import UIKit
 import MGSwipeTableCell
 import CoreData
 
-class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    var widgets = [Entity]()
-    var refresh = true
+class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate {
+    var fetchedResultsController: NSFetchedResultsController<Entity>!
     var apikey: String?
     var timer = Timer()
 
     var container: NSPersistentContainer!
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return fetchedResultsController.sections?.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return widgets.count
+        let sectionInfo = fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
     }
 
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! WidgetTableCell
-        cell.update(widgets[indexPath.row])
+        let widget = fetchedResultsController.object(at: indexPath)
+        cell.update(widget)
         return cell
     }
 
     func loadSavedData() {
-        let request = Entity.createFetchRequest()
-        let sort = NSSortDescriptor(key: "created", ascending: false)
-        request.sortDescriptors = [sort]
+        if fetchedResultsController == nil {
+            let request = Entity.createFetchRequest()
+            let sort = NSSortDescriptor(key: "created", ascending: false)
+            request.sortDescriptors = [sort]
+            request.fetchBatchSize = 20
+
+            fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+            fetchedResultsController.delegate = self
+        }
+
+        //fetchedResultsController.fetchRequest.predicate = commitPredicate
 
         do {
-            widgets = try container.viewContext.fetch(request)
-            print("Got \(widgets.count) commits")
+            try fetchedResultsController.performFetch()
             collectionView?.reloadData()
         } catch {
             print("Fetch failed")
@@ -61,9 +69,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
 
     func updateCounter() {
-        if refresh {
-            self.collectionView?.reloadData()
-        }
+        self.collectionView?.reloadData()
     }
 
     override func viewDidLoad() {
@@ -127,7 +133,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     func tap(sender: UITapGestureRecognizer) {
         if let indexPath = self.collectionView?.indexPathForItem(at: sender.location(in: self.collectionView)) {
-            let widget = self.widgets[indexPath.row]
+            let widget = fetchedResultsController.object(at: indexPath)
             if let url = widget.more {
                 print("opening url")
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -142,7 +148,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
             return
         }
         if let indexPath = self.collectionView?.indexPathForItem(at: sender.location(in: self.collectionView)) {
-            let widget = self.widgets[indexPath.row]
+            let widget = fetchedResultsController.object(at: indexPath)
             widget.pinned = !widget.pinned
             print("Setting widget to \(widget.pinned)")
             self.saveContext()

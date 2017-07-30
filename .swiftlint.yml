@@ -4,3 +4,4 @@ disabled_rules:
 - identifier_name
 excluded:
 - Pods
+line_length: 200
