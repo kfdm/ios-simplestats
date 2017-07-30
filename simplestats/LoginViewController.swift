@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.title = ""
         self.onepasswordButton.isHidden = (false == OnePasswordExtension.shared().isAppExtensionAvailable())
     }
 
@@ -33,11 +34,14 @@ class LoginViewController: UIViewController {
         })
     }
     @IBAction func login(_ sender: UIButton) {
+        self.navigationController?.title = "Logging in..."
         fetchToken(username: self.username.text!, password: self.password.text!) {
             (token) -> Void in
             NSLog("Setting token? \(token!)")
             ApplicationSettings.apiKey = token
-            self.navigationController?.popViewController(animated: true)
+            DispatchQueue.main.async { [unowned self] in
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 }

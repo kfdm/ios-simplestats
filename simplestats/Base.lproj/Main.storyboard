@@ -70,7 +70,7 @@
                     <navigationItem key="navigationItem" id="dcU-zM-1uo">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="KZ6-XC-oIC">
                             <connections>
-                                <segue destination="4fZ-DZ-CAk" kind="showDetail" id="C3L-Aw-occ"/>
+                                <segue destination="4fZ-DZ-CAk" kind="show" id="paB-fB-hNT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
