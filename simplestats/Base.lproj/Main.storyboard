@@ -31,16 +31,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U0M-vy-ahW">
-                                            <rect key="frame" x="106" y="0.0" width="22" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="95R-8l-4FJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Main" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="DAj-VF-kWn">
-                                            <rect key="frame" x="8" y="8" width="111" height="22"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="30"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -67,8 +59,6 @@
                                     <outlet property="labelDetail" destination="IKf-4o-w0L" id="3cv-sq-X9f"/>
                                     <outlet property="labelExtra" destination="Gp4-qe-Nse" id="ZFg-VM-L0w"/>
                                     <outlet property="labelTitle" destination="DAj-VF-kWn" id="I8W-Zt-iLV"/>
-                                    <outlet property="moreButton" destination="U0M-vy-ahW" id="sGk-fI-vmu"/>
-                                    <outlet property="pinnedButton" destination="95R-8l-4FJ" id="mY2-Jv-yLz"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

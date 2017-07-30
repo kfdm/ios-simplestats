@@ -77,6 +77,8 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         super.viewDidLoad()
         collectionView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
         collectionView?.addGestureRecognizer(UILongPressGestureRecognizer(target:self, action: #selector(longpress)))
+        collectionView?.refreshControl = UIRefreshControl()
+        collectionView?.refreshControl?.addTarget(self, action: #selector(fetchWidgets), for: UIControlEvents.valueChanged)
 
         container = PersistentContainer(name: "Model")
 
@@ -100,6 +102,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
             }
             self.saveContext()
             self.loadSavedData()
+            self.collectionView?.refreshControl?.endRefreshing()
         }
 
         fetchChart(token: ApplicationSettings.apiKey ?? "") {
@@ -109,6 +112,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
             }
             self.saveContext()
             self.loadSavedData()
+            self.collectionView?.refreshControl?.endRefreshing()
         }
     }
 

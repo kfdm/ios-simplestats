@@ -12,8 +12,6 @@ class WidgetTableCell: UICollectionViewCell {
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelDetail: UILabel!
     @IBOutlet weak var labelExtra: UILabel!
-    @IBOutlet weak var pinnedButton: UIButton!
-    @IBOutlet weak var moreButton: UIButton!
 
     var entity: Entity?
 
@@ -24,7 +22,10 @@ class WidgetTableCell: UICollectionViewCell {
         self.labelExtra.text = entity.detail
         self.backgroundColor = entity.color
 
-        self.pinnedButton.isHidden = !entity.pinned
-        self.moreButton.isHidden = entity.more == ""
+        self.layer.borderWidth = 4
+        self.layer.borderColor = entity.pinned ? UIColor.black.cgColor : UIColor.lightGray.cgColor
+
+        self.labelTitle.layer.borderWidth = entity.link == nil ? 0 : 3
+        self.labelTitle.layer.borderColor = self.layer.borderColor
     }
 }

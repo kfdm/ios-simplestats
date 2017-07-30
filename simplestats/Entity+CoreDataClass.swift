@@ -36,7 +36,7 @@ public class Entity: NSManagedObject {
 
     var fgColor: UIColor {
         if type == "Chart" {
-            return UIColor.green
+            return UIColor.purple
         }
         let elapsed = Date().timeIntervalSince(self.created)
         if elapsed > 0 {
