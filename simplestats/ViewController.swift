@@ -15,7 +15,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     var apikey: String?
     var timer = Timer()
 
-    var container: NSPersistentContainer!
+    var container: PersistentContainer!
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return fetchedResultsController.sections?.count ?? 0
@@ -77,7 +77,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
         collectionView?.addGestureRecognizer(UILongPressGestureRecognizer(target:self, action: #selector(longpress)))
 
-        container = NSPersistentContainer(name: "Model")
+        container = PersistentContainer(name: "Model")
 
         container.loadPersistentStores { _, error in
             self.container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
@@ -100,6 +100,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 entity.label = widget.label
                 entity.created = widget.created
                 entity.detail = widget.description
+                entity.more = widget.more
                 entity.type = "Countdown"
             }
             self.saveContext()
@@ -114,6 +115,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 entity.label = widget.label
                 entity.created = widget.created
                 entity.detail = widget.format()
+                entity.more = widget.more
                 entity.type = "Chart"
             }
             self.saveContext()
@@ -134,7 +136,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     func tap(sender: UITapGestureRecognizer) {
         if let indexPath = self.collectionView?.indexPathForItem(at: sender.location(in: self.collectionView)) {
             let widget = fetchedResultsController.object(at: indexPath)
-            if let url = widget.more {
+            if let url = widget.link() {
                 print("opening url")
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             } else {

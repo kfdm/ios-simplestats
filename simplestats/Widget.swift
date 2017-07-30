@@ -13,7 +13,7 @@ import Alamofire
 protocol Widget {
     var id: String { get set }
     var label: String { get set }
-    var more: URL? { get set }
+    var more: String { get set }
     var created: Date { get set }
     var description: String { get set }
 
@@ -24,7 +24,7 @@ protocol Widget {
 class Chart: Widget {
     var id: String
     var label: String
-    var more: URL?
+    var more: String
     var created: Date
     var value: Double
     var description = ""
@@ -37,7 +37,7 @@ class Chart: Widget {
         self.id = json["id"].stringValue
         self.label = json["label"].stringValue
         self.value = json["value"].doubleValue
-        self.more = URL(string: json["more"].stringValue)
+        self.more = json["more"].stringValue
         self.created = dateFormatter.date(from: json["created"].stringValue)!
     }
 
@@ -53,7 +53,7 @@ class Chart: Widget {
 class Countdown: Widget {
     var id: String
     var label: String
-    var more: URL?
+    var more: String
     var created: Date
     var description: String
 
@@ -68,7 +68,7 @@ class Countdown: Widget {
 
         self.id = json["id"].stringValue
         self.label = json["label"].stringValue
-        self.more = URL(string: json["more"].stringValue)
+        self.more = json["more"].stringValue
         self.created = dateParser.date(from: json["created"].stringValue)!
         self.description = dateFormatter.string(from: self.created)
     }

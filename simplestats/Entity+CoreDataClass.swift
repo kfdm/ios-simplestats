@@ -12,8 +12,6 @@ import UIKit
 
 @objc(Entity)
 public class Entity: NSManagedObject {
-    var more: URL?
-
     func color() -> UIColor {
         let elapsed = Date().timeIntervalSince(self.created)
         if elapsed > 0 {
@@ -21,5 +19,9 @@ public class Entity: NSManagedObject {
         } else {
             return UIColor.green
         }
+    }
+
+    func link () -> URL? {
+        return URL(string: more)
     }
 }

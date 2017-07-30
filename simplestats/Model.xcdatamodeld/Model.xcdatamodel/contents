@@ -5,6 +5,7 @@
         <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="more" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pinned" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <uniquenessConstraints>
@@ -14,6 +15,6 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Entity" positionX="-54" positionY="-9" width="128" height="135"/>
+        <element name="Entity" positionX="-54" positionY="-9" width="128" height="150"/>
     </elements>
 </model>

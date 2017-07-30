@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 struct ApplicationSettingsKeys {
     static let apiKey = "apiKey"
@@ -29,5 +30,16 @@ struct ApplicationSettings {
     static var pinnedItems: [String] {
         get { return defaults.array(forKey: ApplicationSettingsKeys.pinnedKey)  as? [String] ?? [String]() }
         set { defaults.set(newValue, forKey: ApplicationSettingsKeys.pinnedKey) }
+    }
+}
+
+class PersistentContainer: NSPersistentContainer {
+    internal override class func defaultDirectoryURL() -> URL {
+        var url = super.defaultDirectoryURL()
+        if let newURL =
+            FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: ApplicationSettingsKeys.suiteName) {
+            url = newURL
+        }
+        return url
     }
 }

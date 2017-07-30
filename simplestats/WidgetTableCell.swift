@@ -25,7 +25,6 @@ class WidgetTableCell: UICollectionViewCell {
         self.backgroundColor = entity.color()
 
         self.pinnedButton.isHidden = !entity.pinned
-        self.moreButton.isHidden = entity.more == nil
+        self.moreButton.isHidden = entity.more == ""
     }
-
 }

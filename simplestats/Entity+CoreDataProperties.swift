@@ -21,4 +21,5 @@ extension Entity {
     @NSManaged public var detail: String
     @NSManaged public var type: String
     @NSManaged public var pinned: Bool
+    @NSManaged public var more: String
 }

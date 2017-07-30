@@ -7,29 +7,35 @@
 //
 
 import UIKit
+import CoreData
 import NotificationCenter
 
-class TodayViewController: UITableViewController, NCWidgetProviding {
-    var widgets = [Widget]()
-    var charts = [Widget]()
-    var countdowns = [Widget]()
+class TodayViewController: UITableViewController, NCWidgetProviding, NSFetchedResultsControllerDelegate {
+    var container: PersistentContainer!
+    var fetchedResultsController: NSFetchedResultsController<Entity>!
     var timer = Timer()
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return fetchedResultsController.sections?.count ?? 0
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return widgets.count
+        let sectionInfo = fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let widget = widgets[indexPath.row]
+        let widget = fetchedResultsController.object(at: indexPath)
         cell.textLabel?.text = widget.label
-        cell.detailTextLabel?.text = widget.format() + widget.description
-        cell.accessoryType = widget.more == nil ? .none : .detailButton
+        cell.detailTextLabel?.text = widget.detail
+        cell.accessoryType = widget.more == "" ? .none : .detailButton
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let url = widgets[indexPath.row].more {
+        let widget = fetchedResultsController.object(at: indexPath)
+        if let url = widget.link() {
             extensionContext?.open(url, completionHandler: nil)
         }
     }
@@ -38,31 +44,41 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         completionHandler(NCUpdateResult.newData)
     }
 
-    func refresh() {
-        let pinnedItems = ApplicationSettings.pinnedItems
-        NSLog("Pinned items: \(pinnedItems)")
-        widgets = (self.countdowns + self.charts)
-            .filter { pinnedItems.contains($0.id) }
-            .sorted(by: {$0.created < $1.created})
-    }
-
     func updateCounter() {
         self.tableView.reloadData()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        container = PersistentContainer(name: "Model")
 
-        fetchCountdown(token: ApplicationSettings.apiKey ?? "") {
-            (widgets) -> Void in
-            self.countdowns = widgets
-            self.refresh()
+        container.loadPersistentStores { _, error in
+            self.container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+
+            if let error = error {
+                print("Unresolved error \(error)")
+            }
+        }
+        loadSavedData()
+    }
+
+    func loadSavedData() {
+        print("loadSavedData")
+        if fetchedResultsController == nil {
+            let request = Entity.createFetchRequest()
+            let sort = NSSortDescriptor(key: "created", ascending: false)
+            request.predicate = NSPredicate(format: "pinned == 1")
+            request.sortDescriptors = [sort]
+
+            fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+            fetchedResultsController.delegate = self
         }
 
-        fetchChart(token: ApplicationSettings.apiKey ?? "") {
-            (widgets) -> Void in
-            self.charts = widgets
-            self.refresh()
+        do {
+            try fetchedResultsController.performFetch()
+            tableView?.reloadData()
+        } catch {
+            print("Fetch failed")
         }
     }
 
@@ -75,6 +91,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             userInfo: nil,
             repeats: true
         )
+        loadSavedData()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -84,7 +101,6 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         preferredContentSize = tableView.contentSize
     }
 
