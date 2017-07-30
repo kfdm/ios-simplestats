@@ -15,7 +15,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     var refresh = true
     var apikey: String?
     var timer = Timer()
-    var pinnedItems = [String]()
+
     var container: NSPersistentContainer!
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -73,7 +73,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
         container = NSPersistentContainer(name: "Model")
 
-        container.loadPersistentStores { storeDescription, error in
+        container.loadPersistentStores { _, error in
             self.container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
 
             if let error = error {
@@ -81,7 +81,6 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
             }
         }
 
-        pinnedItems = ApplicationSettings.pinnedItems
         performSelector(inBackground: #selector(fetchWidgets), with: nil)
         loadSavedData()
     }
@@ -126,7 +125,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
     }
 
-    func tap(sender: UITapGestureRecognizer){
+    func tap(sender: UITapGestureRecognizer) {
         if let indexPath = self.collectionView?.indexPathForItem(at: sender.location(in: self.collectionView)) {
             let widget = self.widgets[indexPath.row]
             if let url = widget.more {
@@ -144,15 +143,9 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
         if let indexPath = self.collectionView?.indexPathForItem(at: sender.location(in: self.collectionView)) {
             let widget = self.widgets[indexPath.row]
-            var pinnedItems = ApplicationSettings.pinnedItems
-            if pinnedItems.contains(widget.id) {
-                print("Unpin")
-                ApplicationSettings.pinnedItems = pinnedItems.filter { $0 != widget.id }
-            } else {
-                print("Pin")
-                pinnedItems.append(widget.id)
-                ApplicationSettings.pinnedItems = pinnedItems
-            }
+            widget.pinned = !widget.pinned
+            print("Setting widget to \(widget.pinned)")
+            self.saveContext()
         }
     }
 

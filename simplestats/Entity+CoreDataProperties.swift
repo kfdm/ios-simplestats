@@ -20,5 +20,5 @@ extension Entity {
     @NSManaged public var label: String
     @NSManaged public var detail: String
     @NSManaged public var type: String
-
+    @NSManaged public var pinned: Bool
 }

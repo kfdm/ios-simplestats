@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MGSwipeTableCell
 
 class WidgetTableCell: UICollectionViewCell {
     @IBOutlet weak var labelTitle: UILabel!
@@ -16,9 +15,7 @@ class WidgetTableCell: UICollectionViewCell {
     @IBOutlet weak var pinnedButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
 
-
-    var entity :Entity?
-
+    var entity: Entity?
 
     func update(_ entity: Entity) {
         self.entity = entity
@@ -27,7 +24,7 @@ class WidgetTableCell: UICollectionViewCell {
         self.labelExtra.text = entity.detail
         self.backgroundColor = entity.color()
 
-        self.pinnedButton.isHidden = !ApplicationSettings.pinnedItems.contains(entity.id)
+        self.pinnedButton.isHidden = !entity.pinned
         self.moreButton.isHidden = entity.more == nil
     }
 

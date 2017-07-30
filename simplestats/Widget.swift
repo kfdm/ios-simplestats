@@ -94,7 +94,7 @@ class Countdown: Widget {
     }
 
     func color() -> UIColor {
-        var elapsed = Date().timeIntervalSince(self.created)
+        let elapsed = Date().timeIntervalSince(self.created)
         if elapsed > 0 {
             return UIColor.red
         } else {
