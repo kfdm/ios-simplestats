@@ -61,6 +61,15 @@ class TodayViewController: UITableViewController, NCWidgetProviding, NSFetchedRe
             }
         }
         loadSavedData()
+        self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.expanded
+    }
+
+    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+        if activeDisplayMode == NCWidgetDisplayMode.compact {
+            self.preferredContentSize = maxSize
+        } else {
+            self.preferredContentSize = CGSize(width: maxSize.width, height: 200)
+        }
     }
 
     func loadSavedData() {
