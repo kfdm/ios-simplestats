@@ -9,6 +9,7 @@ target 'simplestats' do
   pod 'MGSwipeTableCell'
   pod 'SwiftLint'
   pod 'SwiftyJSON'
+  pod 'SDWebImage', '~> 4.0'
 end
 
 target 'widget' do

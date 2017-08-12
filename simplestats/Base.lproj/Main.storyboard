@@ -31,6 +31,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fYi-Th-Qgz">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Main" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="DAj-VF-kWn">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="30"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -56,6 +60,7 @@
                                 </view>
                                 <size key="customSize" width="128" height="128"/>
                                 <connections>
+                                    <outlet property="imageView" destination="fYi-Th-Qgz" id="XBK-pw-lZf"/>
                                     <outlet property="labelDetail" destination="IKf-4o-w0L" id="3cv-sq-X9f"/>
                                     <outlet property="labelExtra" destination="Gp4-qe-Nse" id="ZFg-VM-L0w"/>
                                     <outlet property="labelTitle" destination="DAj-VF-kWn" id="I8W-Zt-iLV"/>

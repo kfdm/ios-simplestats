@@ -23,6 +23,10 @@ public class Entity: NSManagedObject {
         return URL(string:more)
     }
 
+    var icon: URL? {
+        return URL(string: image)
+    }
+
     var color: UIColor {
         if type == "Chart" {
             return WidgetColor.chart
@@ -77,6 +81,7 @@ public class Entity: NSManagedObject {
         entity.more = countdown["more"].stringValue
         entity.created = dateParser.date(from: countdown["created"].stringValue)!
         entity.detail = countdown["description"].stringValue
+        entity.image = countdown["icon"].stringValue
 
         return entity
     }
@@ -95,6 +100,7 @@ public class Entity: NSManagedObject {
         entity.more = chart["more"].stringValue
         entity.detail = chart["unit"].stringValue
         entity.created = dateParser.date(from: chart["created"].stringValue)!
+        entity.image = chart["icon"].stringValue
 
         return entity
     }
