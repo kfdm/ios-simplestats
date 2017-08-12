@@ -15,7 +15,7 @@ func fetchToken(username: String, password: String, completionHandler: @escaping
     Alamofire.request(ApplicationSettings.tokenApi, method: .post, parameters: parameters)
         .validate(statusCode: 200..<300)
         .validate(contentType: ["application/json"])
-        .responseData { response in
+        .responseData(queue: DispatchQueue.global(qos: .userInitiated)) { response in
             switch response.result {
             case .success:
                 let json = JSON(data: response.data!)
@@ -33,7 +33,7 @@ func fetchCountdown(token: String, completionHandler: @escaping ([JSON]) -> Void
     Alamofire.request(ApplicationSettings.countdownAPI, method: .get, parameters: parameters, headers:headers)
         .validate(statusCode: 200..<300)
         .validate(contentType: ["application/json"])
-        .responseData { response in
+        .responseData(queue: DispatchQueue.global(qos: .userInitiated)) { response in
             switch response.result {
             case .success:
                 let json = JSON(data: response.data!)
@@ -50,7 +50,7 @@ func fetchChart(token: String, completionHandler: @escaping ([JSON]) -> Void) {
     Alamofire.request(ApplicationSettings.chartApi, method: .get, parameters: parameters, headers:headers)
         .validate(statusCode: 200..<300)
         .validate(contentType: ["application/json"])
-        .responseData { response in
+        .responseData(queue: DispatchQueue.global(qos: .userInitiated)) { response in
             switch response.result {
             case .success:
                 let json = JSON(data: response.data!)
