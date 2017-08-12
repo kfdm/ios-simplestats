@@ -59,14 +59,14 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     fileprivate let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
     fileprivate let itemsPerRow: CGFloat = 3
 
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-        let availableWidth = view.frame.width - paddingSpace
-        let widthPerItem = availableWidth / itemsPerRow
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+         // 10 Gives us our border around the edges
+        let width = (UIScreen.main.bounds.width - 10) / 3
 
-        return CGSize(width: widthPerItem, height: widthPerItem)
+        if width > 128 {
+            return CGSize(width: 128, height: 128)
+        }
+        return CGSize(width: width, height: width)
     }
 
     func updateCounter() {
