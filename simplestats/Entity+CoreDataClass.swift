@@ -79,7 +79,7 @@ public class Entity: NSManagedObject {
         entity.type = "Countdown"
         entity.label = countdown["label"].stringValue
         entity.more = countdown["more"].stringValue
-        entity.created = dateParser.date(from: countdown["created"].stringValue)!
+        entity.created = jsonDate(countdown["created"].stringValue)
         entity.detail = countdown["description"].stringValue
         entity.image = countdown["icon"].stringValue
 
@@ -89,19 +89,30 @@ public class Entity: NSManagedObject {
     static func fromJson(chart: JSON, context: NSManagedObjectContext) -> Entity {
         let entity = Entity(context: context)
 
-        let dateParser = DateFormatter()
-        dateParser.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        dateParser.timeZone = TimeZone(abbreviation: "UTC")
-
         entity.id = chart["id"].stringValue
         entity.type = "Chart"
         entity.label = chart["label"].stringValue
         entity.value = chart["value"].doubleValue
         entity.more = chart["more"].stringValue
         entity.detail = chart["unit"].stringValue
-        entity.created = dateParser.date(from: chart["created"].stringValue)!
+        entity.created = jsonDate(chart["created"].stringValue)
         entity.image = chart["icon"].stringValue
 
         return entity
+    }
+
+    static func jsonDate(_ string: String) -> Date {
+        let dateParser = ISO8601DateFormatter()
+        dateParser.formatOptions = .withInternetDateTime
+        if let date = dateParser.date(from: string) {
+            return date
+        }
+        let split = string.components(separatedBy: ".")
+        print("Attemping to parse without milliseconds \(split)")
+        if let date = dateParser.date(from: split[0] + "Z") {
+            return date
+        }
+        print("Unable to parse date \(string)")
+        return Date()
     }
 }
