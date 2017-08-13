@@ -19,21 +19,27 @@ class WidgetTableCell: UICollectionViewCell {
 
     func update(_ entity: Entity) {
         self.entity = entity
-        self.labelTitle.text = entity.label
-        self.labelDetail.text = entity.format()
-        self.labelExtra.text = entity.detail
+        let strokeTextAttributes: [String: Any] = [
+            NSStrokeColorAttributeName: UIColor.white,
+            NSForegroundColorAttributeName: UIColor.black,
+            NSStrokeWidthAttributeName: -4.0
+            ]
+
+        self.labelTitle.attributedText = NSAttributedString(string: entity.label, attributes: strokeTextAttributes)
+        self.labelDetail.attributedText = NSAttributedString(string: entity.format(), attributes: strokeTextAttributes)
+        self.labelExtra.attributedText = NSAttributedString(string: entity.detail, attributes: strokeTextAttributes)
+        self.layer.cornerRadius = 12
+        self.imageView.layer.cornerRadius = 12
 
         self.layer.borderWidth = 4
-        self.layer.borderColor = entity.pinned ? UIColor.black.cgColor : UIColor.lightGray.cgColor
+        self.layer.borderColor = entity.pinned ? entity.color.cgColor : entity.color.withAlphaComponent(0.5).cgColor
 
         self.labelTitle.layer.borderWidth = entity.link == nil ? 0 : 3
         self.labelTitle.layer.borderColor = self.layer.borderColor
         if let imageURL = entity.icon {
-            self.backgroundColor = entity.color.withAlphaComponent(0.5)
             self.imageView.isHidden = false
             self.imageView.sd_setImage(with: imageURL)
         } else {
-            self.backgroundColor = entity.color
             self.imageView.isHidden = true
         }
     }

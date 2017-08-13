@@ -14,7 +14,7 @@ import SwiftyJSON
 class WidgetColor {
     static let overdue = UIColor.red
     static let countdown = UIColor.green
-    static let chart = UIColor.cyan
+    static let chart = UIColor.lightGray
 }
 
 @objc(Entity)

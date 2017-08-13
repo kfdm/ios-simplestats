@@ -31,7 +31,6 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! WidgetTableCell
         let widget = fetchedResultsController.object(at: indexPath)
         cell.update(widget)
-        cell.layer.cornerRadius = 11
         return cell
     }
 
