@@ -49,7 +49,9 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
         do {
             try fetchedResultsController.performFetch()
-            collectionView?.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView?.reloadData()
+            }
         } catch {
             print("Fetch failed")
         }
@@ -59,7 +61,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     fileprivate let itemsPerRow: CGFloat = 3
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-         // 10 Gives us our border around the edges
+        // 10 Gives us our border around the edges
         let width = (UIScreen.main.bounds.width - 10) / 3
 
         if width > 128 {
@@ -101,7 +103,9 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
             }
             self.saveContext()
             self.loadSavedData()
-            self.collectionView?.refreshControl?.endRefreshing()
+            DispatchQueue.main.async {
+                self.collectionView?.refreshControl?.endRefreshing()
+            }
         }
 
         fetchChart(token: ApplicationSettings.apiKey ?? "") {
@@ -111,7 +115,9 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
             }
             self.saveContext()
             self.loadSavedData()
-            self.collectionView?.refreshControl?.endRefreshing()
+            DispatchQueue.main.async {
+                self.collectionView?.refreshControl?.endRefreshing()
+            }
         }
     }
 
