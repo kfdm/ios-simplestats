@@ -1,29 +1,28 @@
 PODS:
   - 1PasswordExtension (1.8.4)
   - Alamofire (4.5.0)
+  - AlamofireImage (3.3.0):
+    - Alamofire (~> 4.5)
   - MGSwipeTableCell (1.5.6)
-  - SDWebImage (4.0.0):
-    - SDWebImage/Core (= 4.0.0)
-  - SDWebImage/Core (4.0.0)
   - SwiftLint (0.20.1)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - 1PasswordExtension
   - Alamofire (~> 4.4)
+  - AlamofireImage (~> 3.3)
   - MGSwipeTableCell
-  - SDWebImage (~> 4.0)
   - SwiftLint
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   1PasswordExtension: e775a29310c65851e5a6cec1afc349ab4e334e47
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
-  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SwiftLint: f60095dc173a3f3ec505bb34f5229c3dfd779a54
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 9d72e396d7fab59ebdf2e61a4f146d2d10f3ae0a
+PODFILE CHECKSUM: 36ea68f45d2d674b9a1021dfe6bc7c1bf42656a0
 
 COCOAPODS: 1.2.1

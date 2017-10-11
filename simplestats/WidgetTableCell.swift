@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SDWebImage
+import AlamofireImage
 
 class WidgetTableCell: UICollectionViewCell {
     @IBOutlet weak var labelTitle: UILabel!
@@ -38,7 +38,7 @@ class WidgetTableCell: UICollectionViewCell {
         self.labelTitle.layer.borderColor = self.layer.borderColor
         if let imageURL = entity.icon {
             self.imageView.isHidden = false
-            self.imageView.sd_setImage(with: imageURL)
+            self.imageView.af_setImage(withURL: imageURL)
         } else {
             self.imageView.isHidden = true
         }

@@ -6,10 +6,10 @@ target 'simplestats' do
   use_frameworks!
   pod '1PasswordExtension'
   pod 'Alamofire', '~> 4.4'
+  pod 'AlamofireImage', '~> 3.3'
   pod 'MGSwipeTableCell'
   pod 'SwiftLint'
   pod 'SwiftyJSON'
-  pod 'SDWebImage', '~> 4.0'
 end
 
 target 'widget' do
