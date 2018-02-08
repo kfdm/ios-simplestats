@@ -18,6 +18,7 @@ struct ApplicationSettingsKeys {
 struct ApplicationSettings {
     static let defaults = UserDefaults(suiteName: ApplicationSettingsKeys.suiteName)!
     static let baseURL = "https://tsundere.co"
+    static let widgetAPI = "https://tsundere.co/api/widget"
     static let countdownAPI = "https://tsundere.co/api/countdown"
     static let tokenApi = "https://tsundere.co/api/token/"
     static let chartApi = "https://tsundere.co/api/chart"

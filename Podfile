@@ -7,9 +7,10 @@ target 'simplestats' do
   pod '1PasswordExtension'
   pod 'Alamofire', '~> 4.4'
   pod 'AlamofireImage', '~> 3.3'
-  pod 'MGSwipeTableCell'
   pod 'SwiftLint'
   pod 'SwiftyJSON'
+  pod 'RxSwift',    '~> 4.0'
+  pod 'RxCocoa',    '~> 4.0'
 end
 
 target 'widget' do
@@ -17,4 +18,6 @@ target 'widget' do
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftLint'
   pod 'SwiftyJSON'
+  pod 'RxSwift',    '~> 4.0'
+  pod 'RxCocoa',    '~> 4.0'
 end

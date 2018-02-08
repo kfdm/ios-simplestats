@@ -3,7 +3,9 @@ PODS:
   - Alamofire (4.5.0)
   - AlamofireImage (3.3.0):
     - Alamofire (~> 4.5)
-  - MGSwipeTableCell (1.5.6)
+  - RxCocoa (4.0.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.0.0)
   - SwiftLint (0.20.1)
   - SwiftyJSON (3.1.4)
 
@@ -11,7 +13,8 @@ DEPENDENCIES:
   - 1PasswordExtension
   - Alamofire (~> 4.4)
   - AlamofireImage (~> 3.3)
-  - MGSwipeTableCell
+  - RxCocoa (~> 4.0)
+  - RxSwift (~> 4.0)
   - SwiftLint
   - SwiftyJSON
 
@@ -19,10 +22,11 @@ SPEC CHECKSUMS:
   1PasswordExtension: e775a29310c65851e5a6cec1afc349ab4e334e47
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
-  MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
+  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
+  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
   SwiftLint: f60095dc173a3f3ec505bb34f5229c3dfd779a54
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 36ea68f45d2d674b9a1021dfe6bc7c1bf42656a0
+PODFILE CHECKSUM: e49bd6120e38863bb85b92042a28549e12edf35d
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

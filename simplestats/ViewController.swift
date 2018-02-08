@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MGSwipeTableCell
 import CoreData
 
 class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate {
@@ -79,7 +78,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
         collectionView?.addGestureRecognizer(UILongPressGestureRecognizer(target:self, action: #selector(longpress)))
         collectionView?.refreshControl = UIRefreshControl()
-        collectionView?.refreshControl?.addTarget(self, action: #selector(fetchWidgets), for: UIControlEvents.valueChanged)
+        //collectionView?.refreshControl?.addTarget(self, action: #selector(fetchWidgets), for: UIControlEvents.valueChanged)
 
         container = PersistentContainer(name: "Model")
 
@@ -91,34 +90,11 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
             }
         }
 
-        performSelector(inBackground: #selector(fetchWidgets), with: nil)
         loadSavedData()
-    }
 
-    func fetchWidgets() {
-        fetchCountdown(token: ApplicationSettings.apiKey ?? "") {
-            (widgets) -> Void in
-            for widget in widgets {
-                _ = Entity.fromJson(countdown: widget, context: self.container.viewContext)
-            }
-            self.saveContext()
-            self.loadSavedData()
-            DispatchQueue.main.async {
-                self.collectionView?.refreshControl?.endRefreshing()
-            }
-        }
-
-        fetchChart(token: ApplicationSettings.apiKey ?? "") {
-            (widgets) -> Void in
-            for widget in widgets {
-                _ = Entity.fromJson(chart: widget, context: self.container.viewContext)
-            }
-            self.saveContext()
-            self.loadSavedData()
-            DispatchQueue.main.async {
-                self.collectionView?.refreshControl?.endRefreshing()
-            }
-        }
+        var response = API.fetchWidgets()
+        print(response)
+        response.map { print($0)}
     }
 
     func saveContext() {
