@@ -67,6 +67,7 @@
                                     <outlet property="icon" destination="Kq2-Tc-cir" id="BTK-Lw-SA7"/>
                                     <outlet property="titleLabel" destination="YE6-AA-Rqc" id="QKL-BZ-32E"/>
                                     <outlet property="valueLabel" destination="r1l-Ux-CG7" id="Kym-Pz-0b2"/>
+                                    <segue destination="cMG-lw-Qg2" kind="show" identifier="ShowDetail" id="9Sa-o7-Gah"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -75,7 +76,13 @@
                             <outlet property="delegate" destination="m5f-PP-Z14" id="ZXk-bf-Yuo"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="gcs-F4-BN3"/>
+                    <navigationItem key="navigationItem" id="gcs-F4-BN3">
+                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="2iP-c3-deg">
+                            <connections>
+                                <action selector="organizeButton:" destination="m5f-PP-Z14" id="8Kj-H9-ce2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="NMa-wv-9aq" kind="show" identifier="ShowLogin" id="SUg-aq-Ia7"/>
                     </connections>
@@ -83,6 +90,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6eN-wX-doz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="981.60000000000002" y="-32.833583208395808"/>
+        </scene>
+        <!--Detail Controller-->
+        <scene sceneID="C26-Rw-5HF">
+            <objects>
+                <viewController id="cMG-lw-Qg2" customClass="DetailController" customModule="NextStats" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gzw-Fk-Jai">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="zmz-J8-B4x"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mb2-58-Z2t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1899" y="-37"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="jPb-ck-oF8">

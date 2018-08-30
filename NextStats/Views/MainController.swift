@@ -42,6 +42,14 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return CGSize(width: width, height: width)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ShowDetail") {
+            let cell = sender as! WidgetCollectionCell
+            let destination = segue.destination as! DetailController
+            destination.widget = cell.widget
+        }
+    }
+
     // MARK: - lifecycle
 
     override func viewDidLoad() {
@@ -55,6 +63,22 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - buttons
+
+    @IBAction func organizeButton(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Actions", message: "Actions.", preferredStyle: .actionSheet)
+        //alertController.popoverPresentationController.barButtonItem = button;
+        alert.popoverPresentationController?.barButtonItem = sender
+        alert.popoverPresentationController?.sourceView = collectionView
+
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Logout", comment: "Default action"), style: .destructive, handler: { _ in
+            ApplicationSettings.username = nil
+            ApplicationSettings.password = nil
+            self.performSegue(withIdentifier: "ShowLogin", sender: self)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 
     // MARK: - data

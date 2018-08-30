@@ -15,7 +15,10 @@ class WidgetCollectionCell: UICollectionViewCell {
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var valueLabel: UILabel!
 
+    var widget: Widget?
+
     func update(widget: Widget) {
+        self.widget = widget
         self.titleLabel.text = widget.title
 
         if let icon = widget.icon {
