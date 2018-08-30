@@ -16,6 +16,7 @@ class WidgetCollectionCell: UICollectionViewCell {
     @IBOutlet weak var valueLabel: UILabel!
 
     var widget: Widget?
+    var pinned = ApplicationSettings.pinnedWidgets
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -64,6 +65,7 @@ class WidgetCollectionCell: UICollectionViewCell {
             self.valueLabel.adjustsFontSizeToFitWidth = true
         }
 
-        self.layer.borderWidth = 1
+        // Thicker weight for pinned items
+        self.layer.borderWidth = pinned.contains(widget.slug) ? 3 : 1
     }
 }

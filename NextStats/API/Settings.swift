@@ -15,6 +15,7 @@ struct ApplicationSettingsKeys {
     static let username = "username"
     static let password = "password"
     static let pinned = "pinned"
+    static let reverseDNS = "co.tsundere.simplestats"
 }
 
 struct ApplicationSettings {

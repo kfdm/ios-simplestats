@@ -85,9 +85,17 @@ class StatsURL {
     }
 }
 
+class InternalAPI {
+    static func openWidget(widget: Widget) -> URL {
+        return URL(string: "\(ApplicationSettingsKeys.reverseDNS)://open/\(widget.slug)")!
+    }
+}
+
 class StatsAPI {
     static func getWidgets(completionHandler: @escaping ([Widget]) -> Void) {
-        authRequest(username: ApplicationSettings.username!, password: ApplicationSettings.password!, url: StatsURL.wigetURL(), completionHandler: {_, data in
+        guard let user = ApplicationSettings.username else { return }
+        guard let pass = ApplicationSettings.password else { return }
+        authRequest(username: user, password: pass, url: StatsURL.wigetURL(), completionHandler: {_, data in
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase

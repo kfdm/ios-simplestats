@@ -11,6 +11,7 @@ import UIKit
 class MainController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     var data: [Widget]?
     var timer = Timer()
+    var pinned = ApplicationSettings.pinnedWidgets
 
     // MARK: - collectionView
 
@@ -118,16 +119,15 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     func PinAction(widget: Widget) -> UIAlertAction {
         return UIAlertAction(title: "Pin", style: .default, handler: {_ in
-            var pinned = ApplicationSettings.pinnedWidgets
-            pinned.append(widget.slug)
-            ApplicationSettings.pinnedWidgets = pinned
+            self.pinned.append(widget.slug)
+            ApplicationSettings.pinnedWidgets = self.pinned
         })
     }
 
     func UnpinAction(widget: Widget) -> UIAlertAction {
         return UIAlertAction(title: "Unpin", style: .default, handler: {_ in #imageLiteral(resourceName: "TypeLocation")
-            let pinned = ApplicationSettings.pinnedWidgets
-            ApplicationSettings.pinnedWidgets = pinned.filter { $0 != widget.slug }
+            self.pinned = self.pinned.filter { $0 != widget.slug }
+            ApplicationSettings.pinnedWidgets = self.pinned
         })
     }
 
@@ -135,7 +135,6 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let cell = self.collectionView?.cellForItem(at: indexPath) as! WidgetCollectionCell
         let widget = self.data![indexPath.row]
         let alert = UIAlertController(title: "Actions", message: "Actions.", preferredStyle: .actionSheet)
-        let pinned = ApplicationSettings.pinnedWidgets
 
         alert.popoverPresentationController?.sourceView = cell
         alert.popoverPresentationController?.permittedArrowDirections = .any
