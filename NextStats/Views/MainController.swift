@@ -10,6 +10,7 @@ import UIKit
 
 class MainController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     var data: [Widget]?
+    var timer = Timer()
 
     // MARK: - collectionView
 
@@ -65,6 +66,22 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        timer = Timer.scheduledTimer(
+            timeInterval: 1.0,
+            target: self,
+            selector: #selector(updateCounter),
+            userInfo: nil,
+            repeats: true
+        )
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer.invalidate()
+    }
+
     // MARK: - buttons
 
     @IBAction func organizeButton(_ sender: UIBarButtonItem) {
@@ -92,5 +109,9 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 }
             })
         }
+    }
+
+    @objc func updateCounter() {
+        self.collectionView?.reloadData()
     }
 }

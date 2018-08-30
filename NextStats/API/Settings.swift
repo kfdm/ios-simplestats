@@ -42,4 +42,12 @@ struct ApplicationSettings {
         dateFormat.timeZone = TimeZone.current
         return dateFormat
     }
+
+    static var shortTime: DateComponentsFormatter {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day, .hour, .minute, .second]
+        formatter.unitsStyle = .positional
+        formatter.zeroFormattingBehavior = .pad
+        return formatter
+    }
 }

@@ -17,19 +17,47 @@ class WidgetCollectionCell: UICollectionViewCell {
 
     var widget: Widget?
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.icon.sd_cancelCurrentImageLoad()
+        self.icon.image = nil
+    }
+
+    func setImage(url: URL?, placeholder: String) {
+        if let icon = url {
+            self.icon.sd_setImage(with: icon, placeholderImage: UIImage(named: placeholder), options: SDWebImageOptions.scaleDownLargeImages, progress: nil, completed: nil)
+        } else {
+            self.icon.image = UIImage(named: placeholder)
+        }
+    }
+
     func update(widget: Widget) {
         self.widget = widget
         self.titleLabel.text = widget.title
 
-        if let icon = widget.icon {
-            self.icon.sd_setImage(with: icon, placeholderImage: nil, options: SDWebImageOptions.scaleDownLargeImages, completed: nil)
-        }
-
         switch widget.type {
         case "countdown":
-            let formatter = ApplicationSettings.shortDateTime
-            self.valueLabel.text = formatter.string(for: widget.timestamp)
+            let formatter = ApplicationSettings.shortTime
+            let duration = widget.timestamp.timeIntervalSinceNow
+
+            self.valueLabel.text = formatter.string(from: duration)
+            self.valueLabel.textColor = duration > 0 ? UIColor(named: "CountdownFuture") : UIColor(named: "CountdownPast")
             self.valueLabel.adjustsFontSizeToFitWidth = true
+
+            self.valueLabel.adjustsFontSizeToFitWidth = true
+
+            self.setImage(url: widget.icon, placeholder: "TypeCountdown")
+        case "location":
+            self.valueLabel.text = "\(widget.value)"
+            self.valueLabel.adjustsFontSizeToFitWidth = true
+
+            self.setImage(url: widget.icon, placeholder: "TypeLocation")
+        case "chart":
+            self.valueLabel.text = "\(widget.value)"
+            self.valueLabel.textColor = UIColor.black
+            self.valueLabel.adjustsFontSizeToFitWidth = true
+
+            self.setImage(url: widget.icon, placeholder: "TypeChart")
         default:
             print(widget.type)
             self.valueLabel.text = "\(widget.value)"
