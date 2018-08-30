@@ -58,6 +58,7 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
             self.performSegue(withIdentifier: "ShowLogin", sender: self)
         }
         super.viewDidLoad()
+        collectionView?.addGestureRecognizer(UILongPressGestureRecognizer(target:self, action: #selector(longpress)))
         refreshData()
     }
 
@@ -113,5 +114,49 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     @objc func updateCounter() {
         self.collectionView?.reloadData()
+    }
+
+    func PinAction(widget: Widget) -> UIAlertAction {
+        return UIAlertAction(title: "Pin", style: .default, handler: {_ in
+            var pinned = ApplicationSettings.pinnedWidgets
+            pinned.append(widget.slug)
+            ApplicationSettings.pinnedWidgets = pinned
+        })
+    }
+
+    func UnpinAction(widget: Widget) -> UIAlertAction {
+        return UIAlertAction(title: "Unpin", style: .default, handler: {_ in #imageLiteral(resourceName: "TypeLocation")
+            let pinned = ApplicationSettings.pinnedWidgets
+            ApplicationSettings.pinnedWidgets = pinned.filter { $0 != widget.slug }
+        })
+    }
+
+    func alertForCell(indexPath: IndexPath) {
+        let cell = self.collectionView?.cellForItem(at: indexPath) as! WidgetCollectionCell
+        let widget = self.data![indexPath.row]
+        let alert = UIAlertController(title: "Actions", message: "Actions.", preferredStyle: .actionSheet)
+        let pinned = ApplicationSettings.pinnedWidgets
+
+        alert.popoverPresentationController?.sourceView = cell
+        alert.popoverPresentationController?.permittedArrowDirections = .any
+        alert.popoverPresentationController?.sourceRect = cell.bounds
+
+        if pinned.contains(widget.slug) {
+            alert.addAction(UnpinAction(widget: widget))
+        } else {
+            alert.addAction(PinAction(widget: widget))
+        }
+
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    @objc func longpress(sender: UILongPressGestureRecognizer) {
+        if sender.state != .began {
+            return
+        }
+        if let indexPath = self.collectionView?.indexPathForItem(at: sender.location(in: self.collectionView)) {
+            print(indexPath)
+            alertForCell(indexPath: indexPath)
+        }
     }
 }

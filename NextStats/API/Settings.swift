@@ -14,6 +14,7 @@ struct ApplicationSettingsKeys {
     static let suiteName = "group.net.kungfudiscomonkey.simplestats"
     static let username = "username"
     static let password = "password"
+    static let pinned = "pinned"
 }
 
 struct ApplicationSettings {
@@ -32,6 +33,11 @@ struct ApplicationSettings {
     static var password: String? {
         get { return defaults.string(forKey: ApplicationSettingsKeys.password) }
         set { defaults.set(newValue, forKey: ApplicationSettingsKeys.password) }
+    }
+
+    static var pinnedWidgets: [String] {
+        get { return defaults.stringArray(forKey: ApplicationSettingsKeys.pinned) ?? [String]() }
+        set { defaults.set(newValue, forKey: ApplicationSettingsKeys.pinned) }
     }
 
     static var shortDateTime: DateFormatter {
