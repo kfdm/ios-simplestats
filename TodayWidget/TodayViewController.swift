@@ -29,7 +29,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let widget = data[indexPath.row]
 
         switch widget.type {
@@ -69,8 +69,8 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         timer.invalidate()
+        super.viewWillDisappear(animated)
     }
 
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -78,7 +78,6 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             print("widgetPerformUpdate")
             let pinned = ApplicationSettings.pinnedWidgets
             self.data = widgets.filter { pinned.contains($0.slug) }
-            self.tableView.reloadData()
             completionHandler(NCUpdateResult.newData)
         })
     }

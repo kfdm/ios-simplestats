@@ -9,7 +9,7 @@
 import UIKit
 
 class MainController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    var data: [Widget]?
+    var data = [Widget]()
     var timer = Timer()
     var pinned = ApplicationSettings.pinnedWidgets
 
@@ -20,14 +20,12 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data?.count ?? 0
+        return data.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! WidgetCollectionCell
-        if let widget = self.data?[indexPath.row] {
-            cell.update(widget: widget)
-        }
+        cell.update(widget: self.data[indexPath.row])
         return cell
     }
 
@@ -45,7 +43,7 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "ShowDetail") {
+        if segue.identifier == "ShowDetail" {
             let cell = sender as! WidgetCollectionCell
             let destination = segue.destination as! DetailController
             destination.widget = cell.widget
@@ -59,7 +57,7 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
             self.performSegue(withIdentifier: "ShowLogin", sender: self)
         }
         super.viewDidLoad()
-        collectionView?.addGestureRecognizer(UILongPressGestureRecognizer(target:self, action: #selector(longpress)))
+        collectionView?.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longpress)))
         refreshData()
     }
 
@@ -125,7 +123,7 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
 
     func UnpinAction(widget: Widget) -> UIAlertAction {
-        return UIAlertAction(title: "Unpin", style: .default, handler: {_ in #imageLiteral(resourceName: "TypeLocation")
+        return UIAlertAction(title: "Unpin", style: .default, handler: {_ in
             self.pinned = self.pinned.filter { $0 != widget.slug }
             ApplicationSettings.pinnedWidgets = self.pinned
         })
@@ -133,7 +131,7 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     func alertForCell(indexPath: IndexPath) {
         let cell = self.collectionView?.cellForItem(at: indexPath) as! WidgetCollectionCell
-        let widget = self.data![indexPath.row]
+        let widget = self.data[indexPath.row]
         let alert = UIAlertController(title: "Actions", message: "Actions.", preferredStyle: .actionSheet)
 
         alert.popoverPresentationController?.sourceView = cell
