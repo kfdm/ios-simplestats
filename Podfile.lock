@@ -1,0 +1,26 @@
+PODS:
+  - 1PasswordExtension (1.8.5)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
+  - SwiftLint (0.27.0)
+
+DEPENDENCIES:
+  - 1PasswordExtension (~> 1.8.5)
+  - SDWebImage (~> 4.0)
+  - SwiftLint
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - 1PasswordExtension
+    - SDWebImage
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  1PasswordExtension: 0e95bdea64ec8ff2f4f693be5467a09fac42a83d
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
+
+PODFILE CHECKSUM: 2e349249730f0ce8295ab2c459644b29b986f517
+
+COCOAPODS: 1.5.3
