@@ -16,7 +16,7 @@ struct Widget: Codable {
     let description: String
     let icon: URL?
     let value: Double
-//    let more: URL?
+    let more: URL?
     let type: String
     let publicWidget: Bool
 
@@ -28,7 +28,7 @@ struct Widget: Codable {
         case description
         case icon
         case value
-//        case more
+        case more
         case type
         case publicWidget = "public"
     }

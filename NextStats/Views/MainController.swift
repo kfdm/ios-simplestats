@@ -95,6 +95,7 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
             ApplicationSettings.password = nil
             self.performSegue(withIdentifier: "ShowLogin", sender: self)
         }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 
@@ -143,6 +144,7 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
         } else {
             alert.addAction(PinAction(widget: widget))
         }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
         self.present(alert, animated: true, completion: nil)
     }

@@ -25,12 +25,18 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let widget = data[indexPath.row]
-        extensionContext?.open(InternalAPI.openWidget(widget: widget), completionHandler: nil)
+        if let url = widget.more {
+            extensionContext?.open(url, completionHandler: nil)
+        } else {
+            extensionContext?.open(InternalAPI.openWidget(widget: widget), completionHandler: nil)
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let widget = data[indexPath.row]
+
+        cell.accessoryType = widget.more == nil ? .disclosureIndicator : .detailDisclosureButton 
 
         switch widget.type {
         case "countdown":
@@ -55,7 +61,20 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         return cell
     }
 
+    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+        if activeDisplayMode == .compact {
+            self.preferredContentSize = maxSize
+        } else if activeDisplayMode == .expanded {
+            self.preferredContentSize = CGSize(width: maxSize.width, height: 150)
+        }
+    }
+
     // MARK: - lifecycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
