@@ -12,6 +12,7 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
     var data = [Widget]()
     var timer = Timer()
     var pinned = ApplicationSettings.pinnedWidgets
+    var refreshControl: UIRefreshControl!
 
     // MARK: - collectionView
 
@@ -58,6 +59,12 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
         super.viewDidLoad()
         collectionView?.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longpress)))
+
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(refreshData), for: UIControlEvents.valueChanged)
+        collectionView!.addSubview(refreshControl)
+
         refreshData()
     }
 
@@ -103,9 +110,11 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     @objc func refreshData() {
         if ApplicationSettings.username != nil {
+            self.refreshControl.beginRefreshing()
             StatsAPI.getWidgets(completionHandler: { widgets in
                 self.data = widgets.sorted(by: { $0.timestamp > $1.timestamp })
                 DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
                     self.collectionView?.reloadData()
                 }
             })

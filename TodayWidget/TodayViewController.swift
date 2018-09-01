@@ -36,7 +36,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let widget = data[indexPath.row]
 
-        cell.accessoryType = widget.more == nil ? .disclosureIndicator : .detailDisclosureButton 
+        cell.accessoryType = widget.more == nil ? .disclosureIndicator : .detailDisclosureButton
 
         switch widget.type {
         case "countdown":
