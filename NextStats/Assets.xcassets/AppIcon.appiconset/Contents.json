@@ -1,111 +1,111 @@
 {
   "images" : [
-    {
+	{
       "size" : "20x20",
-      "idiom" : "iphone",
-      "filename" : "line-graph-with-circles-20@2x.png",
-      "scale" : "2x"
+      "idiom": "iphone",
+	  "filename" : "investment-20@2x.png",
+      "scale": "2x"
+    },
+	{
+      "size" : "20x20",
+      "idiom": "iphone",
+	  "filename" : "investment-20@3x.png",
+      "scale": "3x"
+    },
+	{
+      "size" : "20x20",
+      "idiom": "ipad",
+	  "filename" : "investment-20.png",
+      "scale": "1x"
     },
     {
       "size" : "20x20",
-      "idiom" : "iphone",
-      "filename" : "line-graph-with-circles-20@3x.png",
-      "scale" : "3x"
+      "idiom": "ipad",
+	  "filename" : "investment-20@2x.png",
+      "scale": "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "line-graph-with-circles-29@2x.png",
+      "filename" : "investment-29@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "line-graph-with-circles-29@3x.png",
+      "filename" : "investment-29@3x.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "line-graph-with-circles-40@2x.png",
+      "filename" : "investment-40@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "line-graph-with-circles-40@3x.png",
+      "filename" : "investment-40@3x.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "line-graph-with-circles-60@2x.png",
+      "filename" : "investment-60@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "line-graph-with-circles-60@3x.png",
+      "filename" : "investment-60@3x.png",
       "scale" : "3x"
     },
     {
-      "size" : "20x20",
-      "idiom" : "ipad",
-      "filename" : "line-graph-with-circles-20.png",
-      "scale" : "1x"
-    },
-    {
-      "size" : "20x20",
-      "idiom" : "ipad",
-      "filename" : "line-graph-with-circles-20@2x.png",
-      "scale" : "2x"
-    },
-    {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "line-graph-with-circles-29.png",
+      "filename" : "investment-29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "line-graph-with-circles-29@2x.png",
+      "filename" : "investment-29@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "line-graph-with-circles-40.png",
+      "filename" : "investment-40.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "line-graph-with-circles-40@2x.png",
+      "filename" : "investment-40@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "line-graph-with-circles-76.png",
+      "filename" : "investment-76.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "line-graph-with-circles-76@2x.png",
+      "filename" : "investment-76@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "line-graph-with-circles-83.5@2x.png",
+      "filename" : "investment-83.5@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "line-graph-with-circles-1024.png",
+      "filename" : "investment-1024.png",
       "scale" : "1x"
     }
   ],
