@@ -41,6 +41,17 @@ struct ApplicationSettings {
         set { defaults.set(newValue, forKey: ApplicationSettingsKeys.pinned) }
     }
 
+    static var cachedWidgets: [Widget] {
+        get {
+            guard let data = defaults.value(forKey: "cache") as? Data else {return [Widget]()}
+            guard let widgets = try? PropertyListDecoder().decode([Widget].self, from: data) else {return [Widget]()}
+            return widgets
+        }
+        set {
+            defaults.set(try? PropertyListEncoder().encode(newValue), forKey: "cache")
+        }
+    }
+
     static var shortDateTime: DateFormatter {
         let dateFormat = DateFormatter()
         dateFormat.locale = NSLocale.current

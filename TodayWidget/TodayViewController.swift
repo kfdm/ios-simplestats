@@ -74,6 +74,9 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+
+        // Restore Cached State
+        self.data =  ApplicationSettings.cachedWidgets
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +100,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             print("widgetPerformUpdate")
             let pinned = ApplicationSettings.pinnedWidgets
             self.data = widgets.filter { pinned.contains($0.slug) }
+            ApplicationSettings.cachedWidgets = self.data
             completionHandler(NCUpdateResult.newData)
         })
     }
