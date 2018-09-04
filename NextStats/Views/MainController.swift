@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MainController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+final class MainController: UICollectionViewController {
     private var data = [Widget]()
     private var timer = Timer()
     private var pinned = ApplicationSettings.pinnedWidgets
@@ -30,18 +30,8 @@ final class MainController: UICollectionViewController, UICollectionViewDelegate
         return cell
     }
 
-    fileprivate let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
-    fileprivate let itemsPerRow: CGFloat = 3
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // 10 Gives us our border around the edges
-        let width = (UIScreen.main.bounds.width - 10) / 3
-
-        if width > 128 {
-            return CGSize(width: 128, height: 128)
-        }
-        return CGSize(width: width, height: width)
-    }
+    private let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+    private let itemsPerRow: CGFloat = 3
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDetail" {
@@ -166,5 +156,17 @@ final class MainController: UICollectionViewController, UICollectionViewDelegate
             print(indexPath)
             alertForCell(indexPath: indexPath)
         }
+    }
+}
+
+extension MainController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // 10 Gives us our border around the edges
+        let width = (UIScreen.main.bounds.width - 10) / 3
+        
+        if width > 128 {
+            return CGSize(width: 128, height: 128)
+        }
+        return CGSize(width: width, height: width)
     }
 }
