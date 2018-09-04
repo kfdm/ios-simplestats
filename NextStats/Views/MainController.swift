@@ -181,4 +181,9 @@ extension MainController: UICollectionViewDelegateFlowLayout {
         }
         return CGSize(width: width, height: width)
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailWidget = data[indexPath.row]
+        moveToDetailController(with: detailWidget)
+    }
 }
