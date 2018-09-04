@@ -159,6 +159,18 @@ final class MainController: UICollectionViewController {
     }
 }
 
+extension MainController {
+    private func moveToDetailController(with widget: Widget) {
+        guard let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: DetailController.storyboardIdentifier()) as? DetailController else {
+            return
+        }
+        detailViewController.widget = widget
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(detailViewController, animated: true)
+        }
+    }
+}
+
 extension MainController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // 10 Gives us our border around the edges
