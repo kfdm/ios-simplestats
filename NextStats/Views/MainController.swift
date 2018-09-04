@@ -8,11 +8,11 @@
 
 import UIKit
 
-class MainController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    var data = [Widget]()
-    var timer = Timer()
-    var pinned = ApplicationSettings.pinnedWidgets
-    var refreshControl: UIRefreshControl!
+final class MainController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    private var data = [Widget]()
+    private var timer = Timer()
+    private var pinned = ApplicationSettings.pinnedWidgets
+    private var refreshControl: UIRefreshControl!
 
     // MARK: - collectionView
 
@@ -139,7 +139,7 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
         })
     }
 
-    func alertForCell(indexPath: IndexPath) {
+    private func alertForCell(indexPath: IndexPath) {
         let cell = self.collectionView?.cellForItem(at: indexPath) as! WidgetCollectionCell
         let widget = self.data[indexPath.row]
         let alert = UIAlertController(title: "Actions", message: "Actions.", preferredStyle: .actionSheet)
