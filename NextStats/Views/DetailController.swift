@@ -13,7 +13,10 @@ class DetailController: UIViewController {
     var widget: Widget?
 
     override func viewDidLoad() {
-        print(self.widget)
         super.viewDidLoad()
+        guard let widget = widget else {
+            return
+        }
+        print("The Widget is: \(widget)")
     }
 }
