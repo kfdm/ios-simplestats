@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5664AAA0E5B921C82AFE68C0 /* Pods_NextStats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87331683CDCF3233E5B494C0 /* Pods_NextStats.framework */; };
 		874DC8D9213BB65E00C26526 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87D40890213775D300A1695E /* Assets.xcassets */; };
+		87C65870213FFC3500079D88 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C6586F213FFC3500079D88 /* Router.swift */; };
 		87D4088A213775D100A1695E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D40889213775D100A1695E /* AppDelegate.swift */; };
 		87D4088C213775D100A1695E /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D4088B213775D100A1695E /* MainController.swift */; };
 		87D4088F213775D100A1695E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87D4088D213775D100A1695E /* Main.storyboard */; };
@@ -56,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		87331683CDCF3233E5B494C0 /* Pods_NextStats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NextStats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87C6586F213FFC3500079D88 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		87D40886213775D100A1695E /* NextStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87D40889213775D100A1695E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87D4088B213775D100A1695E /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			children = (
 				87D4089F2137782D00A1695E /* Settings.swift */,
 				87D408A121377A4000A1695E /* API.swift */,
+				87C6586F213FFC3500079D88 /* Router.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				87D4088C213775D100A1695E /* MainController.swift in Sources */,
 				87D408A6213782CD00A1695E /* Extensions.swift in Sources */,
 				87D4089D213776ED00A1695E /* LoginController.swift in Sources */,
+				87C65870213FFC3500079D88 /* Router.swift in Sources */,
 				87D408A02137782D00A1695E /* Settings.swift in Sources */,
 				87D4088A213775D100A1695E /* AppDelegate.swift in Sources */,
 				87D408A8213783AA00A1695E /* WidgetCollectionCell.swift in Sources */,

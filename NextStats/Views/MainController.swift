@@ -14,6 +14,10 @@ final class MainController: UICollectionViewController {
     private var pinned = ApplicationSettings.pinnedWidgets
     private var refreshControl: UIRefreshControl!
 
+    static func storyboardIdentifier() -> String {
+        return "MainController"
+    }
+
     // MARK: - collectionView
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -44,10 +48,12 @@ final class MainController: UICollectionViewController {
     // MARK: - lifecycle
 
     override func viewDidLoad() {
-        if ApplicationSettings.username == nil {
-            self.performSegue(withIdentifier: "ShowLogin", sender: self)
-        }
         super.viewDidLoad()
+        guard Router.isLoggedIn() else {
+            Router.showLogin()
+            return
+        }
+
         collectionView?.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longpress)))
 
         self.refreshControl = UIRefreshControl()
@@ -90,7 +96,7 @@ final class MainController: UICollectionViewController {
         alert.addAction(UIAlertAction(title: NSLocalizedString("Logout", comment: "Default action"), style: .destructive, handler: { _ in
             ApplicationSettings.username = nil
             ApplicationSettings.password = nil
-            self.performSegue(withIdentifier: "ShowLogin", sender: self)
+            Router.showLogin()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -175,13 +181,13 @@ extension MainController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // 10 Gives us our border around the edges
         let width = (UIScreen.main.bounds.width - 10) / 3
-        
+
         if width > 128 {
             return CGSize(width: 128, height: 128)
         }
         return CGSize(width: width, height: width)
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailWidget = data[indexPath.row]
         moveToDetailController(with: detailWidget)

@@ -19,7 +19,7 @@ class DetailController: UIViewController {
         }
         print("The Widget is: \(widget)")
     }
-    
+
     static func storyboardIdentifier() -> String {
         return "DetailController"
     }
