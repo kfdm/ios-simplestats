@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FsU-Q3-fQG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FsU-Q3-fQG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -67,7 +67,6 @@
                                     <outlet property="icon" destination="Kq2-Tc-cir" id="BTK-Lw-SA7"/>
                                     <outlet property="titleLabel" destination="YE6-AA-Rqc" id="QKL-BZ-32E"/>
                                     <outlet property="valueLabel" destination="r1l-Ux-CG7" id="Kym-Pz-0b2"/>
-                                    <segue destination="cMG-lw-Qg2" kind="show" identifier="ShowDetail" id="9Sa-o7-Gah"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -94,7 +93,7 @@
         <!--Detail Controller-->
         <scene sceneID="C26-Rw-5HF">
             <objects>
-                <viewController id="cMG-lw-Qg2" customClass="DetailController" customModule="NextStats" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailController" id="cMG-lw-Qg2" customClass="DetailController" customModule="NextStats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gzw-Fk-Jai">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

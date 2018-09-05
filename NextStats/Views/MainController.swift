@@ -8,11 +8,11 @@
 
 import UIKit
 
-class MainController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    var data = [Widget]()
-    var timer = Timer()
-    var pinned = ApplicationSettings.pinnedWidgets
-    var refreshControl: UIRefreshControl!
+final class MainController: UICollectionViewController {
+    private var data = [Widget]()
+    private var timer = Timer()
+    private var pinned = ApplicationSettings.pinnedWidgets
+    private var refreshControl: UIRefreshControl!
 
     // MARK: - collectionView
 
@@ -30,18 +30,8 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return cell
     }
 
-    fileprivate let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
-    fileprivate let itemsPerRow: CGFloat = 3
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // 10 Gives us our border around the edges
-        let width = (UIScreen.main.bounds.width - 10) / 3
-
-        if width > 128 {
-            return CGSize(width: 128, height: 128)
-        }
-        return CGSize(width: width, height: width)
-    }
+    private let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+    private let itemsPerRow: CGFloat = 3
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDetail" {
@@ -139,7 +129,7 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
         })
     }
 
-    func alertForCell(indexPath: IndexPath) {
+    private func alertForCell(indexPath: IndexPath) {
         let cell = self.collectionView?.cellForItem(at: indexPath) as! WidgetCollectionCell
         let widget = self.data[indexPath.row]
         let alert = UIAlertController(title: "Actions", message: "Actions.", preferredStyle: .actionSheet)
@@ -166,5 +156,34 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
             print(indexPath)
             alertForCell(indexPath: indexPath)
         }
+    }
+}
+
+extension MainController {
+    private func moveToDetailController(with widget: Widget) {
+        guard let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: DetailController.storyboardIdentifier()) as? DetailController else {
+            return
+        }
+        detailViewController.widget = widget
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(detailViewController, animated: true)
+        }
+    }
+}
+
+extension MainController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // 10 Gives us our border around the edges
+        let width = (UIScreen.main.bounds.width - 10) / 3
+        
+        if width > 128 {
+            return CGSize(width: 128, height: 128)
+        }
+        return CGSize(width: width, height: width)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailWidget = data[indexPath.row]
+        moveToDetailController(with: detailWidget)
     }
 }
