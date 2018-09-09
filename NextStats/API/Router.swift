@@ -12,7 +12,7 @@ import UIKit
 class Router {
     static func switchRootViewController(_ viewController: UIViewController, animated: Bool = true, duration: TimeInterval = 0.5, options: UIViewAnimationOptions = .transitionFlipFromRight, completion: (() -> Void)? = nil) {
         print("switchRootViewController \(viewController)")
-        print("\(UIApplication.shared.keyWindow)")
+        print(UIApplication.shared.keyWindow as Any)
         guard let window = UIApplication.shared.keyWindow else { return }
         print("window \(window)")
         guard animated else {
@@ -26,9 +26,9 @@ class Router {
             UIView.setAnimationsEnabled(false)
             window.rootViewController = viewController
             UIView.setAnimationsEnabled(oldState)
-        }) { _ in
-            completion?()
-        }
+            }, completion: { _ in
+                completion?()
+                })
     }
 
     static func isLoggedIn() -> Bool {
