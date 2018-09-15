@@ -33,7 +33,7 @@ func authedRequest(url: URL, method: String, body: Data?, username: String, pass
 }
 
 func checkLogin(username: String, password: String, completionHandler: @escaping (HTTPURLResponse) -> Void) {
-    let url = URL.init(string: "\(ApplicationSettings.baseURL)api/pomodoro")!
+    let url = ApplicationSettings.baseURL.appendingPathComponent("/api/pomodoro")
     authedRequest(url: url, method: "GET", body: nil, username: username, password: password, completionHandler: {response, _ in
         completionHandler(response)
     })

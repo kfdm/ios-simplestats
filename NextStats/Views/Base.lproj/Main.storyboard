@@ -144,6 +144,7 @@
                         <viewLayoutGuide key="safeArea" id="vy8-cQ-v0T"/>
                     </view>
                     <connections>
+                        <outlet property="OnepasswordButton" destination="7Oa-1E-fKc" id="ZAU-ps-1TS"/>
                         <outlet property="PasswordField" destination="QKU-C8-xqs" id="Swh-Qd-A8b"/>
                         <outlet property="UsernameField" destination="MBb-xg-ePc" id="8fv-x5-8m0"/>
                     </connections>

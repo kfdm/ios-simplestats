@@ -13,32 +13,35 @@ import OnePasswordExtension
 class LoginController: UIViewController {
     @IBOutlet weak var UsernameField: UITextField!
     @IBOutlet weak var PasswordField: UITextField!
+    @IBOutlet weak var OnepasswordButton: UIButton!
 
     static func storyboardIdentifier() -> String {
         return "LoginController"
     }
 
     override func viewDidLoad() {
-        //self.OnepasswordButton.isHidden = (false == OnePasswordExtension.shared().isAppExtensionAvailable())
+//        self.OnepasswordButton.isHidden = (false == OnePasswordExtension.shared().isAppExtensionAvailable())
         super.viewDidLoad()
     }
 
     @IBAction func LoginClick(_ sender: UIButton) {
-        checkLogin(username: UsernameField.text!, password: PasswordField.text!, completionHandler: {response in
-            if response.statusCode == 200 {
-                print("Successfully logged in")
-                DispatchQueue.main.async {
-                    ApplicationSettings.username = self.UsernameField.text!
-                    ApplicationSettings.password = self.PasswordField.text!
+        guard let username = UsernameField.text else { return }
+        guard let password = PasswordField.text else { return }
 
+        checkLogin(username: username, password: password) {response in
+            switch response.statusCode {
+            case 200:
+                print("Successfully logged in")
+                ApplicationSettings.username = username
+                ApplicationSettings.password = password
+                DispatchQueue.main.async {
                     Router.showMain()
                 }
-
-            } else {
+            default:
                 print("Error logging in")
                 print(response)
             }
-        })
+        }
     }
 
     @IBAction func OnePasswordClick(_ sender: UIButton) {
