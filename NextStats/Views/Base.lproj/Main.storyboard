@@ -153,7 +153,7 @@
             </objects>
             <point key="canvasLocation" x="981.60000000000002" y="745.27736131934034"/>
         </scene>
-        <!--Widget Detail Controller-->
+        <!--Widget-->
         <scene sceneID="uV8-Gg-Vq0">
             <objects>
                 <tableViewController id="fk1-nk-hwA" customClass="WidgetDetailController" customModule="NextStats" customModuleProvider="target" sceneMemberID="viewController">
@@ -192,27 +192,43 @@
                             <outlet property="delegate" destination="fk1-nk-hwA" id="c5g-Gh-24b"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="kr4-Zw-7Vt"/>
+                    <tabBarItem key="tabBarItem" title="Widget" id="kr4-Zw-7Vt"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gI4-Kb-xi4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2852" y="-33.733133433283363"/>
         </scene>
-        <!--Item-->
+        <!--Samples-->
         <scene sceneID="c4r-9x-rcf">
             <objects>
-                <tableViewController id="VuJ-Wc-ytO" sceneMemberID="viewController">
+                <tableViewController id="VuJ-Wc-ytO" customClass="SampleTableController" customModule="NextStats" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="d5u-MT-CzP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ifi-KT-x6K">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SampleTableCell" textLabel="xRm-2K-HaN" detailTextLabel="QQJ-yp-lOT" style="IBUITableViewCellStyleValue1" id="ifi-KT-x6K">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ifi-KT-x6K" id="w57-9O-dYx">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xRm-2K-HaN">
+                                            <rect key="frame" x="16" y="12" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QQJ-yp-lOT">
+                                            <rect key="frame" x="315" y="12" width="44" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -221,7 +237,7 @@
                             <outlet property="delegate" destination="VuJ-Wc-ytO" id="wlw-Jo-Ry4"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="Qxq-1P-E4A"/>
+                    <tabBarItem key="tabBarItem" title="Samples" image="TypeChart" id="Qxq-1P-E4A"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fef-M4-WTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -265,6 +281,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="TypeChart" width="21" height="21"/>
         <image name="onepassword-button" width="27" height="27"/>
     </resources>
 </document>
