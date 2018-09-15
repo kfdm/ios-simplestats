@@ -107,7 +107,7 @@ final class MainController: UICollectionViewController {
     @objc func refreshData() {
         if ApplicationSettings.username != nil {
             self.refreshControl.beginRefreshing()
-            StatsAPI.getWidgets(completionHandler: { widgets in
+            Widget.list(completionHandler: { widgets in
                 self.data = widgets.sorted(by: { $0.timestamp > $1.timestamp })
                 DispatchQueue.main.async {
                     self.refreshControl.endRefreshing()

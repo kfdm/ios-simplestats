@@ -28,7 +28,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         if let url = widget.more {
             extensionContext?.open(url, completionHandler: nil)
         } else {
-            extensionContext?.open(InternalAPI.openWidget(widget: widget), completionHandler: nil)
+            extensionContext?.open(widget.localURL(), completionHandler: nil)
         }
     }
 
@@ -96,7 +96,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     }
 
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        StatsAPI.getWidgets(completionHandler: {widgets in
+        Widget.list(completionHandler: {widgets in
             print("widgetPerformUpdate")
             let pinned = ApplicationSettings.pinnedWidgets
             self.data = widgets.filter { pinned.contains($0.slug) }

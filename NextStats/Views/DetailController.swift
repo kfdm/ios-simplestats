@@ -27,7 +27,7 @@ class DetailController: UITableViewController {
     // MARK: - tableView
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,6 +50,11 @@ class DetailController: UITableViewController {
             let formatter = ApplicationSettings.shortDateTime
             cell.textLabel?.text = "Date"
             cell.detailTextLabel?.text = formatter.string(from: widget.timestamp)
+        case 5:
+            cell.textLabel?.text = "More"
+            if let more = widget.more {
+                cell.detailTextLabel?.text = more.absoluteString
+            }
         default:
             cell.textLabel?.text = "Unknown"
         }

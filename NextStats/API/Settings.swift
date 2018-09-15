@@ -21,9 +21,9 @@ struct ApplicationSettingsKeys {
 struct ApplicationSettings {
     static let defaults = UserDefaults(suiteName: ApplicationSettingsKeys.suiteName)!
 
-    static var baseURL: String {
-        get { return defaults.string(forKey: ApplicationSettingsKeys.baseURL) ?? "https://tsundere.co/"}
-        set { defaults.set(newValue, forKey: ApplicationSettingsKeys.baseURL) }
+    static var baseURL: URL {
+        get { return URL(string: defaults.string(forKey: ApplicationSettingsKeys.baseURL) ?? "https://tsundere.co")!}
+        set { defaults.set(newValue.absoluteString, forKey: ApplicationSettingsKeys.baseURL) }
     }
 
     static var username: String? {

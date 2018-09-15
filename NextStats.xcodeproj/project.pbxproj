@@ -29,6 +29,8 @@
 		87D408C52137C54C00A1695E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D4089F2137782D00A1695E /* Settings.swift */; };
 		87D408C62137C54F00A1695E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D408A121377A4000A1695E /* API.swift */; };
 		87D408C72137C5FE00A1695E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D408A5213782CD00A1695E /* Extensions.swift */; };
+		87F0A49D214CBD4A00EB7D39 /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F0A49C214CBD4A00EB7D39 /* Widget.swift */; };
+		87F0A49F214CBE4D00EB7D39 /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F0A49C214CBD4A00EB7D39 /* Widget.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,7 @@
 		87D408BD2137C3CC00A1695E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87D408C82137C6DF00A1695E /* TodayWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TodayWidget.entitlements; sourceTree = "<group>"; };
 		87D408C92137C87000A1695E /* NextStats.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NextStats.entitlements; sourceTree = "<group>"; };
+		87F0A49C214CBD4A00EB7D39 /* Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widget.swift; sourceTree = "<group>"; };
 		B25F9709B35571062F3DF1EE /* Pods-NextStats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextStats.release.xcconfig"; path = "Pods/Target Support Files/Pods-NextStats/Pods-NextStats.release.xcconfig"; sourceTree = "<group>"; };
 		FF2DA5FA37E2ACBC70926D2E /* Pods-NextStats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextStats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NextStats/Pods-NextStats.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,6 +185,7 @@
 		87D408AA2137888700A1695E /* API */ = {
 			isa = PBXGroup;
 			children = (
+				87F0A49E214CBD5500EB7D39 /* Models */,
 				87D4089F2137782D00A1695E /* Settings.swift */,
 				87D408A121377A4000A1695E /* API.swift */,
 				87C6586F213FFC3500079D88 /* Router.swift */,
@@ -198,6 +202,14 @@
 				87D408BD2137C3CC00A1695E /* Info.plist */,
 			);
 			path = TodayWidget;
+			sourceTree = "<group>";
+		};
+		87F0A49E214CBD5500EB7D39 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				87F0A49C214CBD4A00EB7D39 /* Widget.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,6 +390,7 @@
 				87C65870213FFC3500079D88 /* Router.swift in Sources */,
 				87D408A02137782D00A1695E /* Settings.swift in Sources */,
 				87D4088A213775D100A1695E /* AppDelegate.swift in Sources */,
+				87F0A49D214CBD4A00EB7D39 /* Widget.swift in Sources */,
 				87D408A8213783AA00A1695E /* WidgetCollectionCell.swift in Sources */,
 				87D408A221377A4000A1695E /* API.swift in Sources */,
 			);
@@ -389,6 +402,7 @@
 			files = (
 				87D408C52137C54C00A1695E /* Settings.swift in Sources */,
 				87D408C62137C54F00A1695E /* API.swift in Sources */,
+				87F0A49F214CBE4D00EB7D39 /* Widget.swift in Sources */,
 				87D408B92137C3CC00A1695E /* TodayViewController.swift in Sources */,
 				87D408C72137C5FE00A1695E /* Extensions.swift in Sources */,
 			);

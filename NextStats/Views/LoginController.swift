@@ -42,7 +42,7 @@ class LoginController: UIViewController {
     }
 
     @IBAction func OnePasswordClick(_ sender: UIButton) {
-        OnePasswordExtension.shared().findLogin(forURLString: ApplicationSettings.baseURL, for: self, sender: sender, completion: { (loginDictionary, error) in
+        OnePasswordExtension.shared().findLogin(forURLString: ApplicationSettings.baseURL.absoluteString, for: self, sender: sender, completion: { (loginDictionary, error) in
             guard let loginDictionary = loginDictionary else {
                 if let error = error as NSError?, error.code != AppExtensionErrorCodeCancelledByUser {
                     print("Error invoking 1Password App Extension for find login: \(String(describing: error))")
