@@ -21,12 +21,12 @@ struct SampleResponse: Codable {
 }
 
 extension Sample {
-    static func list(for widget: Widget, completionHandler: @escaping ([Sample]) -> Void ) {
+    static func list(for widget: Widget, limit: Int = 100, completionHandler: @escaping ([Sample]) -> Void ) {
         guard let user = ApplicationSettings.username else { return }
         guard let pass = ApplicationSettings.password else { return }
 
         var query = URLComponents(url: ApplicationSettings.baseURL.appendingPathComponent("/api/widget/\(widget.slug)/stats"), resolvingAgainstBaseURL: true)
-        query?.queryItems = [URLQueryItem(name: "limit", value: "100")]
+        query?.queryItems = [URLQueryItem(name: "limit", value: String(limit))]
 
         guard let url = query?.url else { return }
 

@@ -18,7 +18,7 @@ class SampleTableController: UITableViewController {
         super.viewDidLoad()
         guard let parent = tabBarController as? DetailController else { return }
         guard let widget = parent.widget else { return }
-        Sample.list(for: widget) { (samples) in
+        Sample.list(for: widget, limit: 500) { (samples) in
             self.samples = samples.sorted { $0.timestamp > $1.timestamp }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
