@@ -10,6 +10,7 @@ import UIKit
 
 final class MainController: UICollectionViewController {
     private var data = [Widget]()
+    private var filtered = [Widget]()
     private var timer = Timer()
     private var pinned = ApplicationSettings.pinnedWidgets
     private var refreshControl: UIRefreshControl!
@@ -25,12 +26,12 @@ final class MainController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return filtered.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! WidgetCollectionCell
-        cell.update(widget: self.data[indexPath.row])
+        cell.update(widget: self.filtered[indexPath.row])
         return cell
     }
 
@@ -92,14 +93,55 @@ final class MainController: UICollectionViewController {
         //alertController.popoverPresentationController.barButtonItem = button;
         alert.popoverPresentationController?.barButtonItem = sender
         alert.popoverPresentationController?.sourceView = collectionView
+        alert.addAction(actionShowAll())
+        alert.addAction(actionFilterChart())
+        alert.addAction(actionFilterCountdown())
+        alert.addAction(actionFilterLocation())
+        alert.addAction(actionLogout())
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Logout", comment: "Default action"), style: .destructive, handler: { _ in
+    func actionShowAll() -> UIAlertAction {
+        let title = NSLocalizedString("Show All", comment: "Show All")
+        let action = UIAlertAction(title: title, style: .default, handler: {_ in
+            self.filtered = self.data
+        })
+        return action
+    }
+
+    func actionFilterChart() -> UIAlertAction {
+        let title = NSLocalizedString("Filter Chart", comment: "Filter by Chart")
+        let action = UIAlertAction(title: title, style: .default, handler: {_ in
+            self.filtered = self.data.filter { $0.type == "chart" }
+        })
+        return action
+    }
+
+    func actionFilterCountdown() -> UIAlertAction {
+        let title = NSLocalizedString("Filter Countdown", comment: "Filter by Countdown")
+        let action = UIAlertAction(title: title, style: .default, handler: {_ in
+            self.filtered = self.data.filter { $0.type == "countdown" }
+        })
+        return action
+    }
+
+    func actionFilterLocation() -> UIAlertAction {
+        let title = NSLocalizedString("Filter Location", comment: "Filter by Location")
+        let action = UIAlertAction(title: title, style: .default, handler: {_ in
+            self.filtered = self.data.filter { $0.type == "location" }
+        })
+        return action
+    }
+
+    func actionLogout() -> UIAlertAction {
+        let title = NSLocalizedString("Logout", comment: "Logout")
+        let action = UIAlertAction(title: title, style: .destructive, handler: { _ in
             ApplicationSettings.username = nil
             ApplicationSettings.password = nil
             Router.showLogin()
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        })
+        return action
     }
 
     // MARK: - data
@@ -109,6 +151,7 @@ final class MainController: UICollectionViewController {
             self.refreshControl.beginRefreshing()
             Widget.list(completionHandler: { widgets in
                 self.data = widgets.sorted(by: { $0.timestamp > $1.timestamp })
+                self.filtered = self.data
                 DispatchQueue.main.async {
                     self.refreshControl.endRefreshing()
                     self.collectionView?.reloadData()
@@ -137,7 +180,7 @@ final class MainController: UICollectionViewController {
 
     private func alertForCell(indexPath: IndexPath) {
         let cell = self.collectionView?.cellForItem(at: indexPath) as! WidgetCollectionCell
-        let widget = self.data[indexPath.row]
+        let widget = self.filtered[indexPath.row]
         let alert = UIAlertController(title: "Actions", message: "Actions.", preferredStyle: .actionSheet)
 
         alert.popoverPresentationController?.sourceView = cell
@@ -189,7 +232,7 @@ extension MainController: UICollectionViewDelegateFlowLayout {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailWidget = data[indexPath.row]
+        let detailWidget = filtered[indexPath.row]
         moveToDetailController(with: detailWidget)
     }
 }
