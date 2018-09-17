@@ -243,10 +243,10 @@
             </objects>
             <point key="canvasLocation" x="2852" y="745"/>
         </scene>
-        <!--Item-->
+        <!--Notes-->
         <scene sceneID="JGp-m6-qNM">
             <objects>
-                <tableViewController id="jbM-0k-zwG" customClass="NoteTableController" customModule="NextStats" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Notes" id="jbM-0k-zwG" customClass="NoteTableController" customModule="NextStats" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="V2c-YA-fG4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -282,11 +282,56 @@
                             <outlet property="delegate" destination="jbM-0k-zwG" id="v7N-Bz-eWD"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="vaP-GU-YcK"/>
+                    <tabBarItem key="tabBarItem" title="Notes" id="vaP-GU-YcK"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xbb-oG-fpC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2848" y="1429"/>
+        </scene>
+        <!--Waypoints-->
+        <scene sceneID="B6M-IW-FWH">
+            <objects>
+                <tableViewController title="Waypoints" id="w7m-lq-nYO" customClass="WaypointTableController" customModule="NextStats" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xcu-Lc-ah1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="WaypointTableCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WaypointTableCell" textLabel="EcP-2a-4cE" detailTextLabel="B43-gI-T0m" style="IBUITableViewCellStyleSubtitle" id="LRR-Li-a97">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LRR-Li-a97" id="0c5-i9-Om1">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EcP-2a-4cE">
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B43-gI-T0m">
+                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="w7m-lq-nYO" id="t7r-ST-nPn"/>
+                            <outlet property="delegate" destination="w7m-lq-nYO" id="9YB-Ld-PU8"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Waypoints" id="69W-IH-Ej2"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CNs-J4-YE8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2843" y="2129"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7kb-Th-gYC">
@@ -320,6 +365,7 @@
                         <segue destination="fk1-nk-hwA" kind="relationship" relationship="viewControllers" id="APy-OX-zLv"/>
                         <segue destination="VuJ-Wc-ytO" kind="relationship" relationship="viewControllers" id="JJX-QR-TIn"/>
                         <segue destination="jbM-0k-zwG" kind="relationship" relationship="viewControllers" id="YK8-Pi-rQh"/>
+                        <segue destination="w7m-lq-nYO" kind="relationship" relationship="viewControllers" id="eR7-s1-pxg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ahi-VS-xTk" userLabel="First Responder" sceneMemberID="firstResponder"/>

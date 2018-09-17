@@ -36,6 +36,8 @@
 		87F0A4A5214CCAB200EB7D39 /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F0A4A4214CCAB200EB7D39 /* Sample.swift */; };
 		87FECB56214F8A4700751FB2 /* NoteTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FECB55214F8A4700751FB2 /* NoteTableController.swift */; };
 		87FECB58214F8AAA00751FB2 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FECB57214F8AAA00751FB2 /* Note.swift */; };
+		87FECB5A214F90B700751FB2 /* Waypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FECB59214F90B700751FB2 /* Waypoint.swift */; };
+		87FECB5C214F90F200751FB2 /* WaypointTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FECB5B214F90F200751FB2 /* WaypointTableController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,8 @@
 		87F0A4A4214CCAB200EB7D39 /* Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
 		87FECB55214F8A4700751FB2 /* NoteTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableController.swift; sourceTree = "<group>"; };
 		87FECB57214F8AAA00751FB2 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		87FECB59214F90B700751FB2 /* Waypoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Waypoint.swift; sourceTree = "<group>"; };
+		87FECB5B214F90F200751FB2 /* WaypointTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointTableController.swift; sourceTree = "<group>"; };
 		B25F9709B35571062F3DF1EE /* Pods-NextStats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextStats.release.xcconfig"; path = "Pods/Target Support Files/Pods-NextStats/Pods-NextStats.release.xcconfig"; sourceTree = "<group>"; };
 		FF2DA5FA37E2ACBC70926D2E /* Pods-NextStats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextStats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NextStats/Pods-NextStats.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +187,7 @@
 				87F0A4A0214CC87100EB7D39 /* WidgetDetailController.swift */,
 				87F0A4A2214CCA6100EB7D39 /* SampleTableController.swift */,
 				87FECB55214F8A4700751FB2 /* NoteTableController.swift */,
+				87FECB5B214F90F200751FB2 /* WaypointTableController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 				87F0A49C214CBD4A00EB7D39 /* Widget.swift */,
 				87F0A4A4214CCAB200EB7D39 /* Sample.swift */,
 				87FECB57214F8AAA00751FB2 /* Note.swift */,
+				87FECB59214F90B700751FB2 /* Waypoint.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -402,6 +408,7 @@
 				87D4088C213775D100A1695E /* MainController.swift in Sources */,
 				87D408A6213782CD00A1695E /* Extensions.swift in Sources */,
 				87D4089D213776ED00A1695E /* LoginController.swift in Sources */,
+				87FECB5A214F90B700751FB2 /* Waypoint.swift in Sources */,
 				87F0A4A3214CCA6100EB7D39 /* SampleTableController.swift in Sources */,
 				87FECB58214F8AAA00751FB2 /* Note.swift in Sources */,
 				87F0A4A1214CC87100EB7D39 /* WidgetDetailController.swift in Sources */,
@@ -409,6 +416,7 @@
 				87D408A02137782D00A1695E /* Settings.swift in Sources */,
 				87FECB56214F8A4700751FB2 /* NoteTableController.swift in Sources */,
 				87D4088A213775D100A1695E /* AppDelegate.swift in Sources */,
+				87FECB5C214F90F200751FB2 /* WaypointTableController.swift in Sources */,
 				87F0A49D214CBD4A00EB7D39 /* Widget.swift in Sources */,
 				87D408A8213783AA00A1695E /* WidgetCollectionCell.swift in Sources */,
 				87F0A4A5214CCAB200EB7D39 /* Sample.swift in Sources */,

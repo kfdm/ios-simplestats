@@ -1,5 +1,5 @@
 //
-//  NoteTableController.swift
+//  WaypointTableController.swift
 //  NextStats
 //
 //  Created by Paul Traylor on 2018/09/17.
@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-class NoteTableController: UITableViewController {
-    var notes = [Note]()
+class WaypointTableController: UITableViewController {
+    var waypoints = [Waypoint]()
 
     // MARK: - lifecycle
 
@@ -18,8 +18,8 @@ class NoteTableController: UITableViewController {
         super.viewDidLoad()
         guard let parent = tabBarController as? DetailController else { return }
         guard let widget = parent.widget else { return }
-        Note.list(for: widget, limit: 500) { (notes) in
-            self.notes = notes.sorted { $0.timestamp > $1.timestamp }
+        Waypoint.list(for: widget, limit: 500) { (waypoints) in
+            self.waypoints = waypoints.sorted { $0.timestamp > $1.timestamp }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -29,15 +29,15 @@ class NoteTableController: UITableViewController {
     // MARK: - tableView
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notes.count
+        return waypoints.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableCell", for: indexPath)
-        let note = notes[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WaypointTableCell", for: indexPath)
+        let waypoint = waypoints[indexPath.row]
 
-        cell.textLabel?.text = note.title
-        cell.detailTextLabel?.text = note.description
+        cell.textLabel?.text = waypoint.state
+        cell.detailTextLabel?.text = waypoint.description
 
         return cell
     }
