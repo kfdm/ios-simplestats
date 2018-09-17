@@ -14,6 +14,10 @@ class LoginController: UIViewController {
     @IBOutlet weak var UsernameField: UITextField!
     @IBOutlet weak var PasswordField: UITextField!
 
+    static func storyboardIdentifier() -> String {
+        return "LoginController"
+    }
+
     override func viewDidLoad() {
         //self.OnepasswordButton.isHidden = (false == OnePasswordExtension.shared().isAppExtensionAvailable())
         super.viewDidLoad()
@@ -27,7 +31,7 @@ class LoginController: UIViewController {
                     ApplicationSettings.username = self.UsernameField.text!
                     ApplicationSettings.password = self.PasswordField.text!
 
-                    self.navigationController?.popViewController(animated: true)
+                    Router.showMain()
                 }
 
             } else {
