@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 class WaypointTableController: UITableViewController {
     var waypoints = [Waypoint]()
@@ -40,5 +41,17 @@ class WaypointTableController: UITableViewController {
         cell.detailTextLabel?.text = waypoint.description
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let parent = tabBarController as? DetailController else { return }
+        guard let widget = parent.widget else { return }
+        let waypoint = waypoints[indexPath.row]
+
+        let coord = CLLocationCoordinate2D(latitude: CLLocationDegrees(waypoint.lat), longitude: CLLocationDegrees(waypoint.lon))
+        let place = MKPlacemark(coordinate: coord)
+        let location = MKMapItem(placemark: place)
+        location.name = widget.title
+        location.openInMaps(launchOptions: nil)
     }
 }
