@@ -70,9 +70,9 @@ extension Widget {
         switch self.type {
         case .countdown:
             let duration = self.timestamp.timeIntervalSinceNow
-            return  duration > 0 ? UIColor(named: "CountdownFuture") : UIColor(named: "CountdownPast")
+            return duration > 0 ? Colors.Countdown : Colors.Countup
         default:
-            return UIColor.black
+            return Colors.Black
         }
     }
 
