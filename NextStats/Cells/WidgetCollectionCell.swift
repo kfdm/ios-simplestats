@@ -35,29 +35,18 @@ class WidgetCollectionCell: UICollectionViewCell {
     func update(widget: Widget) {
         self.widget = widget
         self.titleLabel.text = widget.title
+        self.valueLabel.text = widget.formatted()
+        self.valueLabel.textColor = widget.colored()
+        self.valueLabel.adjustsFontSizeToFitWidth = true
+
+        self.valueLabel.adjustsFontSizeToFitWidth = true
 
         switch widget.type {
         case .countdown:
-            let formatter = ApplicationSettings.shortTime
-            let duration = widget.timestamp.timeIntervalSinceNow
-
-            self.valueLabel.text = formatter.string(from: duration)
-            self.valueLabel.textColor = duration > 0 ? UIColor(named: "CountdownFuture") : UIColor(named: "CountdownPast")
-            self.valueLabel.adjustsFontSizeToFitWidth = true
-
-            self.valueLabel.adjustsFontSizeToFitWidth = true
-
             self.setImage(url: widget.icon, placeholder: "TypeCountdown")
         case .location:
-            self.valueLabel.text = "\(widget.value)"
-            self.valueLabel.adjustsFontSizeToFitWidth = true
-
             self.setImage(url: widget.icon, placeholder: "TypeLocation")
         case .chart:
-            self.valueLabel.text = "\(widget.value)"
-            self.valueLabel.textColor = UIColor.black
-            self.valueLabel.adjustsFontSizeToFitWidth = true
-
             self.setImage(url: widget.icon, placeholder: "TypeChart")
         }
 

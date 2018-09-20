@@ -65,7 +65,7 @@ struct ApplicationSettings {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.day, .hour, .minute, .second]
         formatter.unitsStyle = .positional
-        formatter.zeroFormattingBehavior = .pad
+        formatter.zeroFormattingBehavior = .dropLeading
         return formatter
     }
 }

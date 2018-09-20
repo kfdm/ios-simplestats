@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum WidgetType: String, Codable {
     case chart
@@ -48,6 +49,33 @@ struct WidgetResponse: Codable {
 }
 
 extension Widget {
+    func formatted() -> String? {
+        switch self.type {
+        case .countdown:
+            let formatter = ApplicationSettings.shortTime
+            let duration = self.timestamp.timeIntervalSinceNow
+            return formatter.string(from: duration)
+        case .location:
+            let formatter = ApplicationSettings.shortTime
+            return formatter.string(from: self.timestamp, to: Date())
+        case .chart:
+            let formatter = NumberFormatter()
+            formatter.groupingSeparator = " "
+            formatter.numberStyle = .decimal
+            return formatter.string(for: self.value)
+        }
+    }
+
+    func colored() -> UIColor? {
+        switch self.type {
+        case .countdown:
+            let duration = self.timestamp.timeIntervalSinceNow
+            return  duration > 0 ? UIColor(named: "CountdownFuture") : UIColor(named: "CountdownPast")
+        default:
+            return UIColor.black
+        }
+    }
+
     static func list(completionHandler: @escaping ([Widget]) -> Void) {
         guard let user = ApplicationSettings.username else { return }
         guard let pass = ApplicationSettings.password else { return }

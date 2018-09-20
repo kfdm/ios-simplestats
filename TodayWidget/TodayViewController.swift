@@ -38,21 +38,9 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
 
         cell.accessoryType = widget.more == nil ? .disclosureIndicator : .detailDisclosureButton
 
-        switch widget.type {
-        case .countdown:
-            let formatter = ApplicationSettings.shortTime
-            let duration = widget.timestamp.timeIntervalSinceNow
-
-            cell.textLabel?.text = widget.title
-            cell.detailTextLabel?.text = formatter.string(from: duration)
-            cell.detailTextLabel?.textColor = duration > 0 ? UIColor(named: "CountdownFuture") : UIColor(named: "CountdownPast")
-        case .location:
-            cell.textLabel?.text = widget.title
-            cell.detailTextLabel?.text = "\(widget.value)"
-        case .chart:
-            cell.textLabel?.text = widget.title
-            cell.detailTextLabel?.text = "\(widget.value)"
-        }
+        cell.textLabel?.text = widget.title
+        cell.detailTextLabel?.text = widget.formatted()
+        cell.detailTextLabel?.textColor = widget.colored()
 
         return cell
     }
