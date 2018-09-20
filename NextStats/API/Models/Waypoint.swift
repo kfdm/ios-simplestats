@@ -33,7 +33,7 @@ extension Waypoint {
 
         guard let url = query?.url else { return }
 
-        authedRequest(url: url, method: "GET", body: nil, username: user, password: pass, completionHandler:  {_, data in
+        authedRequest(url: url, method: "GET", body: nil, username: user, password: pass, completionHandler: {_, data in
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
