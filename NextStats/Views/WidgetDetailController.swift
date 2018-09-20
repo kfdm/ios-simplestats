@@ -10,6 +10,14 @@ import Foundation
 import UIKit
 
 class WidgetDetailController: UITableViewController {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.topViewController?.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem.init(barButtonSystemItem: .compose, target: nil, action: nil)
+        ]
+    }
+
+
     // MARK: - tableView
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

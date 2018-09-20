@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5664AAA0E5B921C82AFE68C0 /* Pods_NextStats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87331683CDCF3233E5B494C0 /* Pods_NextStats.framework */; };
 		874DC8D9213BB65E00C26526 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87D40890213775D300A1695E /* Assets.xcassets */; };
+		87C0A1EF2153BF7000310913 /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C0A1EE2153BF7000310913 /* Shortcuts.swift */; };
 		87C65870213FFC3500079D88 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C6586F213FFC3500079D88 /* Router.swift */; };
 		87D4088A213775D100A1695E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D40889213775D100A1695E /* AppDelegate.swift */; };
 		87D4088C213775D100A1695E /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D4088B213775D100A1695E /* MainController.swift */; };
@@ -66,6 +67,7 @@
 
 /* Begin PBXFileReference section */
 		87331683CDCF3233E5B494C0 /* Pods_NextStats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NextStats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87C0A1EE2153BF7000310913 /* Shortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
 		87C6586F213FFC3500079D88 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		87D40886213775D100A1695E /* NextStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87D40889213775D100A1695E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				87D4089F2137782D00A1695E /* Settings.swift */,
 				87D408A121377A4000A1695E /* API.swift */,
 				87C6586F213FFC3500079D88 /* Router.swift */,
+				87C0A1EE2153BF7000310913 /* Shortcuts.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				87D408A8213783AA00A1695E /* WidgetCollectionCell.swift in Sources */,
 				87F0A4A5214CCAB200EB7D39 /* Sample.swift in Sources */,
 				87D408A221377A4000A1695E /* API.swift in Sources */,
+				87C0A1EF2153BF7000310913 /* Shortcuts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

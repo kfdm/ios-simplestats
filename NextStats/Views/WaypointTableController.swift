@@ -15,6 +15,13 @@ class WaypointTableController: UITableViewController {
 
     // MARK: - lifecycle
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.topViewController?.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem.init(barButtonSystemItem: .add, target: nil, action: nil)
+        ]
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let parent = tabBarController as? DetailController else { return }

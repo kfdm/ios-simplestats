@@ -12,6 +12,13 @@ import UIKit
 class SampleTableController: UITableViewController {
     var samples = [Sample]()
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.topViewController?.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem.init(barButtonSystemItem: .add, target: nil, action: nil)
+        ]
+    }
+
     // MARK: - lifecycle
 
     override func viewDidLoad() {

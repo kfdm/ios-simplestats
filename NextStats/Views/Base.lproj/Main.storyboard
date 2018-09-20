@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FsU-Q3-fQG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FsU-Q3-fQG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -327,7 +327,7 @@
                             <outlet property="delegate" destination="w7m-lq-nYO" id="9YB-Ld-PU8"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Waypoints" id="69W-IH-Ej2"/>
+                    <tabBarItem key="tabBarItem" title="Waypoints" image="TypeLocation" id="69W-IH-Ej2"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CNs-J4-YE8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -375,6 +375,7 @@
     </scenes>
     <resources>
         <image name="TypeChart" width="21" height="21"/>
+        <image name="TypeLocation" width="10" height="10"/>
         <image name="onepassword-button" width="27" height="27"/>
     </resources>
 </document>

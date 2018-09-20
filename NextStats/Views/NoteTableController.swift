@@ -12,6 +12,13 @@ import UIKit
 class NoteTableController: UITableViewController {
     var notes = [Note]()
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.topViewController?.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem.init(barButtonSystemItem: .add, target: nil, action: nil)
+        ]
+    }
+
     // MARK: - lifecycle
 
     override func viewDidLoad() {
