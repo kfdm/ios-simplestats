@@ -111,7 +111,7 @@ final class MainController: UICollectionViewController, Storyboarded {
     func actionFilterChart() -> UIAlertAction {
         let title = NSLocalizedString("Filter Chart", comment: "Filter by Chart")
         let action = UIAlertAction(title: title, style: .default, handler: {_ in
-            self.filtered = self.data.filter { $0.type == "chart" }
+            self.filtered = self.data.filter { $0.type == .chart }
         })
         return action
     }
@@ -119,7 +119,7 @@ final class MainController: UICollectionViewController, Storyboarded {
     func actionFilterCountdown() -> UIAlertAction {
         let title = NSLocalizedString("Filter Countdown", comment: "Filter by Countdown")
         let action = UIAlertAction(title: title, style: .default, handler: {_ in
-            self.filtered = self.data.filter { $0.type == "countdown" }
+            self.filtered = self.data.filter { $0.type == .countdown }
         })
         return action
     }
@@ -127,7 +127,7 @@ final class MainController: UICollectionViewController, Storyboarded {
     func actionFilterLocation() -> UIAlertAction {
         let title = NSLocalizedString("Filter Location", comment: "Filter by Location")
         let action = UIAlertAction(title: title, style: .default, handler: {_ in
-            self.filtered = self.data.filter { $0.type == "location" }
+            self.filtered = self.data.filter { $0.type == .location }
         })
         return action
     }

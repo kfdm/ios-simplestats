@@ -38,7 +38,7 @@ class WidgetDetailController: UITableViewController, Storyboarded {
             cell.detailTextLabel?.text = widget.description
         case 2:
             cell.textLabel?.text = "Type"
-            cell.detailTextLabel?.text = String(widget.type)
+            cell.detailTextLabel?.text = String(widget.type.rawValue)
         case 3:
             cell.textLabel?.text = "Value"
             cell.detailTextLabel?.text = String(widget.value)

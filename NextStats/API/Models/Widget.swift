@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum WidgetType: String, Codable {
+    case chart
+    case countdown
+    case location
+}
+
 struct Widget: Codable {
     let owner: String
     let slug: String
@@ -17,7 +23,7 @@ struct Widget: Codable {
     let icon: URL?
     let value: Double
     let more: URL?
-    let type: String
+    let type: WidgetType
     let publicWidget: Bool
 
     private enum CodingKeys: String, CodingKey {

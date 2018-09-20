@@ -37,7 +37,7 @@ class WidgetCollectionCell: UICollectionViewCell {
         self.titleLabel.text = widget.title
 
         switch widget.type {
-        case "countdown":
+        case .countdown:
             let formatter = ApplicationSettings.shortTime
             let duration = widget.timestamp.timeIntervalSinceNow
 
@@ -48,21 +48,17 @@ class WidgetCollectionCell: UICollectionViewCell {
             self.valueLabel.adjustsFontSizeToFitWidth = true
 
             self.setImage(url: widget.icon, placeholder: "TypeCountdown")
-        case "location":
+        case .location:
             self.valueLabel.text = "\(widget.value)"
             self.valueLabel.adjustsFontSizeToFitWidth = true
 
             self.setImage(url: widget.icon, placeholder: "TypeLocation")
-        case "chart":
+        case .chart:
             self.valueLabel.text = "\(widget.value)"
             self.valueLabel.textColor = UIColor.black
             self.valueLabel.adjustsFontSizeToFitWidth = true
 
             self.setImage(url: widget.icon, placeholder: "TypeChart")
-        default:
-            print(widget.type)
-            self.valueLabel.text = "\(widget.value)"
-            self.valueLabel.adjustsFontSizeToFitWidth = true
         }
 
         // Thicker weight for pinned items
