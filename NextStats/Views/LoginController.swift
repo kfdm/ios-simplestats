@@ -20,7 +20,7 @@ class LoginController: UIViewController {
     }
 
     override func viewDidLoad() {
-//        self.OnepasswordButton.isHidden = (false == OnePasswordExtension.shared().isAppExtensionAvailable())
+        self.OnepasswordButton.isHidden = (false == OnePasswordExtension.shared().isAppExtensionAvailable())
         super.viewDidLoad()
     }
 
