@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 import MapKit
 
-class WaypointTableController: UITableViewController {
+class WaypointTableController: UITableViewController, Storyboarded {
     var waypoints = [Waypoint]()
+    weak var coordinator: MainCoordinator?
 
     // MARK: - lifecycle
 

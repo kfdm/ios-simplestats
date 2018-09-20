@@ -8,16 +8,14 @@
 
 import UIKit
 
-final class MainController: UICollectionViewController {
+final class MainController: UICollectionViewController, Storyboarded {
     private var data = [Widget]()
     private var filtered = [Widget]()
     private var timer = Timer()
     private var pinned = ApplicationSettings.pinnedWidgets
     private var refreshControl: UIRefreshControl!
 
-    static func storyboardIdentifier() -> String {
-        return "MainController"
-    }
+    weak var coordinator: MainCoordinator?
 
     // MARK: - collectionView
 
@@ -50,8 +48,8 @@ final class MainController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard Router.isLoggedIn() else {
-            Router.showLogin()
+        guard coordinator!.isLoggedIn() else {
+            coordinator?.showLogin()
             return
         }
 
@@ -139,7 +137,7 @@ final class MainController: UICollectionViewController {
         let action = UIAlertAction(title: title, style: .destructive, handler: { _ in
             ApplicationSettings.username = nil
             ApplicationSettings.password = nil
-            Router.showLogin()
+            self.coordinator?.showMain()
         })
         return action
     }
@@ -208,18 +206,6 @@ final class MainController: UICollectionViewController {
     }
 }
 
-extension MainController {
-    private func moveToDetailController(with widget: Widget) {
-        guard let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: DetailController.storyboardIdentifier()) as? DetailController else {
-            return
-        }
-        detailViewController.widget = widget
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(detailViewController, animated: true)
-        }
-    }
-}
-
 extension MainController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // 10 Gives us our border around the edges
@@ -233,6 +219,6 @@ extension MainController: UICollectionViewDelegateFlowLayout {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailWidget = filtered[indexPath.row]
-        moveToDetailController(with: detailWidget)
+        coordinator?.moveToDetailController(with: detailWidget)
     }
 }

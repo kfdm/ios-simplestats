@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 
-class NoteTableController: UITableViewController {
+class NoteTableController: UITableViewController, Storyboarded {
     var notes = [Note]()
+    weak var coordinator: MainCoordinator?
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

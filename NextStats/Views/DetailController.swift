@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-class DetailController: UITabBarController {
+class DetailController: UITabBarController, Storyboarded {
+    weak var coordinator: MainCoordinator?
+
     var widget: Widget?
 
     override func viewDidLoad() {
@@ -18,9 +20,5 @@ class DetailController: UITabBarController {
             return
         }
         print("The Widget is: \(widget)")
-    }
-
-    static func storyboardIdentifier() -> String {
-        return "DetailController"
     }
 }

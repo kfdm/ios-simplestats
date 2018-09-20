@@ -10,14 +10,12 @@ import Foundation
 import UIKit
 import OnePasswordExtension
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, Storyboarded {
     @IBOutlet weak var UsernameField: UITextField!
     @IBOutlet weak var PasswordField: UITextField!
     @IBOutlet weak var OnepasswordButton: UIButton!
 
-    static func storyboardIdentifier() -> String {
-        return "LoginController"
-    }
+    weak var coordinator: MainCoordinator?
 
     override func viewDidLoad() {
         self.OnepasswordButton.isHidden = (false == OnePasswordExtension.shared().isAppExtensionAvailable())
@@ -35,7 +33,7 @@ class LoginController: UIViewController {
                 ApplicationSettings.username = username
                 ApplicationSettings.password = password
                 DispatchQueue.main.async {
-                    Router.showMain()
+                    self.coordinator?.showMain()
                 }
             default:
                 print("Error logging in")
