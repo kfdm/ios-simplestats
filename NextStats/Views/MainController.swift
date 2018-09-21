@@ -36,14 +36,6 @@ final class MainController: UICollectionViewController, Storyboarded {
     private let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
     private let itemsPerRow: CGFloat = 3
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowDetail" {
-            let cell = sender as! WidgetCollectionCell
-            let destination = segue.destination as! DetailController
-            destination.widget = cell.widget
-        }
-    }
-
     // MARK: - lifecycle
 
     override func viewDidLoad() {
@@ -77,6 +69,9 @@ final class MainController: UICollectionViewController, Storyboarded {
             userInfo: nil,
             repeats: true
         )
+
+        self.navigationController?.topViewController?.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .bookmarks, target: self, action: #selector(organizeButton))
+        self.navigationController?.topViewController?.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addWidget))
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -86,7 +81,11 @@ final class MainController: UICollectionViewController, Storyboarded {
 
     // MARK: - buttons
 
-    @IBAction func organizeButton(_ sender: UIBarButtonItem) {
+    @objc func addWidget(_ sender: UIBarButtonItem) {
+
+    }
+
+    @objc func organizeButton(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Actions", message: "Actions.", preferredStyle: .actionSheet)
         //alertController.popoverPresentationController.barButtonItem = button;
         alert.popoverPresentationController?.barButtonItem = sender

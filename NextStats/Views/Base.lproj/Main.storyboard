@@ -75,13 +75,6 @@
                             <outlet property="delegate" destination="m5f-PP-Z14" id="ZXk-bf-Yuo"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="gcs-F4-BN3">
-                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="2iP-c3-deg">
-                            <connections>
-                                <action selector="organizeButton:" destination="m5f-PP-Z14" id="8Kj-H9-ce2"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6eN-wX-doz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
