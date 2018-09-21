@@ -11,7 +11,6 @@ import UIKit
 
 class SampleTableController: UITableViewController, Storyboarded {
     var samples = [Sample]()
-    weak var coordinator: MainCoordinator?
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

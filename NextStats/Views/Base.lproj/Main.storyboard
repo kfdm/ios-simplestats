@@ -10,6 +10,49 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Add Widget Controller-->
+        <scene sceneID="H0k-in-nEi">
+            <objects>
+                <viewController storyboardIdentifier="AddWidgetController" id="dzK-Bw-A01" customClass="AddWidgetController" customModule="NextStats" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8ga-WX-JJz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Widget Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rYr-bg-91o">
+                                <rect key="frame" x="6" y="26" width="363" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4de-sJ-9He">
+                                <rect key="frame" x="6" y="62" width="363" height="29"/>
+                                <segments>
+                                    <segment title="Chart"/>
+                                    <segment title="Countdown"/>
+                                    <segment title="Location"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lPd-DE-h7h" firstAttribute="trailing" secondItem="rYr-bg-91o" secondAttribute="trailing" constant="6" id="58A-1Z-r7F"/>
+                            <constraint firstItem="4de-sJ-9He" firstAttribute="top" secondItem="rYr-bg-91o" secondAttribute="bottom" constant="6" id="DAs-pz-SLs"/>
+                            <constraint firstItem="rYr-bg-91o" firstAttribute="leading" secondItem="lPd-DE-h7h" secondAttribute="leading" constant="6" id="YCA-o2-7qR"/>
+                            <constraint firstItem="4de-sJ-9He" firstAttribute="leading" secondItem="lPd-DE-h7h" secondAttribute="leading" constant="6" id="bb8-e7-PTW"/>
+                            <constraint firstItem="rYr-bg-91o" firstAttribute="top" secondItem="lPd-DE-h7h" secondAttribute="top" constant="6" id="ot4-yg-gvR"/>
+                            <constraint firstItem="lPd-DE-h7h" firstAttribute="trailing" secondItem="4de-sJ-9He" secondAttribute="trailing" constant="6" id="qmq-jI-Wpo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lPd-DE-h7h"/>
+                    </view>
+                    <connections>
+                        <outlet property="typeSegment" destination="4de-sJ-9He" id="AcE-rj-15Y"/>
+                        <outlet property="widgetTitle" destination="rYr-bg-91o" id="W8u-9C-IPD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hv3-U4-DBr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="130" y="-22"/>
+        </scene>
         <!--Main Controller-->
         <scene sceneID="dKm-WF-flu">
             <objects>
@@ -280,6 +323,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xbb-oG-fpC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2848" y="1429"/>
+        </scene>
+        <!--Add Note View Controller-->
+        <scene sceneID="hwG-IV-ckJ">
+            <objects>
+                <viewController id="qrS-5e-rwb" customClass="AddNoteViewController" customModule="NextStats" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="n1B-Wk-dRu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Note Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FSD-pm-M4J">
+                                <rect key="frame" x="6" y="26" width="363" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FSD-pm-M4J" firstAttribute="leading" secondItem="GE6-kl-be1" secondAttribute="leading" constant="6" id="B1i-p1-Ytt"/>
+                            <constraint firstItem="GE6-kl-be1" firstAttribute="trailing" secondItem="FSD-pm-M4J" secondAttribute="trailing" constant="6" id="PaW-JW-gCW"/>
+                            <constraint firstItem="FSD-pm-M4J" firstAttribute="top" secondItem="GE6-kl-be1" secondAttribute="top" constant="6" id="iKM-un-758"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GE6-kl-be1"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qyv-Av-hRg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3634" y="1429"/>
         </scene>
         <!--Waypoints-->
         <scene sceneID="B6M-IW-FWH">

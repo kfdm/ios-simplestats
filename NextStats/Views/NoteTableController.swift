@@ -16,8 +16,14 @@ class NoteTableController: UITableViewController, Storyboarded {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.topViewController?.navigationItem.rightBarButtonItems = [
-            UIBarButtonItem.init(barButtonSystemItem: .add, target: nil, action: nil)
+            UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addNoteSelector))
         ]
+    }
+
+    // MARK: - selectors
+
+    @objc func addNoteSelector() {
+        coordinator?.showAddNote()
     }
 
     // MARK: - lifecycle

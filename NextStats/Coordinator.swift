@@ -30,6 +30,18 @@ class MainCoordinator {
         navigationController.setViewControllers([vc], animated: true)
     }
 
+    func showAddWidget() {
+        let vc = AddWidgetController.instantiate()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+
+    func showAddNote() {
+        let vc = NoteTableController.instantiate()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+
     func showLogin() {
         let vc = LoginController.instantiate()
         vc.coordinator = self

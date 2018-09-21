@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5664AAA0E5B921C82AFE68C0 /* Pods_NextStats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87331683CDCF3233E5B494C0 /* Pods_NextStats.framework */; };
 		874DC8D9213BB65E00C26526 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87D40890213775D300A1695E /* Assets.xcassets */; };
+		87911BDC21552658007EE503 /* AddWidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87911BDB21552658007EE503 /* AddWidgetController.swift */; };
+		87911BDE21552DB6007EE503 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87911BDD21552DB6007EE503 /* AddNoteViewController.swift */; };
 		87C0A1F12153C1F000310913 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C0A1F02153C1F000310913 /* Storyboarded.swift */; };
 		87C0A1F32153C25F00310913 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C0A1F22153C25F00310913 /* Coordinator.swift */; };
 		87C0A1F52153D02300310913 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C0A1F42153D02300310913 /* Constants.swift */; };
@@ -69,6 +71,8 @@
 
 /* Begin PBXFileReference section */
 		87331683CDCF3233E5B494C0 /* Pods_NextStats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NextStats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87911BDB21552658007EE503 /* AddWidgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWidgetController.swift; sourceTree = "<group>"; };
+		87911BDD21552DB6007EE503 /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
 		87C0A1F02153C1F000310913 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 		87C0A1F22153C25F00310913 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		87C0A1F42153D02300310913 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 				87F0A4A2214CCA6100EB7D39 /* SampleTableController.swift */,
 				87FECB55214F8A4700751FB2 /* NoteTableController.swift */,
 				87FECB5B214F90F200751FB2 /* WaypointTableController.swift */,
+				87911BDB21552658007EE503 /* AddWidgetController.swift */,
+				87911BDD21552DB6007EE503 /* AddNoteViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -412,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87D408AC21378F0600A1695E /* DetailController.swift in Sources */,
+				87911BDC21552658007EE503 /* AddWidgetController.swift in Sources */,
 				87C0A1F52153D02300310913 /* Constants.swift in Sources */,
 				87D4088C213775D100A1695E /* MainController.swift in Sources */,
 				87D408A6213782CD00A1695E /* Extensions.swift in Sources */,
@@ -424,6 +431,7 @@
 				87FECB56214F8A4700751FB2 /* NoteTableController.swift in Sources */,
 				87D4088A213775D100A1695E /* AppDelegate.swift in Sources */,
 				87C0A1F32153C25F00310913 /* Coordinator.swift in Sources */,
+				87911BDE21552DB6007EE503 /* AddNoteViewController.swift in Sources */,
 				87FECB5C214F90F200751FB2 /* WaypointTableController.swift in Sources */,
 				87F0A49D214CBD4A00EB7D39 /* Widget.swift in Sources */,
 				87D408A8213783AA00A1695E /* WidgetCollectionCell.swift in Sources */,

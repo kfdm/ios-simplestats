@@ -82,7 +82,7 @@ final class MainController: UICollectionViewController, Storyboarded {
     // MARK: - buttons
 
     @objc func addWidget(_ sender: UIBarButtonItem) {
-
+        coordinator?.showAddWidget()
     }
 
     @objc func organizeButton(_ sender: UIBarButtonItem) {
